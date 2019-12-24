@@ -1,0 +1,1537 @@
+-- phpMyAdmin SQL Dump
+-- version 4.8.4
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1:3306
+-- Generation Time: Dec 24, 2019 at 07:18 AM
+-- Server version: 5.7.24
+-- PHP Version: 7.2.14
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `laravel_smarttownship`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `addresses`
+--
+
+DROP TABLE IF EXISTS `addresses`;
+CREATE TABLE IF NOT EXISTS `addresses` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `community_id` int(11) DEFAULT NULL,
+  `address_type_id` int(11) DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `house` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `street` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `block` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `longitude` double DEFAULT NULL,
+  `latitude` double DEFAULT NULL,
+  `address` text COLLATE utf8mb4_unicode_ci,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'active',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `addresses`
+--
+
+INSERT INTO `addresses` (`id`, `community_id`, `address_type_id`, `name`, `house`, `street`, `block`, `longitude`, `latitude`, `address`, `status`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, 'House 1', '1', NULL, NULL, NULL, NULL, 'House 1 Smart Town, 43000 Kajang, Selangor, MY', 'active', '2019-12-20 03:01:16', '2019-12-20 03:01:16'),
+(2, 1, 1, 'House 2', '2', NULL, NULL, NULL, NULL, 'House 2 Smart Town, 43000 Kajang, Selangor, MY', 'active', '2019-12-20 03:01:16', '2019-12-20 03:01:16'),
+(3, 1, 1, 'House 3', '3', NULL, NULL, NULL, NULL, 'House 3 Smart Town, 43000 Kajang, Selangor, MY', 'active', '2019-12-20 03:01:16', '2019-12-20 03:01:16'),
+(4, 1, 1, 'House 4', '4', NULL, NULL, NULL, NULL, 'House 4 Smart Town, 43000 Kajang, Selangor, MY', 'active', '2019-12-20 04:47:02', '2019-12-20 04:47:02'),
+(5, 1, 1, 'House 5', '5', NULL, NULL, NULL, NULL, 'House 5 Smart Town, 43000 Kajang, Selangor, MY', 'active', '2019-12-20 04:47:02', '2019-12-20 04:47:02'),
+(6, 1, 2, 'Building 1', '1', NULL, NULL, NULL, NULL, 'Building 1 Smart Town, 43000 Kajang, Selangor, MY', 'active', '2019-12-20 04:47:02', '2019-12-20 04:47:02'),
+(7, 1, 2, 'Building 2', '2', NULL, NULL, NULL, NULL, 'Building 2 Smart Town, 43000 Kajang, Selangor, MY', 'active', '2019-12-20 04:47:02', '2019-12-20 04:47:02'),
+(8, 1, 1, 'House 6', '6', NULL, NULL, NULL, NULL, 'House 6 Smart Town, 43000 Kajang, Selangor, MY', 'active', '2019-12-20 04:47:14', '2019-12-20 04:47:14'),
+(9, 1, 1, 'House 7', '7', NULL, NULL, NULL, NULL, 'House 7 Smart Town, 43000 Kajang, Selangor, MY', 'active', '2019-12-20 04:47:14', '2019-12-20 04:47:14'),
+(10, 2, 1, 'House 8', '8', NULL, NULL, NULL, NULL, 'House 8 Johar Town, 54000, Kajang, Selangor, MY', 'active', '2019-12-20 05:52:08', '2019-12-20 05:52:08'),
+(11, 2, 1, 'House 9', '9', NULL, NULL, NULL, NULL, 'House 9 Johar Town, 54000, Kajang, Selangor, MY', 'active', '2019-12-20 05:52:08', '2019-12-20 05:52:08'),
+(12, 2, 1, 'House 10', '10', NULL, NULL, NULL, NULL, 'House 10 Johar Town, 54000, Kajang, Selangor, MY', 'active', '2019-12-20 05:52:08', '2019-12-20 05:52:08'),
+(13, 2, 1, 'House 11', '11', NULL, NULL, NULL, NULL, '', 'active', '2019-12-20 05:52:08', '2019-12-20 05:52:08'),
+(14, 2, 1, 'House 12', '12', NULL, NULL, NULL, NULL, '', 'active', '2019-12-20 05:52:08', '2019-12-20 05:52:08'),
+(15, 2, 1, 'House 13', '13', NULL, NULL, NULL, NULL, '', 'active', '2019-12-20 05:52:08', '2019-12-20 05:52:08'),
+(16, 2, 1, 'House 14', '14', NULL, NULL, NULL, NULL, '', 'active', '2019-12-20 05:52:08', '2019-12-20 05:52:08'),
+(17, 2, 1, 'House 15', '15', NULL, NULL, NULL, NULL, '', 'active', '2019-12-20 05:52:08', '2019-12-20 05:52:08'),
+(18, 2, 1, 'House 16', '16', NULL, NULL, NULL, NULL, '', 'active', '2019-12-20 05:52:08', '2019-12-20 05:52:08'),
+(19, 2, 1, 'House 17', '17', NULL, NULL, NULL, NULL, '', 'active', '2019-12-20 05:52:08', '2019-12-20 05:52:08'),
+(20, 2, 2, 'Building 3', '3', NULL, NULL, NULL, NULL, 'Building 3 Johar Town, 54000, Kajang, Selangor, MY', 'active', '2019-12-20 05:52:08', '2019-12-20 05:52:08'),
+(21, 2, 2, 'Building 4', '4', NULL, NULL, NULL, NULL, 'Building 4 Johar Town, 54000, Kajang, Selangor, MY', 'active', '2019-12-20 05:52:08', '2019-12-20 05:52:08'),
+(22, 2, 2, 'Building 5', '5', NULL, NULL, NULL, NULL, 'Building 5 Johar Town, 54000, Kajang, Selangor, MY', 'active', '2019-12-20 05:52:08', '2019-12-20 05:52:08'),
+(23, 2, 2, 'Building 6', '6', NULL, NULL, NULL, NULL, '', 'active', '2019-12-20 05:52:08', '2019-12-20 05:52:08'),
+(24, 2, 2, 'Building 7', '7', NULL, NULL, NULL, NULL, '', 'active', '2019-12-20 05:52:08', '2019-12-20 05:52:08'),
+(25, 2, 1, 'House 18', '18', NULL, NULL, NULL, NULL, 'House 18 Johar Town, 54000, Kajang, Selangor, MY', 'active', '2019-12-20 05:54:17', '2019-12-20 05:54:17'),
+(26, 2, 1, 'House 19', '19', NULL, NULL, NULL, NULL, 'House 19 Johar Town, 54000, Kajang, Selangor, MY', 'active', '2019-12-20 05:54:17', '2019-12-20 05:54:17'),
+(27, 2, 1, 'House 20', '20', NULL, NULL, NULL, NULL, 'House 20 Johar Town, 54000, Kajang, Selangor, MY', 'active', '2019-12-20 05:54:17', '2019-12-20 05:54:17'),
+(28, 2, 1, 'House 21', '21', NULL, NULL, NULL, NULL, '', 'active', '2019-12-20 05:54:17', '2019-12-20 05:54:17'),
+(29, 2, 1, 'House 22', '22', NULL, NULL, NULL, NULL, '', 'active', '2019-12-20 05:54:17', '2019-12-20 05:54:17'),
+(30, 2, 1, 'House 23', '23', NULL, NULL, NULL, NULL, '', 'active', '2019-12-20 05:54:17', '2019-12-20 05:54:17'),
+(31, 2, 1, 'House 24', '24', NULL, NULL, NULL, NULL, '', 'active', '2019-12-20 05:54:17', '2019-12-20 05:54:17'),
+(32, 2, 1, 'House 25', '25', NULL, NULL, NULL, NULL, '', 'active', '2019-12-20 05:54:17', '2019-12-20 05:54:17'),
+(33, 2, 1, 'House 26', '26', NULL, NULL, NULL, NULL, '', 'active', '2019-12-20 05:54:17', '2019-12-20 05:54:17'),
+(34, 2, 1, 'House 27', '27', NULL, NULL, NULL, NULL, NULL, 'active', '2019-12-20 05:54:00', '2019-12-20 11:43:30');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `address_assets`
+--
+
+DROP TABLE IF EXISTS `address_assets`;
+CREATE TABLE IF NOT EXISTS `address_assets` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `type` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address_id` int(11) NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `asset_no` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'active',
+  `data` longtext COLLATE utf8mb4_unicode_ci,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `address_assets`
+--
+
+INSERT INTO `address_assets` (`id`, `type`, `address_id`, `name`, `description`, `image`, `asset_no`, `status`, `data`, `created_at`, `updated_at`) VALUES
+(1, 'vehicle', 2, 'Honda City', 'Honda City (5th Generation) was launched on 31st January 2009 by Atlas Honda Cars Pakistan', 'address-assets\\December2019\\wVCBI3OkPLwOuNlCHH1S.jpg', '12345', 'active', NULL, '2019-12-17 02:39:00', '2019-12-17 02:54:53');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `address_types`
+--
+
+DROP TABLE IF EXISTS `address_types`;
+CREATE TABLE IF NOT EXISTS `address_types` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `parent_id` int(11) DEFAULT '0',
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'active',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `address_types`
+--
+
+INSERT INTO `address_types` (`id`, `parent_id`, `title`, `status`, `created_at`, `updated_at`) VALUES
+(1, 0, 'House', 'active', '2019-12-18 11:55:23', '2019-12-18 11:55:23'),
+(2, 0, 'Building', 'active', '2019-12-18 11:55:39', '2019-12-18 11:55:39');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `api_keys`
+--
+
+DROP TABLE IF EXISTS `api_keys`;
+CREATE TABLE IF NOT EXISTS `api_keys` (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `key` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `active` tinyint(1) NOT NULL DEFAULT '1',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `api_keys_name_index` (`name`),
+  KEY `api_keys_key_index` (`key`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `api_keys`
+--
+
+INSERT INTO `api_keys` (`id`, `name`, `key`, `active`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'app1', 'v76neBD67GxP9xaYqCK2AfJ8syd7QpsbMvcvlHTDE2djK0jgWUfMXUgV88iIyjHz', 1, '2019-12-16 04:14:21', '2019-12-16 04:14:21', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `api_key_access_events`
+--
+
+DROP TABLE IF EXISTS `api_key_access_events`;
+CREATE TABLE IF NOT EXISTS `api_key_access_events` (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `api_key_id` int(10) UNSIGNED NOT NULL,
+  `ip_address` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `url` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `api_key_access_events_ip_address_index` (`ip_address`),
+  KEY `api_key_access_events_api_key_id_foreign` (`api_key_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=107 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `api_key_access_events`
+--
+
+INSERT INTO `api_key_access_events` (`id`, `api_key_id`, `ip_address`, `url`, `created_at`, `updated_at`) VALUES
+(1, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/user/1', '2019-12-16 05:37:29', '2019-12-16 05:37:29'),
+(2, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/login?email=admin%40admin.com&password=password', '2019-12-16 07:00:01', '2019-12-16 07:00:01'),
+(3, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/login', '2019-12-16 07:00:10', '2019-12-16 07:00:10'),
+(4, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/login', '2019-12-16 07:00:48', '2019-12-16 07:00:48'),
+(5, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/login', '2019-12-16 07:03:01', '2019-12-16 07:03:01'),
+(6, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/login', '2019-12-16 07:03:11', '2019-12-16 07:03:11'),
+(7, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/login', '2019-12-16 07:05:11', '2019-12-16 07:05:11'),
+(8, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/login', '2019-12-16 07:06:14', '2019-12-16 07:06:14'),
+(9, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/login', '2019-12-16 07:06:40', '2019-12-16 07:06:40'),
+(10, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/login', '2019-12-16 07:06:56', '2019-12-16 07:06:56'),
+(11, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/login', '2019-12-16 07:07:18', '2019-12-16 07:07:18'),
+(12, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/login', '2019-12-16 07:07:33', '2019-12-16 07:07:33'),
+(13, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/login', '2019-12-16 07:15:18', '2019-12-16 07:15:18'),
+(14, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/login', '2019-12-16 07:17:14', '2019-12-16 07:17:14'),
+(15, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/login', '2019-12-16 07:17:16', '2019-12-16 07:17:16'),
+(16, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/login', '2019-12-16 07:23:26', '2019-12-16 07:23:26'),
+(17, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/login', '2019-12-16 07:47:01', '2019-12-16 07:47:01'),
+(18, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/login', '2019-12-16 07:47:17', '2019-12-16 07:47:17'),
+(19, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/login', '2019-12-16 07:47:38', '2019-12-16 07:47:38'),
+(20, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/login', '2019-12-16 07:47:54', '2019-12-16 07:47:54'),
+(21, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/login', '2019-12-16 07:48:07', '2019-12-16 07:48:07'),
+(22, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/login', '2019-12-16 07:49:34', '2019-12-16 07:49:34'),
+(23, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/login', '2019-12-16 07:52:54', '2019-12-16 07:52:54'),
+(24, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/login', '2019-12-16 07:52:59', '2019-12-16 07:52:59'),
+(25, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/login', '2019-12-16 07:53:05', '2019-12-16 07:53:05'),
+(26, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/login', '2019-12-16 07:53:10', '2019-12-16 07:53:10'),
+(27, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/login', '2019-12-16 07:53:27', '2019-12-16 07:53:27'),
+(28, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/register', '2019-12-16 07:58:40', '2019-12-16 07:58:40'),
+(29, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/register', '2019-12-16 07:59:06', '2019-12-16 07:59:06'),
+(30, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/register', '2019-12-16 08:00:01', '2019-12-16 08:00:01'),
+(31, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/register', '2019-12-16 08:00:15', '2019-12-16 08:00:15'),
+(32, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/register', '2019-12-16 08:03:51', '2019-12-16 08:03:51'),
+(33, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/register', '2019-12-16 08:04:05', '2019-12-16 08:04:05'),
+(34, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/register', '2019-12-16 08:04:22', '2019-12-16 08:04:22'),
+(35, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/register', '2019-12-16 08:05:30', '2019-12-16 08:05:30'),
+(36, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/user?id=', '2019-12-16 08:10:58', '2019-12-16 08:10:58'),
+(37, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/user?id=1', '2019-12-16 08:11:05', '2019-12-16 08:11:05'),
+(38, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/user?id=2', '2019-12-16 08:11:14', '2019-12-16 08:11:14'),
+(39, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/user?id=3', '2019-12-16 08:11:19', '2019-12-16 08:11:19'),
+(40, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/user?id=5', '2019-12-16 08:11:25', '2019-12-16 08:11:25'),
+(41, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/vehicle_verification', '2019-12-16 08:26:04', '2019-12-16 08:26:04'),
+(42, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/vehicle_verification', '2019-12-16 08:26:31', '2019-12-16 08:26:31'),
+(43, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/vehicle_verification', '2019-12-16 08:26:48', '2019-12-16 08:26:48'),
+(44, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/vehicle_verification', '2019-12-16 08:27:18', '2019-12-16 08:27:18'),
+(45, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/vehicle_verification', '2019-12-16 08:41:53', '2019-12-16 08:41:53'),
+(46, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/vehicle_verification', '2019-12-16 08:42:06', '2019-12-16 08:42:06'),
+(47, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/vehicle_verification', '2019-12-16 08:44:03', '2019-12-16 08:44:03'),
+(48, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/vehicle_verification', '2019-12-16 08:44:07', '2019-12-16 08:44:07'),
+(49, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/vehicle_verification', '2019-12-16 08:44:13', '2019-12-16 08:44:13'),
+(50, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/vehicle_verification', '2019-12-16 08:46:54', '2019-12-16 08:46:54'),
+(51, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/vehicle_verification', '2019-12-17 02:15:04', '2019-12-17 02:15:04'),
+(52, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/vehicle_verification', '2019-12-17 02:16:27', '2019-12-17 02:16:27'),
+(53, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/vehicle_verification', '2019-12-17 02:17:51', '2019-12-17 02:17:51'),
+(54, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/vehicle_verification', '2019-12-17 02:19:04', '2019-12-17 02:19:04'),
+(55, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/vehicle_verification', '2019-12-17 02:19:33', '2019-12-17 02:19:33'),
+(56, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/vehicle_verification', '2019-12-17 02:20:12', '2019-12-17 02:20:12'),
+(57, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/vehicle_verification', '2019-12-17 02:20:28', '2019-12-17 02:20:28'),
+(58, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/vehicle_verification', '2019-12-17 02:21:19', '2019-12-17 02:21:19'),
+(59, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/vehicle_verification', '2019-12-17 02:21:38', '2019-12-17 02:21:38'),
+(60, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/vehicle_verification', '2019-12-17 02:22:01', '2019-12-17 02:22:01'),
+(61, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/vehicle_verification', '2019-12-17 02:23:17', '2019-12-17 02:23:17'),
+(62, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/vehicle_verification', '2019-12-17 02:51:01', '2019-12-17 02:51:01'),
+(63, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/vehicle_verification', '2019-12-17 02:51:17', '2019-12-17 02:51:17'),
+(64, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/vehicle_verification', '2019-12-17 02:53:43', '2019-12-17 02:53:43'),
+(65, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/vehicle_verification', '2019-12-17 02:54:13', '2019-12-17 02:54:13'),
+(66, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/vehicle_verification', '2019-12-17 02:54:58', '2019-12-17 02:54:58'),
+(67, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/vehicle_verification', '2019-12-17 02:56:51', '2019-12-17 02:56:51'),
+(68, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/vehicle_verification', '2019-12-17 02:57:52', '2019-12-17 02:57:52'),
+(69, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/vehicle_verification', '2019-12-17 02:58:34', '2019-12-17 02:58:34'),
+(70, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/vehicle_verification', '2019-12-17 02:59:23', '2019-12-17 02:59:23'),
+(71, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/vehicle_verification', '2019-12-17 02:59:54', '2019-12-17 02:59:54'),
+(72, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/vehicle_verification', '2019-12-17 03:07:31', '2019-12-17 03:07:31'),
+(73, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/vehicle_verification', '2019-12-17 03:08:20', '2019-12-17 03:08:20'),
+(74, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/user?id=2', '2019-12-17 03:10:28', '2019-12-17 03:10:28'),
+(75, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/vehicle_verification', '2019-12-23 04:30:44', '2019-12-23 04:30:44'),
+(76, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/vehicle_verification', '2019-12-23 04:34:02', '2019-12-23 04:34:02'),
+(77, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/vehicle_verification', '2019-12-23 04:34:41', '2019-12-23 04:34:41'),
+(78, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/invite_visitor', '2019-12-23 05:54:14', '2019-12-23 05:54:14'),
+(79, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/invite_visitor', '2019-12-23 05:58:26', '2019-12-23 05:58:26'),
+(80, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/invite_visitor', '2019-12-23 06:02:02', '2019-12-23 06:02:02'),
+(81, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/invite_visitor', '2019-12-23 06:05:40', '2019-12-23 06:05:40'),
+(82, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/invite_visitor', '2019-12-23 06:06:08', '2019-12-23 06:06:08'),
+(83, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/invite_visitor', '2019-12-23 06:16:46', '2019-12-23 06:16:46'),
+(84, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/vehicle_verification', '2019-12-23 06:23:17', '2019-12-23 06:23:17'),
+(85, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/vehicle_verification', '2019-12-23 06:23:43', '2019-12-23 06:23:43'),
+(86, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/vehicle_verification', '2019-12-23 06:23:48', '2019-12-23 06:23:48'),
+(87, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/vehicle_verification', '2019-12-23 06:24:09', '2019-12-23 06:24:09'),
+(88, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/vehicle_verification', '2019-12-23 06:24:38', '2019-12-23 06:24:38'),
+(89, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/vehicle_verification', '2019-12-23 06:24:54', '2019-12-23 06:24:54'),
+(90, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/vehicle_verification', '2019-12-23 06:26:19', '2019-12-23 06:26:19'),
+(91, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/vehicle_verification', '2019-12-23 06:27:35', '2019-12-23 06:27:35'),
+(92, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/vehicle_verification', '2019-12-23 06:30:44', '2019-12-23 06:30:44'),
+(93, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/vehicle_verification', '2019-12-23 06:30:58', '2019-12-23 06:30:58'),
+(94, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/vehicle_verification', '2019-12-23 06:44:54', '2019-12-23 06:44:54'),
+(95, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/vehicle_verification', '2019-12-23 06:45:52', '2019-12-23 06:45:52'),
+(96, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/vehicle_verification', '2019-12-23 06:47:46', '2019-12-23 06:47:46'),
+(97, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/vehicle_verification', '2019-12-23 06:48:16', '2019-12-23 06:48:16'),
+(98, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/invite_visitor', '2019-12-23 07:21:02', '2019-12-23 07:21:02'),
+(99, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/vehicle_verification', '2019-12-23 07:21:42', '2019-12-23 07:21:42'),
+(100, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/vehicle_verification', '2019-12-23 07:22:29', '2019-12-23 07:22:29'),
+(101, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/vehicle_verification', '2019-12-23 07:22:39', '2019-12-23 07:22:39'),
+(102, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/vehicle_verification', '2019-12-23 07:23:06', '2019-12-23 07:23:06'),
+(103, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/vehicle_verification', '2019-12-23 07:23:34', '2019-12-23 07:23:34'),
+(104, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/vehicle_verification', '2019-12-23 07:23:58', '2019-12-23 07:23:58'),
+(105, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/vehicle_verification', '2019-12-23 07:27:58', '2019-12-23 07:27:58'),
+(106, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/vehicle_verification', '2019-12-23 07:28:12', '2019-12-23 07:28:12');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `api_key_admin_events`
+--
+
+DROP TABLE IF EXISTS `api_key_admin_events`;
+CREATE TABLE IF NOT EXISTS `api_key_admin_events` (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `api_key_id` int(10) UNSIGNED NOT NULL,
+  `ip_address` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `event` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `api_key_admin_events_ip_address_index` (`ip_address`),
+  KEY `api_key_admin_events_event_index` (`event`),
+  KEY `api_key_admin_events_api_key_id_foreign` (`api_key_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `api_key_admin_events`
+--
+
+INSERT INTO `api_key_admin_events` (`id`, `api_key_id`, `ip_address`, `event`, `created_at`, `updated_at`) VALUES
+(1, 1, '127.0.0.1', 'created', '2019-12-16 04:14:21', '2019-12-16 04:14:21');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `asset_types`
+--
+
+DROP TABLE IF EXISTS `asset_types`;
+CREATE TABLE IF NOT EXISTS `asset_types` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'active',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `asset_types`
+--
+
+INSERT INTO `asset_types` (`id`, `title`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Vehicle', 'active', '2019-12-13 06:24:04', '2019-12-13 06:24:04');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `categories`
+--
+
+DROP TABLE IF EXISTS `categories`;
+CREATE TABLE IF NOT EXISTS `categories` (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `parent_id` int(10) UNSIGNED DEFAULT NULL,
+  `order` int(11) NOT NULL DEFAULT '1',
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `categories_slug_unique` (`slug`),
+  KEY `categories_parent_id_foreign` (`parent_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`id`, `parent_id`, `order`, `name`, `slug`, `created_at`, `updated_at`) VALUES
+(1, NULL, 1, 'Category 1', 'category-1', '2019-12-12 07:01:35', '2019-12-12 07:01:35'),
+(2, NULL, 1, 'Category 2', 'category-2', '2019-12-12 07:01:35', '2019-12-12 07:01:35');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `communities`
+--
+
+DROP TABLE IF EXISTS `communities`;
+CREATE TABLE IF NOT EXISTS `communities` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci,
+  `banner` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `postal_code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `city` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `state` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `country` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address_format` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT '1',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `communities`
+--
+
+INSERT INTO `communities` (`id`, `name`, `description`, `banner`, `postal_code`, `city`, `state`, `country`, `address_format`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Smart Town', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.', 'communities\\December2019\\z8GvSpOeksdKkkkHSmCz.jpg', '43000', 'Kajang', 'Selangor', 'MY', '[HOUSE] [COMMUNITY], [POSTAL_CODE] [CITY], [STATE], [COUNTRY]', 1, '2019-12-13 02:33:00', '2019-12-19 11:47:33'),
+(2, 'Johar Town', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.', 'communities\\December2019\\0AfWYRfZrqAQjv6TklW0.jpg', '54000', 'Kajang', 'Selangor', 'MY', '[HOUSE] [COMMUNITY], [POSTAL_CODE], [CITY], [STATE], [COUNTRY]', 1, '2019-12-20 05:38:46', '2019-12-20 05:38:46');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `community_address_types`
+--
+
+DROP TABLE IF EXISTS `community_address_types`;
+CREATE TABLE IF NOT EXISTS `community_address_types` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `community_id` int(11) NOT NULL,
+  `address_type_id` int(11) NOT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'active',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `community_address_types`
+--
+
+INSERT INTO `community_address_types` (`id`, `community_id`, `address_type_id`, `status`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, 'active', '2019-12-20 03:21:14', '2019-12-20 03:22:33'),
+(2, 1, 2, 'active', '2019-12-20 03:21:14', '2019-12-20 04:47:02'),
+(3, 2, 1, 'active', '2019-12-20 05:52:08', '2019-12-20 05:54:08'),
+(4, 2, 2, 'active', '2019-12-20 05:52:08', '2019-12-20 05:53:59');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `community_assets`
+--
+
+DROP TABLE IF EXISTS `community_assets`;
+CREATE TABLE IF NOT EXISTS `community_assets` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `asset_type_id` int(11) NOT NULL,
+  `community_id` int(11) NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `asset_no` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'active',
+  `data` longtext COLLATE utf8mb4_unicode_ci,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `data_rows`
+--
+
+DROP TABLE IF EXISTS `data_rows`;
+CREATE TABLE IF NOT EXISTS `data_rows` (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `data_type_id` int(10) UNSIGNED NOT NULL,
+  `field` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `display_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `required` tinyint(1) NOT NULL DEFAULT '0',
+  `browse` tinyint(1) NOT NULL DEFAULT '1',
+  `read` tinyint(1) NOT NULL DEFAULT '1',
+  `edit` tinyint(1) NOT NULL DEFAULT '1',
+  `add` tinyint(1) NOT NULL DEFAULT '1',
+  `delete` tinyint(1) NOT NULL DEFAULT '1',
+  `details` text COLLATE utf8mb4_unicode_ci,
+  `order` int(11) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`),
+  KEY `data_rows_data_type_id_foreign` (`data_type_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=190 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `data_rows`
+--
+
+INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, `required`, `browse`, `read`, `edit`, `add`, `delete`, `details`, `order`) VALUES
+(1, 1, 'id', 'number', 'ID', 1, 1, 0, 0, 0, 0, '{}', 1),
+(2, 1, 'name', 'text', 'Name', 1, 1, 1, 1, 1, 1, '{}', 2),
+(3, 1, 'email', 'text', 'Email', 1, 1, 1, 1, 1, 1, '{}', 3),
+(4, 1, 'password', 'password', 'Password', 1, 0, 0, 1, 1, 0, '{}', 4),
+(5, 1, 'remember_token', 'text', 'Remember Token', 0, 0, 0, 0, 0, 0, '{}', 5),
+(6, 1, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 0, 0, 0, '{}', 6),
+(7, 1, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 7),
+(8, 1, 'avatar', 'image', 'Avatar', 0, 1, 1, 1, 1, 1, '{}', 8),
+(9, 1, 'user_belongsto_role_relationship', 'relationship', 'Role', 0, 1, 1, 1, 1, 0, '{\"model\":\"TCG\\\\Voyager\\\\Models\\\\Role\",\"table\":\"roles\",\"type\":\"belongsTo\",\"column\":\"role_id\",\"key\":\"id\",\"label\":\"display_name\",\"pivot_table\":\"roles\",\"pivot\":\"0\",\"taggable\":\"0\"}', 10),
+(10, 1, 'user_belongstomany_role_relationship', 'relationship', 'Roles', 0, 1, 1, 1, 1, 0, '{\"model\":\"TCG\\\\Voyager\\\\Models\\\\Role\",\"table\":\"roles\",\"type\":\"belongsToMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"display_name\",\"pivot_table\":\"user_roles\",\"pivot\":\"1\",\"taggable\":\"0\"}', 11),
+(11, 1, 'settings', 'hidden', 'Settings', 0, 0, 0, 0, 0, 0, '{}', 12),
+(12, 2, 'id', 'number', 'ID', 1, 0, 0, 0, 0, 0, NULL, 1),
+(13, 2, 'name', 'text', 'Name', 1, 1, 1, 1, 1, 1, NULL, 2),
+(14, 2, 'created_at', 'timestamp', 'Created At', 0, 0, 0, 0, 0, 0, NULL, 3),
+(15, 2, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, NULL, 4),
+(16, 3, 'id', 'number', 'ID', 1, 0, 0, 0, 0, 0, NULL, 1),
+(17, 3, 'name', 'text', 'Name', 1, 1, 1, 1, 1, 1, NULL, 2),
+(18, 3, 'created_at', 'timestamp', 'Created At', 0, 0, 0, 0, 0, 0, NULL, 3),
+(19, 3, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, NULL, 4),
+(20, 3, 'display_name', 'text', 'Display Name', 1, 1, 1, 1, 1, 1, NULL, 5),
+(21, 1, 'role_id', 'text', 'Role', 0, 1, 1, 1, 1, 1, '{}', 9),
+(22, 4, 'id', 'number', 'ID', 1, 0, 0, 0, 0, 0, NULL, 1),
+(23, 4, 'parent_id', 'select_dropdown', 'Parent', 0, 0, 1, 1, 1, 1, '{\"default\":\"\",\"null\":\"\",\"options\":{\"\":\"-- None --\"},\"relationship\":{\"key\":\"id\",\"label\":\"name\"}}', 2),
+(24, 4, 'order', 'text', 'Order', 1, 1, 1, 1, 1, 1, '{\"default\":1}', 3),
+(25, 4, 'name', 'text', 'Name', 1, 1, 1, 1, 1, 1, NULL, 4),
+(26, 4, 'slug', 'text', 'Slug', 1, 1, 1, 1, 1, 1, '{\"slugify\":{\"origin\":\"name\"}}', 5),
+(27, 4, 'created_at', 'timestamp', 'Created At', 0, 0, 1, 0, 0, 0, NULL, 6),
+(28, 4, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, NULL, 7),
+(29, 5, 'id', 'number', 'ID', 1, 0, 0, 0, 0, 0, NULL, 1),
+(30, 5, 'author_id', 'text', 'Author', 1, 0, 1, 1, 0, 1, NULL, 2),
+(31, 5, 'category_id', 'text', 'Category', 1, 0, 1, 1, 1, 0, NULL, 3),
+(32, 5, 'title', 'text', 'Title', 1, 1, 1, 1, 1, 1, NULL, 4),
+(33, 5, 'excerpt', 'text_area', 'Excerpt', 1, 0, 1, 1, 1, 1, NULL, 5),
+(34, 5, 'body', 'rich_text_box', 'Body', 1, 0, 1, 1, 1, 1, NULL, 6),
+(35, 5, 'image', 'image', 'Post Image', 0, 1, 1, 1, 1, 1, '{\"resize\":{\"width\":\"1000\",\"height\":\"null\"},\"quality\":\"70%\",\"upsize\":true,\"thumbnails\":[{\"name\":\"medium\",\"scale\":\"50%\"},{\"name\":\"small\",\"scale\":\"25%\"},{\"name\":\"cropped\",\"crop\":{\"width\":\"300\",\"height\":\"250\"}}]}', 7),
+(36, 5, 'slug', 'text', 'Slug', 1, 0, 1, 1, 1, 1, '{\"slugify\":{\"origin\":\"title\",\"forceUpdate\":true},\"validation\":{\"rule\":\"unique:posts,slug\"}}', 8),
+(37, 5, 'meta_description', 'text_area', 'Meta Description', 1, 0, 1, 1, 1, 1, NULL, 9),
+(38, 5, 'meta_keywords', 'text_area', 'Meta Keywords', 1, 0, 1, 1, 1, 1, NULL, 10),
+(39, 5, 'status', 'select_dropdown', 'Status', 1, 1, 1, 1, 1, 1, '{\"default\":\"DRAFT\",\"options\":{\"PUBLISHED\":\"published\",\"DRAFT\":\"draft\",\"PENDING\":\"pending\"}}', 11),
+(40, 5, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 0, 0, 0, NULL, 12),
+(41, 5, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, NULL, 13),
+(42, 5, 'seo_title', 'text', 'SEO Title', 0, 1, 1, 1, 1, 1, NULL, 14),
+(43, 5, 'featured', 'checkbox', 'Featured', 1, 1, 1, 1, 1, 1, NULL, 15),
+(44, 6, 'id', 'number', 'ID', 1, 0, 0, 0, 0, 0, NULL, 1),
+(45, 6, 'author_id', 'text', 'Author', 1, 0, 0, 0, 0, 0, NULL, 2),
+(46, 6, 'title', 'text', 'Title', 1, 1, 1, 1, 1, 1, NULL, 3),
+(47, 6, 'excerpt', 'text_area', 'Excerpt', 1, 0, 1, 1, 1, 1, NULL, 4),
+(48, 6, 'body', 'rich_text_box', 'Body', 1, 0, 1, 1, 1, 1, NULL, 5),
+(49, 6, 'slug', 'text', 'Slug', 1, 0, 1, 1, 1, 1, '{\"slugify\":{\"origin\":\"title\"},\"validation\":{\"rule\":\"unique:pages,slug\"}}', 6),
+(50, 6, 'meta_description', 'text', 'Meta Description', 1, 0, 1, 1, 1, 1, NULL, 7),
+(51, 6, 'meta_keywords', 'text', 'Meta Keywords', 1, 0, 1, 1, 1, 1, NULL, 8),
+(52, 6, 'status', 'select_dropdown', 'Status', 1, 1, 1, 1, 1, 1, '{\"default\":\"INACTIVE\",\"options\":{\"INACTIVE\":\"INACTIVE\",\"ACTIVE\":\"ACTIVE\"}}', 9),
+(53, 6, 'created_at', 'timestamp', 'Created At', 1, 1, 1, 0, 0, 0, NULL, 10),
+(54, 6, 'updated_at', 'timestamp', 'Updated At', 1, 0, 0, 0, 0, 0, NULL, 11),
+(55, 6, 'image', 'image', 'Page Image', 0, 1, 1, 1, 1, 1, NULL, 12),
+(56, 7, 'id', 'text', 'Id', 1, 1, 0, 0, 0, 0, '{}', 1),
+(57, 7, 'name', 'text', 'Name', 1, 1, 1, 1, 1, 1, '{}', 2),
+(58, 7, 'description', 'text_area', 'Description', 0, 0, 1, 1, 1, 1, '{}', 8),
+(59, 7, 'banner', 'image', 'Banner', 0, 1, 1, 1, 1, 1, '{}', 9),
+(60, 7, 'status', 'checkbox', 'Status', 1, 1, 1, 1, 1, 1, '{}', 10),
+(61, 7, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 0, 0, 1, '{}', 11),
+(62, 7, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 12),
+(63, 1, 'email_verified_at', 'timestamp', 'Email Verified At', 0, 1, 1, 1, 1, 1, '{}', 6),
+(64, 8, 'id', 'text', 'Id', 1, 1, 0, 0, 0, 0, '{}', 1),
+(65, 8, 'community_id', 'hidden', 'Community Id', 0, 0, 1, 1, 1, 1, '{}', 5),
+(66, 8, 'house', 'text', 'House', 0, 1, 1, 1, 1, 1, '{}', 6),
+(67, 8, 'street', 'text', 'Street', 0, 1, 1, 1, 1, 1, '{}', 8),
+(68, 8, 'block', 'text', 'Block', 0, 1, 1, 1, 1, 1, '{}', 9),
+(69, 8, 'longitude', 'text', 'Longitude', 0, 0, 1, 1, 1, 1, '{}', 10),
+(70, 8, 'latitude', 'text', 'Latitude', 0, 0, 1, 1, 1, 1, '{}', 11),
+(71, 8, 'address', 'text', 'Address', 0, 1, 1, 1, 1, 1, '{}', 12),
+(72, 8, 'status', 'select_dropdown', 'Status', 1, 1, 1, 1, 1, 1, '{\"default\":\"active\",\"options\":{\"active\":\"active\",\"inactive\":\"inactive\"}}', 13),
+(73, 8, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 14),
+(74, 8, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 15),
+(75, 8, 'address_hasone_community_relationship', 'relationship', 'Community', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Community\",\"table\":\"communities\",\"type\":\"belongsTo\",\"column\":\"community_id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"addresses\",\"pivot\":\"0\",\"taggable\":\"0\"}', 2),
+(76, 9, 'id', 'text', 'Id', 1, 1, 0, 0, 0, 0, '{}', 1),
+(77, 9, 'title', 'text', 'Title', 0, 1, 1, 1, 1, 1, '{}', 2),
+(78, 9, 'status', 'select_dropdown', 'Status', 1, 1, 1, 1, 1, 1, '{\"default\":\"active\",\"options\":{\"active\":\"active\",\"pending\":\"pending\"}}', 3),
+(79, 9, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 4),
+(80, 9, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 5),
+(81, 10, 'id', 'text', 'Id', 1, 1, 0, 0, 0, 0, '{}', 1),
+(82, 10, 'name', 'text', 'Name', 0, 1, 1, 1, 1, 1, '{}', 2),
+(83, 10, 'description', 'text', 'Description', 0, 1, 1, 1, 1, 1, '{}', 3),
+(84, 10, 'image', 'media_picker', 'Image', 0, 1, 1, 1, 1, 1, '{}', 4),
+(85, 10, 'asset_no', 'text', 'Asset No', 0, 1, 1, 1, 1, 1, '{}', 5),
+(86, 10, 'belongs_to', 'select_dropdown', 'Belongs To', 1, 1, 1, 1, 1, 1, '{\"default\":\"user\",\"options\":{\"user\":\"User\",\"community\":\"Community\"}}', 6),
+(87, 10, 'belongs_to_id', 'select_dropdown', 'Belongs To Id', 0, 1, 1, 1, 1, 1, '{}', 7),
+(88, 10, 'status', 'select_dropdown', 'Status', 1, 1, 1, 1, 1, 1, '{\"default\":\"active\",\"options\":{\"active\":\"active\",\"pending\":\"pending\"}}', 8),
+(89, 10, 'data', 'text', 'Data', 1, 1, 1, 1, 1, 1, '{}', 9),
+(90, 10, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 10),
+(91, 10, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 11),
+(92, 11, 'id', 'text', 'Id', 1, 1, 0, 0, 0, 0, '{}', 1),
+(93, 11, 'asset_type_id', 'hidden', 'Asset Type Id', 1, 1, 1, 1, 1, 1, '{}', 2),
+(94, 11, 'community_id', 'hidden', 'Community Id', 1, 1, 1, 1, 1, 1, '{}', 3),
+(95, 11, 'name', 'text', 'Name', 0, 1, 1, 1, 1, 1, '{\"display\":{\"width\":\"6\"}}', 6),
+(96, 11, 'description', 'text_area', 'Description', 0, 1, 1, 1, 1, 1, '{}', 10),
+(97, 11, 'image', 'image', 'Image', 0, 1, 1, 1, 1, 1, '{\"display\":{\"width\":\"6\"}}', 8),
+(98, 11, 'asset_no', 'text', 'Asset No', 0, 1, 1, 1, 1, 1, '{\"display\":{\"width\":\"6\"}}', 7),
+(99, 11, 'status', 'select_dropdown', 'Status', 1, 1, 1, 1, 1, 1, '{\"default\":\"active\",\"options\":{\"active\":\"active\",\"pending\":\"pending\"},\"display\":{\"width\":\"6\"}}', 9),
+(100, 11, 'data', 'hidden', 'Data', 1, 1, 1, 1, 1, 1, '{}', 11),
+(101, 11, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 12),
+(102, 11, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 13),
+(104, 11, 'community_asset_belongsto_community_relationship', 'relationship', 'Community', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Community\",\"table\":\"communities\",\"type\":\"belongsTo\",\"column\":\"community_id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"addresses\",\"pivot\":\"0\",\"taggable\":\"0\"}', 5),
+(105, 11, 'community_asset_belongsto_asset_type_relationship', 'relationship', 'Asset Type', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\AssetType\",\"table\":\"asset_types\",\"type\":\"belongsTo\",\"column\":\"asset_type_id\",\"key\":\"id\",\"label\":\"title\",\"pivot_table\":\"addresses\",\"pivot\":\"0\",\"taggable\":\"0\"}', 4),
+(106, 12, 'id', 'text', 'Id', 1, 1, 0, 0, 0, 0, '{}', 1),
+(107, 12, 'asset_type_id', 'hidden', 'Asset Type Id', 1, 1, 1, 1, 1, 1, '{}', 2),
+(108, 12, 'user_id', 'hidden', 'User Id', 1, 1, 1, 1, 1, 1, '{}', 3),
+(109, 12, 'name', 'text', 'Name', 0, 1, 1, 1, 1, 1, '{\"display\":{\"width\":\"6\"}}', 6),
+(110, 12, 'description', 'text_area', 'Description', 0, 0, 1, 1, 1, 1, '{}', 10),
+(111, 12, 'image', 'image', 'Image', 0, 0, 1, 1, 1, 1, '{\"display\":{\"width\":\"6\"}}', 8),
+(112, 12, 'asset_no', 'text', 'Asset No', 0, 1, 1, 1, 1, 1, '{\"display\":{\"width\":\"6\"}}', 7),
+(113, 12, 'status', 'select_dropdown', 'Status', 1, 1, 1, 1, 1, 1, '{\"default\":\"active\",\"options\":{\"active\":\"active\",\"pending\":\"pending\"},\"display\":{\"width\":\"6\"}}', 9),
+(114, 12, 'data', 'hidden', 'Data', 0, 0, 1, 1, 1, 1, '{}', 11),
+(115, 12, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 12),
+(116, 12, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 13),
+(117, 12, 'user_asset_belongsto_asset_type_relationship', 'relationship', 'Asset Type', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\AssetType\",\"table\":\"asset_types\",\"type\":\"belongsTo\",\"column\":\"asset_type_id\",\"key\":\"id\",\"label\":\"title\",\"pivot_table\":\"addresses\",\"pivot\":\"0\",\"taggable\":\"0\"}', 4),
+(118, 12, 'user_asset_belongsto_user_relationship', 'relationship', 'User', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\User\",\"table\":\"users\",\"type\":\"belongsTo\",\"column\":\"user_id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"addresses\",\"pivot\":\"0\",\"taggable\":\"0\"}', 5),
+(119, 13, 'id', 'text', 'Id', 1, 1, 0, 0, 0, 0, '{}', 1),
+(120, 13, 'address_id', 'hidden', 'Address Id', 1, 1, 1, 1, 1, 1, '{}', 2),
+(121, 13, 'user_id', 'hidden', 'User Id', 1, 1, 1, 1, 1, 1, '{}', 6),
+(122, 13, 'reference_id', 'hidden', 'Reference Id', 0, 0, 1, 1, 1, 1, '{}', 7),
+(123, 13, 'type', 'select_dropdown', 'Type', 1, 1, 1, 1, 1, 1, '{\"default\":\"owner\",\"options\":{\"owner\":\"Owner\",\"tenant\":\"Tenant\"}}', 8),
+(124, 13, 'status', 'select_dropdown', 'Status', 1, 1, 1, 1, 1, 1, '{\"default\":\"active\",\"options\":{\"active\":\"active\",\"inactive\":\"inactive\"}}', 9),
+(125, 13, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 10),
+(126, 13, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 11),
+(127, 13, 'resident_belongsto_address_relationship', 'relationship', 'Select Address', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Address\",\"table\":\"addresses\",\"type\":\"belongsTo\",\"column\":\"address_id\",\"key\":\"id\",\"label\":\"address\",\"pivot_table\":\"addresses\",\"pivot\":\"0\",\"taggable\":\"0\"}', 3),
+(128, 13, 'resident_belongsto_user_relationship', 'relationship', 'Select User', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\User\",\"table\":\"users\",\"type\":\"belongsTo\",\"column\":\"user_id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"addresses\",\"pivot\":\"0\",\"taggable\":\"0\"}', 4),
+(129, 13, 'resident_belongsto_user_relationship_1', 'relationship', 'By Reference', 0, 0, 1, 1, 1, 1, '{\"model\":\"App\\\\User\",\"table\":\"users\",\"type\":\"belongsTo\",\"column\":\"reference_id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"addresses\",\"pivot\":\"0\",\"taggable\":\"0\"}', 5),
+(130, 14, 'id', 'text', 'Id', 1, 1, 0, 0, 0, 0, '{}', 1),
+(132, 14, 'address_id', 'hidden', 'Address Id', 1, 1, 1, 1, 1, 1, '{}', 3),
+(133, 14, 'name', 'text', 'Name', 0, 1, 1, 1, 1, 1, '{\"display\":{\"width\":\"6\"}}', 6),
+(134, 14, 'description', 'text_area', 'Description', 0, 0, 1, 1, 1, 1, '{}', 10),
+(135, 14, 'image', 'image', 'Image', 0, 0, 1, 1, 1, 1, '{\"display\":{\"width\":\"6\"}}', 8),
+(136, 14, 'asset_no', 'text', 'Asset No', 0, 1, 1, 1, 1, 1, '{\"display\":{\"width\":\"6\"}}', 7),
+(137, 14, 'status', 'select_dropdown', 'Status', 1, 1, 1, 1, 1, 1, '{\"default\":\"active\",\"options\":{\"active\":\"active\",\"inactive\":\"inactive\"},\"display\":{\"width\":\"6\"}}', 9),
+(138, 14, 'data', 'hidden', 'Data', 0, 0, 0, 0, 0, 0, '{}', 11),
+(139, 14, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 12),
+(140, 14, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 13),
+(141, 14, 'address_asset_belongsto_address_relationship', 'relationship', 'Address', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Address\",\"table\":\"addresses\",\"type\":\"belongsTo\",\"column\":\"address_id\",\"key\":\"id\",\"label\":\"address\",\"pivot_table\":\"address_assets\",\"pivot\":\"0\",\"taggable\":\"0\"}', 5),
+(143, 16, 'id', 'text', 'Id', 1, 1, 0, 0, 0, 0, '{}', 1),
+(144, 16, 'title', 'text', 'Title', 0, 1, 1, 1, 1, 1, '{}', 3),
+(145, 16, 'status', 'select_dropdown', 'Status', 1, 1, 1, 1, 1, 1, '{\"default\":\"active\",\"options\":{\"active\":\"active\",\"inactive\":\"inactive\"}}', 5),
+(146, 16, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 6),
+(147, 16, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 7),
+(148, 17, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
+(149, 17, 'community_id', 'hidden', 'Community Id', 1, 1, 1, 1, 1, 1, '{}', 2),
+(150, 17, 'address_type_id', 'hidden', 'Address Type Id', 1, 1, 1, 1, 1, 1, '{}', 3),
+(151, 17, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 4),
+(152, 17, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 5),
+(153, 17, 'community_address_type_belongsto_community_relationship', 'relationship', 'communities', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Community\",\"table\":\"communities\",\"type\":\"belongsTo\",\"column\":\"community_id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"address_assets\",\"pivot\":\"0\",\"taggable\":\"0\"}', 6),
+(154, 17, 'community_address_type_belongstomany_address_type_relationship', 'relationship', 'address_types', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\AddressType\",\"table\":\"address_types\",\"type\":\"belongsTo\",\"column\":\"address_type_id\",\"key\":\"id\",\"label\":\"title\",\"pivot_table\":\"address_types\",\"pivot\":\"0\",\"taggable\":\"on\"}', 7),
+(155, 7, 'postal_code', 'text', 'Postal Code', 0, 1, 1, 1, 1, 1, '{}', 3),
+(156, 7, 'city', 'text', 'City', 0, 1, 1, 1, 1, 1, '{}', 4),
+(157, 7, 'state', 'select_dropdown', 'State', 0, 1, 1, 1, 1, 1, '{\"default\":\"Kuala Lumpur\",\"options\":{\"Kuala Lumpur\":\"Kuala Lumpur\",\"Selangor\":\"Selangor\"}}', 6),
+(158, 7, 'country', 'select_dropdown', 'Country', 0, 1, 1, 1, 1, 1, '{\"default\":\"MY\",\"options\":{\"MY\":\"Malaysia\"}}', 5),
+(159, 7, 'address_format', 'text_area', 'Address Format <br>Tokens: <code>[HOUSE], [COMMUNITY], [POSTAL_CODE], [CITY], [STATE], [COUNTRY]</code>', 0, 1, 1, 1, 1, 1, '{\"description\":\"e.g [HOUSE] [COMMUNITY], [POSTAL_CODE] [CITY], [STATE], [COUNTRY] will output as: 75 Kg Sg Ramal Lua Smart Town, 43000 Kajang, Selangor, Malaysia\"}', 7),
+(160, 8, 'address_type_id', 'hidden', 'Address Type Id', 0, 1, 1, 1, 1, 1, '{}', 4),
+(161, 8, 'name', 'text', 'Name', 0, 1, 1, 1, 1, 1, '{}', 7),
+(162, 8, 'address_belongsto_address_type_relationship', 'relationship', 'Address Type', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\AddressType\",\"table\":\"address_types\",\"type\":\"belongsTo\",\"column\":\"address_type_id\",\"key\":\"id\",\"label\":\"title\",\"pivot_table\":\"address_assets\",\"pivot\":\"0\",\"taggable\":\"0\"}', 3),
+(163, 14, 'type', 'select_dropdown', 'Type', 0, 1, 1, 1, 1, 1, '{\"default\":\"vehicle\",\"options\":{\"vehicle\":\"Vehicle\"}}', 2),
+(164, 18, 'id', 'text', 'Id', 1, 1, 0, 0, 0, 0, '{}', 1),
+(165, 18, 'invited_by', 'select_dropdown', 'Invited By', 1, 1, 1, 1, 1, 1, '{\"default\":\"address\",\"options\":{\"address\":\"Address\"}}', 2),
+(166, 18, 'invited_by_id', 'text', 'Invited By Id', 1, 1, 1, 1, 1, 1, '{}', 3),
+(167, 18, 'invited_to', 'select_dropdown', 'Invited To', 0, 1, 1, 1, 1, 1, '{\"default\":\"vehicle\",\"options\":{\"vehicle\":\"Vehicle\"}}', 4),
+(168, 18, 'invited_to_id', 'text', 'Invited To Id', 0, 1, 1, 1, 1, 1, '{}', 5),
+(169, 18, 'status', 'select_dropdown', 'Status', 1, 1, 1, 1, 1, 1, '{\"default\":\"active\",\"options\":{\"active\":\"active\",\"expired\":\"expired\",\"used\":\"used\"}}', 6),
+(170, 18, 'admin_status', 'select_dropdown', 'Admin Status', 1, 1, 1, 1, 1, 1, '{\"default\":\"approved\",\"options\":{\"approved\":\"approved\",\"rejected\":\"rejected\"}}', 7),
+(171, 18, 'data', 'text', 'Data', 0, 0, 1, 0, 0, 0, '{}', 8),
+(172, 18, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 9),
+(173, 18, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 10),
+(174, 19, 'id', 'text', 'Id', 1, 1, 0, 0, 0, 0, '{}', 1),
+(175, 19, 'invited_by_type', 'select_dropdown', 'Invited By Type', 0, 1, 1, 1, 1, 1, '{\"default\":\"address\",\"options\":{\"address\":\"Address\"}}', 2),
+(176, 19, 'invited_by', 'text', 'Invited By', 0, 1, 1, 1, 1, 1, '{}', 3),
+(177, 19, 'invited_to_type', 'select_dropdown', 'Invited To Type', 0, 1, 1, 1, 1, 1, '{\"default\":\"vehicle\",\"options\":{\"vehicle\":\"Vehicle\"}}', 4),
+(178, 19, 'vehicle_no', 'text', 'Vehicle No', 0, 1, 1, 1, 1, 1, '{}', 5),
+(179, 19, 'person_name', 'text', 'Person Name', 0, 1, 1, 1, 1, 1, '{}', 6),
+(180, 19, 'person_phone', 'text', 'Person Phone', 0, 1, 1, 1, 1, 1, '{}', 7),
+(181, 19, 'person_email', 'text', 'Person Email', 0, 1, 1, 1, 1, 1, '{}', 8),
+(182, 19, 'status', 'select_dropdown', 'Status', 1, 1, 1, 1, 1, 1, '{\"default\":\"waiting\",\"options\":{\"waiting\":\"waiting\",\"visited\":\"visited\"}}', 9),
+(183, 19, 'admin_status', 'select_dropdown', 'Admin Status', 1, 1, 1, 1, 1, 1, '{\"default\":\"approved\",\"options\":{\"approved\":\"approved\",\"pending\":\"pending\",\"rejected\":\"rejected\"}}', 10),
+(184, 19, 'data', 'text', 'Data', 0, 0, 1, 0, 0, 1, '{}', 11),
+(185, 19, 'date', 'date', 'Date', 0, 1, 1, 1, 1, 1, '{}', 12),
+(186, 19, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 13),
+(187, 19, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 14),
+(188, 16, 'address_type_belongsto_address_type_relationship', 'relationship', 'Parent', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\AddressType\",\"table\":\"address_types\",\"type\":\"belongsTo\",\"column\":\"parent_id\",\"key\":\"id\",\"label\":\"title\",\"pivot_table\":\"address_assets\",\"pivot\":\"0\",\"taggable\":\"0\"}', 2),
+(189, 16, 'parent_id', 'text', 'Parent Id', 0, 1, 1, 1, 1, 1, '{}', 4);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `data_types`
+--
+
+DROP TABLE IF EXISTS `data_types`;
+CREATE TABLE IF NOT EXISTS `data_types` (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `display_name_singular` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `display_name_plural` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `icon` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `model_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `policy_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `controller` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `generate_permissions` tinyint(1) NOT NULL DEFAULT '0',
+  `server_side` tinyint(4) NOT NULL DEFAULT '0',
+  `details` text COLLATE utf8mb4_unicode_ci,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `data_types_name_unique` (`name`),
+  UNIQUE KEY `data_types_slug_unique` (`slug`)
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `data_types`
+--
+
+INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `display_name_plural`, `icon`, `model_name`, `policy_name`, `controller`, `description`, `generate_permissions`, `server_side`, `details`, `created_at`, `updated_at`) VALUES
+(1, 'users', 'users', 'User', 'Users', 'voyager-person', 'TCG\\Voyager\\Models\\User', 'TCG\\Voyager\\Policies\\UserPolicy', 'TCG\\Voyager\\Http\\Controllers\\VoyagerUserController', NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"desc\",\"default_search_key\":null,\"scope\":null}', '2019-12-12 07:01:26', '2019-12-13 02:40:46'),
+(2, 'menus', 'menus', 'Menu', 'Menus', 'voyager-list', 'TCG\\Voyager\\Models\\Menu', NULL, '', '', 1, 0, NULL, '2019-12-12 07:01:26', '2019-12-12 07:01:26'),
+(3, 'roles', 'roles', 'Role', 'Roles', 'voyager-lock', 'TCG\\Voyager\\Models\\Role', NULL, '', '', 1, 0, NULL, '2019-12-12 07:01:26', '2019-12-12 07:01:26'),
+(4, 'categories', 'categories', 'Category', 'Categories', 'voyager-categories', 'TCG\\Voyager\\Models\\Category', NULL, '', '', 1, 0, NULL, '2019-12-12 07:01:34', '2019-12-12 07:01:34'),
+(5, 'posts', 'posts', 'Post', 'Posts', 'voyager-news', 'TCG\\Voyager\\Models\\Post', 'TCG\\Voyager\\Policies\\PostPolicy', '', '', 1, 0, NULL, '2019-12-12 07:01:35', '2019-12-12 07:01:35'),
+(6, 'pages', 'pages', 'Page', 'Pages', 'voyager-file-text', 'TCG\\Voyager\\Models\\Page', NULL, '', '', 1, 0, NULL, '2019-12-12 07:01:37', '2019-12-12 07:01:37'),
+(7, 'communities', 'communities', 'Community', 'Communities', 'voyager-categories', 'App\\Community', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-12-12 07:04:25', '2019-12-19 11:47:04'),
+(8, 'addresses', 'addresses', 'Address', 'Addresses', 'voyager-logbook', 'App\\Address', NULL, NULL, NULL, 1, 1, '{\"order_column\":\"id\",\"order_display_column\":\"id\",\"order_direction\":\"desc\",\"default_search_key\":\"address\",\"scope\":null}', '2019-12-13 05:18:27', '2019-12-20 11:40:18'),
+(9, 'asset_types', 'asset-types', 'Asset Type', 'Asset Types', 'voyager-harddrive', 'App\\AssetType', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-12-13 06:23:35', '2019-12-13 07:17:09'),
+(10, 'assets', 'assets', 'Asset', 'Assets', 'voyager-harddrive', 'App\\Asset', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-12-13 06:26:51', '2019-12-13 06:45:14'),
+(11, 'community_assets', 'community-assets', 'Community Asset', 'Community Assets', 'voyager-harddrive', 'App\\CommunityAsset', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-12-13 07:05:28', '2019-12-13 07:19:49'),
+(12, 'user_assets', 'user-assets', 'User Asset', 'User Assets', 'voyager-harddrive', 'App\\UserAsset', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-12-13 08:37:24', '2019-12-13 08:47:22'),
+(13, 'residents', 'residents', 'Resident', 'Residents', NULL, 'App\\Resident', NULL, NULL, NULL, 1, 1, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":\"type\",\"scope\":null}', '2019-12-17 01:57:06', '2019-12-20 11:46:33'),
+(14, 'address_assets', 'address-assets', 'Address Asset', 'Address Assets', 'voyager-logbook', 'App\\AddressAsset', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-12-17 02:32:26', '2019-12-20 04:03:04'),
+(16, 'address_types', 'address-types', 'Address Type', 'Address Types', 'voyager-logbook', 'App\\AddressType', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-12-18 11:54:52', '2019-12-24 02:06:57'),
+(17, 'community_address_types', 'community-address-types', 'Community Address Type', 'Community Address Types', 'voyager-logbook', 'App\\CommunityAddressType', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-12-18 11:56:55', '2019-12-18 12:00:24'),
+(18, 'invitations', 'invitations', 'Invitation', 'Invitations', 'voyager-bell', 'App\\Invitation', NULL, NULL, NULL, 1, 1, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-12-23 04:24:02', '2019-12-23 04:27:48'),
+(19, 'visitors', 'visitors', 'Visitor', 'Visitors', 'voyager-bell', 'App\\Visitor', NULL, NULL, NULL, 1, 1, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-12-23 05:43:43', '2019-12-23 07:26:51');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `failed_jobs`
+--
+
+DROP TABLE IF EXISTS `failed_jobs`;
+CREATE TABLE IF NOT EXISTS `failed_jobs` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `invitations`
+--
+
+DROP TABLE IF EXISTS `invitations`;
+CREATE TABLE IF NOT EXISTS `invitations` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `invited_by` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `invited_by_id` int(11) NOT NULL,
+  `invited_to` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `invited_to_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'active',
+  `admin_status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'approved',
+  `data` longtext COLLATE utf8mb4_unicode_ci,
+  `date` date DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `menus`
+--
+
+DROP TABLE IF EXISTS `menus`;
+CREATE TABLE IF NOT EXISTS `menus` (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `menus_name_unique` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `menus`
+--
+
+INSERT INTO `menus` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'admin', '2019-12-12 07:01:29', '2019-12-12 07:01:29');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `menu_items`
+--
+
+DROP TABLE IF EXISTS `menu_items`;
+CREATE TABLE IF NOT EXISTS `menu_items` (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `menu_id` int(10) UNSIGNED DEFAULT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `url` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `target` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '_self',
+  `icon_class` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `color` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `parent_id` int(11) DEFAULT NULL,
+  `order` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `route` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `parameters` text COLLATE utf8mb4_unicode_ci,
+  PRIMARY KEY (`id`),
+  KEY `menu_items_menu_id_foreign` (`menu_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `menu_items`
+--
+
+INSERT INTO `menu_items` (`id`, `menu_id`, `title`, `url`, `target`, `icon_class`, `color`, `parent_id`, `order`, `created_at`, `updated_at`, `route`, `parameters`) VALUES
+(1, 1, 'Dashboard', '', '_self', 'voyager-boat', NULL, NULL, 1, '2019-12-12 07:01:29', '2019-12-12 07:01:29', 'voyager.dashboard', NULL),
+(2, 1, 'Media', '', '_self', 'voyager-images', NULL, NULL, 4, '2019-12-12 07:01:29', '2019-12-12 07:09:06', 'voyager.media.index', NULL),
+(3, 1, 'Users', '', '_self', 'voyager-person', NULL, NULL, 3, '2019-12-12 07:01:29', '2019-12-12 07:01:29', 'voyager.users.index', NULL),
+(4, 1, 'Roles', '', '_self', 'voyager-lock', NULL, NULL, 2, '2019-12-12 07:01:29', '2019-12-12 07:01:29', 'voyager.roles.index', NULL),
+(5, 1, 'Tools', '', '_self', 'voyager-tools', NULL, NULL, 9, '2019-12-12 07:01:29', '2019-12-20 12:09:04', NULL, NULL),
+(6, 1, 'Menu Builder', '', '_self', 'voyager-list', NULL, 5, 1, '2019-12-12 07:01:29', '2019-12-12 07:09:07', 'voyager.menus.index', NULL),
+(7, 1, 'Database', '', '_self', 'voyager-data', NULL, 5, 2, '2019-12-12 07:01:29', '2019-12-12 07:09:07', 'voyager.database.index', NULL),
+(8, 1, 'Compass', '', '_self', 'voyager-compass', NULL, 5, 3, '2019-12-12 07:01:29', '2019-12-12 07:09:07', 'voyager.compass.index', NULL),
+(9, 1, 'BREAD', '', '_self', 'voyager-bread', NULL, 5, 4, '2019-12-12 07:01:30', '2019-12-12 07:09:07', 'voyager.bread.index', NULL),
+(10, 1, 'Settings', '', '_self', 'voyager-settings', NULL, NULL, 10, '2019-12-12 07:01:30', '2019-12-20 12:09:04', 'voyager.settings.index', NULL),
+(13, 1, 'Pages', '', '_self', 'voyager-file-text', NULL, NULL, 8, '2019-12-12 07:01:38', '2019-12-20 12:09:04', 'voyager.pages.index', NULL),
+(14, 1, 'Hooks', '', '_self', 'voyager-hook', NULL, 5, 5, '2019-12-12 07:01:43', '2019-12-12 07:09:07', 'voyager.hooks', NULL),
+(15, 1, 'Communities', '', '_self', 'voyager-calendar', '#000000', NULL, 6, '2019-12-12 07:04:25', '2019-12-20 12:09:04', 'voyager.communities.index', 'null'),
+(23, 1, 'Address Types', '', '_self', 'voyager-logbook', NULL, NULL, 5, '2019-12-18 11:54:52', '2019-12-20 12:09:04', 'voyager.address-types.index', NULL),
+(26, 1, 'Visitors', '', '_self', 'voyager-bell', NULL, NULL, 7, '2019-12-23 05:43:44', '2019-12-23 05:44:45', 'voyager.visitors.index', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `migrations`
+--
+
+DROP TABLE IF EXISTS `migrations`;
+CREATE TABLE IF NOT EXISTS `migrations` (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `migrations`
+--
+
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
+(1, '2014_10_12_000000_create_users_table', 1),
+(2, '2014_10_12_100000_create_password_resets_table', 1),
+(3, '2016_01_01_000000_add_voyager_user_fields', 1),
+(4, '2016_01_01_000000_create_data_types_table', 1),
+(5, '2016_01_01_000000_create_pages_table', 1),
+(6, '2016_01_01_000000_create_posts_table', 1),
+(7, '2016_02_15_204651_create_categories_table', 1),
+(8, '2016_05_19_173453_create_menu_table', 1),
+(9, '2016_10_21_190000_create_roles_table', 1),
+(10, '2016_10_21_190000_create_settings_table', 1),
+(11, '2016_11_30_135954_create_permission_table', 1),
+(12, '2016_11_30_141208_create_permission_role_table', 1),
+(13, '2016_12_26_201236_data_types__add__server_side', 1),
+(14, '2017_01_13_000000_add_route_to_menu_items_table', 1),
+(15, '2017_01_14_005015_create_translations_table', 1),
+(16, '2017_01_15_000000_make_table_name_nullable_in_permissions_table', 1),
+(17, '2017_03_06_000000_add_controller_to_data_types_table', 1),
+(18, '2017_04_11_000000_alter_post_nullable_fields_table', 1),
+(19, '2017_04_21_000000_add_order_to_data_rows_table', 1),
+(20, '2017_07_05_210000_add_policyname_to_data_types_table', 1),
+(21, '2017_08_05_000000_add_group_to_settings_table', 1),
+(22, '2017_11_26_013050_add_user_role_relationship', 1),
+(23, '2017_11_26_015000_create_user_roles_table', 1),
+(24, '2018_03_11_000000_add_user_settings', 1),
+(25, '2018_03_14_000000_add_details_to_data_types_table', 1),
+(26, '2018_03_16_000000_make_settings_value_nullable', 1),
+(27, '2019_08_19_000000_create_failed_jobs_table', 1),
+(28, '2019_12_12_000000_create_communities_table', 1),
+(29, '2019_12_13_075002_create_addresses_table', 2),
+(30, '2019_12_13_080559_create_residents_table', 2),
+(31, '2019_12_13_084044_create_asset_types_table', 2),
+(33, '2019_12_13_084107_create_community_assets_table', 3),
+(34, '2019_12_13_084107_create_user_assets_table', 3),
+(35, '2016_12_28_111110_create_api_keys_table', 4),
+(36, '2016_12_28_111111_create_api_key_access_events_table', 4),
+(37, '2016_12_28_111112_create_api_key_admin_events_table', 4),
+(38, '2019_12_13_084107_create_address_assets_table', 5),
+(39, '2019_12_13_084044_create_address_types_table', 6),
+(40, '2019_12_13_084044_create_community_address_types_table', 6),
+(41, '2019_12_13_084107_create_invitations_table', 7),
+(42, '2019_12_13_084107_create_visitors_table', 8);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pages`
+--
+
+DROP TABLE IF EXISTS `pages`;
+CREATE TABLE IF NOT EXISTS `pages` (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `author_id` int(11) NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `excerpt` text COLLATE utf8mb4_unicode_ci,
+  `body` text COLLATE utf8mb4_unicode_ci,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `meta_description` text COLLATE utf8mb4_unicode_ci,
+  `meta_keywords` text COLLATE utf8mb4_unicode_ci,
+  `status` enum('ACTIVE','INACTIVE') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'INACTIVE',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `pages_slug_unique` (`slug`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `pages`
+--
+
+INSERT INTO `pages` (`id`, `author_id`, `title`, `excerpt`, `body`, `image`, `slug`, `meta_description`, `meta_keywords`, `status`, `created_at`, `updated_at`) VALUES
+(1, 0, 'Hello World', 'Hang the jib grog grog blossom grapple dance the hempen jig gangway pressgang bilge rat to go on account lugger. Nelsons folly gabion line draught scallywag fire ship gaff fluke fathom case shot. Sea Legs bilge rat sloop matey gabion long clothes run a shot across the bow Gold Road cog league.', '<p>Hello World. Scallywag grog swab Cat o\'nine tails scuttle rigging hardtack cable nipper Yellow Jack. Handsomely spirits knave lad killick landlubber or just lubber deadlights chantey pinnace crack Jennys tea cup. Provost long clothes black spot Yellow Jack bilged on her anchor league lateen sail case shot lee tackle.</p>\n<p>Ballast spirits fluke topmast me quarterdeck schooner landlubber or just lubber gabion belaying pin. Pinnace stern galleon starboard warp carouser to go on account dance the hempen jig jolly boat measured fer yer chains. Man-of-war fire in the hole nipperkin handsomely doubloon barkadeer Brethren of the Coast gibbet driver squiffy.</p>', 'pages/page1.jpg', 'hello-world', 'Yar Meta Description', 'Keyword1, Keyword2', 'ACTIVE', '2019-12-12 07:01:39', '2019-12-12 07:01:39');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `password_resets`
+--
+
+DROP TABLE IF EXISTS `password_resets`;
+CREATE TABLE IF NOT EXISTS `password_resets` (
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  KEY `password_resets_email_index` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `permissions`
+--
+
+DROP TABLE IF EXISTS `permissions`;
+CREATE TABLE IF NOT EXISTS `permissions` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `table_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `permissions_key_index` (`key`)
+) ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `permissions`
+--
+
+INSERT INTO `permissions` (`id`, `key`, `table_name`, `created_at`, `updated_at`) VALUES
+(1, 'browse_admin', NULL, '2019-12-12 07:01:30', '2019-12-12 07:01:30'),
+(2, 'browse_bread', NULL, '2019-12-12 07:01:30', '2019-12-12 07:01:30'),
+(3, 'browse_database', NULL, '2019-12-12 07:01:30', '2019-12-12 07:01:30'),
+(4, 'browse_media', NULL, '2019-12-12 07:01:30', '2019-12-12 07:01:30'),
+(5, 'browse_compass', NULL, '2019-12-12 07:01:30', '2019-12-12 07:01:30'),
+(6, 'browse_menus', 'menus', '2019-12-12 07:01:30', '2019-12-12 07:01:30'),
+(7, 'read_menus', 'menus', '2019-12-12 07:01:30', '2019-12-12 07:01:30'),
+(8, 'edit_menus', 'menus', '2019-12-12 07:01:30', '2019-12-12 07:01:30'),
+(9, 'add_menus', 'menus', '2019-12-12 07:01:30', '2019-12-12 07:01:30'),
+(10, 'delete_menus', 'menus', '2019-12-12 07:01:30', '2019-12-12 07:01:30'),
+(11, 'browse_roles', 'roles', '2019-12-12 07:01:31', '2019-12-12 07:01:31'),
+(12, 'read_roles', 'roles', '2019-12-12 07:01:31', '2019-12-12 07:01:31'),
+(13, 'edit_roles', 'roles', '2019-12-12 07:01:31', '2019-12-12 07:01:31'),
+(14, 'add_roles', 'roles', '2019-12-12 07:01:31', '2019-12-12 07:01:31'),
+(15, 'delete_roles', 'roles', '2019-12-12 07:01:31', '2019-12-12 07:01:31'),
+(16, 'browse_users', 'users', '2019-12-12 07:01:31', '2019-12-12 07:01:31'),
+(17, 'read_users', 'users', '2019-12-12 07:01:31', '2019-12-12 07:01:31'),
+(18, 'edit_users', 'users', '2019-12-12 07:01:31', '2019-12-12 07:01:31'),
+(19, 'add_users', 'users', '2019-12-12 07:01:31', '2019-12-12 07:01:31'),
+(20, 'delete_users', 'users', '2019-12-12 07:01:31', '2019-12-12 07:01:31'),
+(21, 'browse_settings', 'settings', '2019-12-12 07:01:31', '2019-12-12 07:01:31'),
+(22, 'read_settings', 'settings', '2019-12-12 07:01:31', '2019-12-12 07:01:31'),
+(23, 'edit_settings', 'settings', '2019-12-12 07:01:31', '2019-12-12 07:01:31'),
+(24, 'add_settings', 'settings', '2019-12-12 07:01:31', '2019-12-12 07:01:31'),
+(25, 'delete_settings', 'settings', '2019-12-12 07:01:32', '2019-12-12 07:01:32'),
+(26, 'browse_categories', 'categories', '2019-12-12 07:01:34', '2019-12-12 07:01:34'),
+(27, 'read_categories', 'categories', '2019-12-12 07:01:35', '2019-12-12 07:01:35'),
+(28, 'edit_categories', 'categories', '2019-12-12 07:01:35', '2019-12-12 07:01:35'),
+(29, 'add_categories', 'categories', '2019-12-12 07:01:35', '2019-12-12 07:01:35'),
+(30, 'delete_categories', 'categories', '2019-12-12 07:01:35', '2019-12-12 07:01:35'),
+(31, 'browse_posts', 'posts', '2019-12-12 07:01:37', '2019-12-12 07:01:37'),
+(32, 'read_posts', 'posts', '2019-12-12 07:01:37', '2019-12-12 07:01:37'),
+(33, 'edit_posts', 'posts', '2019-12-12 07:01:37', '2019-12-12 07:01:37'),
+(34, 'add_posts', 'posts', '2019-12-12 07:01:37', '2019-12-12 07:01:37'),
+(35, 'delete_posts', 'posts', '2019-12-12 07:01:37', '2019-12-12 07:01:37'),
+(36, 'browse_pages', 'pages', '2019-12-12 07:01:38', '2019-12-12 07:01:38'),
+(37, 'read_pages', 'pages', '2019-12-12 07:01:38', '2019-12-12 07:01:38'),
+(38, 'edit_pages', 'pages', '2019-12-12 07:01:39', '2019-12-12 07:01:39'),
+(39, 'add_pages', 'pages', '2019-12-12 07:01:39', '2019-12-12 07:01:39'),
+(40, 'delete_pages', 'pages', '2019-12-12 07:01:39', '2019-12-12 07:01:39'),
+(41, 'browse_hooks', NULL, '2019-12-12 07:01:43', '2019-12-12 07:01:43'),
+(42, 'browse_communities', 'communities', '2019-12-12 07:04:25', '2019-12-12 07:04:25'),
+(43, 'read_communities', 'communities', '2019-12-12 07:04:25', '2019-12-12 07:04:25'),
+(44, 'edit_communities', 'communities', '2019-12-12 07:04:25', '2019-12-12 07:04:25'),
+(45, 'add_communities', 'communities', '2019-12-12 07:04:25', '2019-12-12 07:04:25'),
+(46, 'delete_communities', 'communities', '2019-12-12 07:04:25', '2019-12-12 07:04:25'),
+(47, 'browse_addresses', 'addresses', '2019-12-13 05:18:28', '2019-12-13 05:18:28'),
+(48, 'read_addresses', 'addresses', '2019-12-13 05:18:28', '2019-12-13 05:18:28'),
+(49, 'edit_addresses', 'addresses', '2019-12-13 05:18:28', '2019-12-13 05:18:28'),
+(50, 'add_addresses', 'addresses', '2019-12-13 05:18:28', '2019-12-13 05:18:28'),
+(51, 'delete_addresses', 'addresses', '2019-12-13 05:18:28', '2019-12-13 05:18:28'),
+(52, 'browse_asset_types', 'asset_types', '2019-12-13 06:23:36', '2019-12-13 06:23:36'),
+(53, 'read_asset_types', 'asset_types', '2019-12-13 06:23:36', '2019-12-13 06:23:36'),
+(54, 'edit_asset_types', 'asset_types', '2019-12-13 06:23:36', '2019-12-13 06:23:36'),
+(55, 'add_asset_types', 'asset_types', '2019-12-13 06:23:36', '2019-12-13 06:23:36'),
+(56, 'delete_asset_types', 'asset_types', '2019-12-13 06:23:36', '2019-12-13 06:23:36'),
+(57, 'browse_assets', 'assets', '2019-12-13 06:26:52', '2019-12-13 06:26:52'),
+(58, 'read_assets', 'assets', '2019-12-13 06:26:52', '2019-12-13 06:26:52'),
+(59, 'edit_assets', 'assets', '2019-12-13 06:26:52', '2019-12-13 06:26:52'),
+(60, 'add_assets', 'assets', '2019-12-13 06:26:52', '2019-12-13 06:26:52'),
+(61, 'delete_assets', 'assets', '2019-12-13 06:26:52', '2019-12-13 06:26:52'),
+(62, 'browse_community_assets', 'community_assets', '2019-12-13 07:05:29', '2019-12-13 07:05:29'),
+(63, 'read_community_assets', 'community_assets', '2019-12-13 07:05:29', '2019-12-13 07:05:29'),
+(64, 'edit_community_assets', 'community_assets', '2019-12-13 07:05:29', '2019-12-13 07:05:29'),
+(65, 'add_community_assets', 'community_assets', '2019-12-13 07:05:29', '2019-12-13 07:05:29'),
+(66, 'delete_community_assets', 'community_assets', '2019-12-13 07:05:29', '2019-12-13 07:05:29'),
+(67, 'browse_user_assets', 'user_assets', '2019-12-13 08:37:25', '2019-12-13 08:37:25'),
+(68, 'read_user_assets', 'user_assets', '2019-12-13 08:37:25', '2019-12-13 08:37:25'),
+(69, 'edit_user_assets', 'user_assets', '2019-12-13 08:37:25', '2019-12-13 08:37:25'),
+(70, 'add_user_assets', 'user_assets', '2019-12-13 08:37:25', '2019-12-13 08:37:25'),
+(71, 'delete_user_assets', 'user_assets', '2019-12-13 08:37:25', '2019-12-13 08:37:25'),
+(72, 'browse_residents', 'residents', '2019-12-17 01:57:06', '2019-12-17 01:57:06'),
+(73, 'read_residents', 'residents', '2019-12-17 01:57:06', '2019-12-17 01:57:06'),
+(74, 'edit_residents', 'residents', '2019-12-17 01:57:06', '2019-12-17 01:57:06'),
+(75, 'add_residents', 'residents', '2019-12-17 01:57:06', '2019-12-17 01:57:06'),
+(76, 'delete_residents', 'residents', '2019-12-17 01:57:06', '2019-12-17 01:57:06'),
+(77, 'browse_address_assets', 'address_assets', '2019-12-17 02:32:26', '2019-12-17 02:32:26'),
+(78, 'read_address_assets', 'address_assets', '2019-12-17 02:32:26', '2019-12-17 02:32:26'),
+(79, 'edit_address_assets', 'address_assets', '2019-12-17 02:32:26', '2019-12-17 02:32:26'),
+(80, 'add_address_assets', 'address_assets', '2019-12-17 02:32:26', '2019-12-17 02:32:26'),
+(81, 'delete_address_assets', 'address_assets', '2019-12-17 02:32:26', '2019-12-17 02:32:26'),
+(82, 'browse_address_types', 'address_types', '2019-12-18 11:54:52', '2019-12-18 11:54:52'),
+(83, 'read_address_types', 'address_types', '2019-12-18 11:54:52', '2019-12-18 11:54:52'),
+(84, 'edit_address_types', 'address_types', '2019-12-18 11:54:52', '2019-12-18 11:54:52'),
+(85, 'add_address_types', 'address_types', '2019-12-18 11:54:52', '2019-12-18 11:54:52'),
+(86, 'delete_address_types', 'address_types', '2019-12-18 11:54:52', '2019-12-18 11:54:52'),
+(87, 'browse_community_address_types', 'community_address_types', '2019-12-18 11:56:56', '2019-12-18 11:56:56'),
+(88, 'read_community_address_types', 'community_address_types', '2019-12-18 11:56:56', '2019-12-18 11:56:56'),
+(89, 'edit_community_address_types', 'community_address_types', '2019-12-18 11:56:56', '2019-12-18 11:56:56'),
+(90, 'add_community_address_types', 'community_address_types', '2019-12-18 11:56:56', '2019-12-18 11:56:56'),
+(91, 'delete_community_address_types', 'community_address_types', '2019-12-18 11:56:56', '2019-12-18 11:56:56'),
+(92, 'browse_invitations', 'invitations', '2019-12-23 04:24:03', '2019-12-23 04:24:03'),
+(93, 'read_invitations', 'invitations', '2019-12-23 04:24:03', '2019-12-23 04:24:03'),
+(94, 'edit_invitations', 'invitations', '2019-12-23 04:24:03', '2019-12-23 04:24:03'),
+(95, 'add_invitations', 'invitations', '2019-12-23 04:24:03', '2019-12-23 04:24:03'),
+(96, 'delete_invitations', 'invitations', '2019-12-23 04:24:03', '2019-12-23 04:24:03'),
+(97, 'browse_visitors', 'visitors', '2019-12-23 05:43:44', '2019-12-23 05:43:44'),
+(98, 'read_visitors', 'visitors', '2019-12-23 05:43:44', '2019-12-23 05:43:44'),
+(99, 'edit_visitors', 'visitors', '2019-12-23 05:43:44', '2019-12-23 05:43:44'),
+(100, 'add_visitors', 'visitors', '2019-12-23 05:43:44', '2019-12-23 05:43:44'),
+(101, 'delete_visitors', 'visitors', '2019-12-23 05:43:44', '2019-12-23 05:43:44');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `permission_role`
+--
+
+DROP TABLE IF EXISTS `permission_role`;
+CREATE TABLE IF NOT EXISTS `permission_role` (
+  `permission_id` bigint(20) UNSIGNED NOT NULL,
+  `role_id` bigint(20) UNSIGNED NOT NULL,
+  PRIMARY KEY (`permission_id`,`role_id`),
+  KEY `permission_role_permission_id_index` (`permission_id`),
+  KEY `permission_role_role_id_index` (`role_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `permission_role`
+--
+
+INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
+(1, 1),
+(1, 3),
+(1, 4),
+(2, 1),
+(3, 1),
+(4, 1),
+(5, 1),
+(6, 1),
+(7, 1),
+(8, 1),
+(9, 1),
+(10, 1),
+(11, 1),
+(12, 1),
+(13, 1),
+(14, 1),
+(15, 1),
+(16, 1),
+(17, 1),
+(18, 1),
+(19, 1),
+(20, 1),
+(21, 1),
+(22, 1),
+(23, 1),
+(24, 1),
+(25, 1),
+(26, 1),
+(27, 1),
+(28, 1),
+(29, 1),
+(30, 1),
+(31, 1),
+(32, 1),
+(33, 1),
+(34, 1),
+(35, 1),
+(36, 1),
+(37, 1),
+(38, 1),
+(39, 1),
+(40, 1),
+(42, 1),
+(42, 3),
+(43, 1),
+(44, 1),
+(45, 1),
+(46, 1),
+(47, 1),
+(48, 1),
+(49, 1),
+(50, 1),
+(51, 1),
+(52, 1),
+(53, 1),
+(54, 1),
+(55, 1),
+(56, 1),
+(57, 1),
+(58, 1),
+(59, 1),
+(60, 1),
+(61, 1),
+(62, 1),
+(63, 1),
+(64, 1),
+(65, 1),
+(66, 1),
+(67, 1),
+(68, 1),
+(69, 1),
+(70, 1),
+(71, 1),
+(72, 1),
+(73, 1),
+(74, 1),
+(75, 1),
+(76, 1),
+(77, 1),
+(78, 1),
+(79, 1),
+(80, 1),
+(81, 1),
+(82, 1),
+(83, 1),
+(84, 1),
+(85, 1),
+(86, 1),
+(87, 1),
+(88, 1),
+(89, 1),
+(90, 1),
+(91, 1),
+(92, 1),
+(93, 1),
+(94, 1),
+(95, 1),
+(96, 1),
+(97, 1),
+(98, 1),
+(99, 1),
+(100, 1),
+(101, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `posts`
+--
+
+DROP TABLE IF EXISTS `posts`;
+CREATE TABLE IF NOT EXISTS `posts` (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `author_id` int(11) NOT NULL,
+  `category_id` int(11) DEFAULT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `seo_title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `excerpt` text COLLATE utf8mb4_unicode_ci,
+  `body` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `meta_description` text COLLATE utf8mb4_unicode_ci,
+  `meta_keywords` text COLLATE utf8mb4_unicode_ci,
+  `status` enum('PUBLISHED','DRAFT','PENDING') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'DRAFT',
+  `featured` tinyint(1) NOT NULL DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `posts_slug_unique` (`slug`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `posts`
+--
+
+INSERT INTO `posts` (`id`, `author_id`, `category_id`, `title`, `seo_title`, `excerpt`, `body`, `image`, `slug`, `meta_description`, `meta_keywords`, `status`, `featured`, `created_at`, `updated_at`) VALUES
+(1, 0, NULL, 'Lorem Ipsum Post', NULL, 'This is the excerpt for the Lorem Ipsum Post', '<p>This is the body of the lorem ipsum post</p>', 'posts/post1.jpg', 'lorem-ipsum-post', 'This is the meta description', 'keyword1, keyword2, keyword3', 'PUBLISHED', 0, '2019-12-12 07:01:37', '2019-12-12 07:01:37'),
+(2, 0, NULL, 'My Sample Post', NULL, 'This is the excerpt for the sample Post', '<p>This is the body for the sample post, which includes the body.</p>\n                <h2>We can use all kinds of format!</h2>\n                <p>And include a bunch of other stuff.</p>', 'posts/post2.jpg', 'my-sample-post', 'Meta Description for sample post', 'keyword1, keyword2, keyword3', 'PUBLISHED', 0, '2019-12-12 07:01:37', '2019-12-12 07:01:37'),
+(3, 0, NULL, 'Latest Post', NULL, 'This is the excerpt for the latest post', '<p>This is the body for the latest post</p>', 'posts/post3.jpg', 'latest-post', 'This is the meta description', 'keyword1, keyword2, keyword3', 'PUBLISHED', 0, '2019-12-12 07:01:37', '2019-12-12 07:01:37'),
+(4, 0, NULL, 'Yarr Post', NULL, 'Reef sails nipperkin bring a spring upon her cable coffer jury mast spike marooned Pieces of Eight poop deck pillage. Clipper driver coxswain galleon hempen halter come about pressgang gangplank boatswain swing the lead. Nipperkin yard skysail swab lanyard Blimey bilge water ho quarter Buccaneer.', '<p>Swab deadlights Buccaneer fire ship square-rigged dance the hempen jig weigh anchor cackle fruit grog furl. Crack Jennys tea cup chase guns pressgang hearties spirits hogshead Gold Road six pounders fathom measured fer yer chains. Main sheet provost come about trysail barkadeer crimp scuttle mizzenmast brig plunder.</p>\n<p>Mizzen league keelhaul galleon tender cog chase Barbary Coast doubloon crack Jennys tea cup. Blow the man down lugsail fire ship pinnace cackle fruit line warp Admiral of the Black strike colors doubloon. Tackle Jack Ketch come about crimp rum draft scuppers run a shot across the bow haul wind maroon.</p>\n<p>Interloper heave down list driver pressgang holystone scuppers tackle scallywag bilged on her anchor. Jack Tar interloper draught grapple mizzenmast hulk knave cable transom hogshead. Gaff pillage to go on account grog aft chase guns piracy yardarm knave clap of thunder.</p>', 'posts/post4.jpg', 'yarr-post', 'this be a meta descript', 'keyword1, keyword2, keyword3', 'PUBLISHED', 0, '2019-12-12 07:01:37', '2019-12-12 07:01:37');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `residents`
+--
+
+DROP TABLE IF EXISTS `residents`;
+CREATE TABLE IF NOT EXISTS `residents` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `address_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `reference_id` int(11) DEFAULT NULL,
+  `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'owner',
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'active',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `residents`
+--
+
+INSERT INTO `residents` (`id`, `address_id`, `user_id`, `reference_id`, `type`, `status`, `created_at`, `updated_at`) VALUES
+(1, 1, 2, NULL, 'owner', 'active', '2019-12-17 02:09:00', '2019-12-17 02:21:57'),
+(2, 2, 2, NULL, 'owner', 'active', '2019-12-17 02:17:45', '2019-12-17 02:17:45'),
+(3, 2, 3, NULL, 'tenant', 'active', '2019-12-17 02:23:00', '2019-12-17 02:57:47'),
+(4, 2, 4, 3, 'tenant', 'active', '2019-12-17 03:08:00', '2019-12-20 11:38:59');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `roles`
+--
+
+DROP TABLE IF EXISTS `roles`;
+CREATE TABLE IF NOT EXISTS `roles` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `display_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `roles_name_unique` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `roles`
+--
+
+INSERT INTO `roles` (`id`, `name`, `display_name`, `created_at`, `updated_at`) VALUES
+(1, 'admin', 'Administrator', '2019-12-12 07:01:30', '2019-12-12 07:01:30'),
+(2, 'user', 'Normal User', '2019-12-12 07:01:30', '2019-12-12 07:01:30'),
+(3, 'manager', 'Manager', '2019-12-13 02:39:40', '2019-12-13 02:39:40'),
+(4, 'staff', 'Staff', '2019-12-13 02:40:06', '2019-12-13 02:40:06');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `settings`
+--
+
+DROP TABLE IF EXISTS `settings`;
+CREATE TABLE IF NOT EXISTS `settings` (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `display_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `value` text COLLATE utf8mb4_unicode_ci,
+  `details` text COLLATE utf8mb4_unicode_ci,
+  `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `order` int(11) NOT NULL DEFAULT '1',
+  `group` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `settings_key_unique` (`key`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `settings`
+--
+
+INSERT INTO `settings` (`id`, `key`, `display_name`, `value`, `details`, `type`, `order`, `group`) VALUES
+(1, 'site.title', 'Site Title', 'Site Title', '', 'text', 1, 'Site'),
+(2, 'site.description', 'Site Description', 'Site Description', '', 'text', 2, 'Site'),
+(3, 'site.logo', 'Site Logo', '', '', 'image', 3, 'Site'),
+(4, 'site.google_analytics_tracking_id', 'Google Analytics Tracking ID', NULL, '', 'text', 4, 'Site'),
+(5, 'admin.bg_image', 'Admin Background Image', '', '', 'image', 5, 'Admin'),
+(6, 'admin.title', 'Admin Title', 'Voyager', '', 'text', 1, 'Admin'),
+(7, 'admin.description', 'Admin Description', 'Welcome to Voyager. The Missing Admin for Laravel', '', 'text', 2, 'Admin'),
+(8, 'admin.loader', 'Admin Loader', '', '', 'image', 3, 'Admin'),
+(9, 'admin.icon_image', 'Admin Icon Image', '', '', 'image', 4, 'Admin'),
+(10, 'admin.google_analytics_client_id', 'Google Analytics Client ID (used for admin dashboard)', NULL, '', 'text', 1, 'Admin'),
+(11, 'admin.address_format_tokens', 'Address Format Tokens', '[{\"token\":\"[HOUSE]\",\"example\":\"House 1\"},{\"token\":\"[COMMUNITY]\",\"example\":\"Smart Town\"},{\"token\":\"[POSTAL_CODE]\",\"example\":\"43000\"},{\"token\":\"[CITY]\",\"example\":\"Kajang\"},{\"token\":\"[STATE]\",\"example\":\"Selangor\"},{\"token\":\"[COUNTRY]\",\"example\":\"Malaysia\"}]', NULL, 'text_area', 6, 'Admin');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `translations`
+--
+
+DROP TABLE IF EXISTS `translations`;
+CREATE TABLE IF NOT EXISTS `translations` (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `table_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `column_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `foreign_key` int(10) UNSIGNED NOT NULL,
+  `locale` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `value` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `translations_table_name_column_name_foreign_key_locale_unique` (`table_name`,`column_name`,`foreign_key`,`locale`)
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `translations`
+--
+
+INSERT INTO `translations` (`id`, `table_name`, `column_name`, `foreign_key`, `locale`, `value`, `created_at`, `updated_at`) VALUES
+(1, 'data_types', 'display_name_singular', 5, 'pt', 'Post', '2019-12-12 07:01:39', '2019-12-12 07:01:39'),
+(2, 'data_types', 'display_name_singular', 6, 'pt', 'Página', '2019-12-12 07:01:39', '2019-12-12 07:01:39'),
+(3, 'data_types', 'display_name_singular', 1, 'pt', 'Utilizador', '2019-12-12 07:01:39', '2019-12-12 07:01:39'),
+(4, 'data_types', 'display_name_singular', 4, 'pt', 'Categoria', '2019-12-12 07:01:39', '2019-12-12 07:01:39'),
+(5, 'data_types', 'display_name_singular', 2, 'pt', 'Menu', '2019-12-12 07:01:39', '2019-12-12 07:01:39'),
+(6, 'data_types', 'display_name_singular', 3, 'pt', 'Função', '2019-12-12 07:01:39', '2019-12-12 07:01:39'),
+(7, 'data_types', 'display_name_plural', 5, 'pt', 'Posts', '2019-12-12 07:01:39', '2019-12-12 07:01:39'),
+(8, 'data_types', 'display_name_plural', 6, 'pt', 'Páginas', '2019-12-12 07:01:39', '2019-12-12 07:01:39'),
+(9, 'data_types', 'display_name_plural', 1, 'pt', 'Utilizadores', '2019-12-12 07:01:40', '2019-12-12 07:01:40'),
+(10, 'data_types', 'display_name_plural', 4, 'pt', 'Categorias', '2019-12-12 07:01:40', '2019-12-12 07:01:40'),
+(11, 'data_types', 'display_name_plural', 2, 'pt', 'Menus', '2019-12-12 07:01:40', '2019-12-12 07:01:40'),
+(12, 'data_types', 'display_name_plural', 3, 'pt', 'Funções', '2019-12-12 07:01:40', '2019-12-12 07:01:40'),
+(13, 'categories', 'slug', 1, 'pt', 'categoria-1', '2019-12-12 07:01:40', '2019-12-12 07:01:40'),
+(14, 'categories', 'name', 1, 'pt', 'Categoria 1', '2019-12-12 07:01:40', '2019-12-12 07:01:40'),
+(15, 'categories', 'slug', 2, 'pt', 'categoria-2', '2019-12-12 07:01:40', '2019-12-12 07:01:40'),
+(16, 'categories', 'name', 2, 'pt', 'Categoria 2', '2019-12-12 07:01:40', '2019-12-12 07:01:40'),
+(17, 'pages', 'title', 1, 'pt', 'Olá Mundo', '2019-12-12 07:01:40', '2019-12-12 07:01:40'),
+(18, 'pages', 'slug', 1, 'pt', 'ola-mundo', '2019-12-12 07:01:40', '2019-12-12 07:01:40'),
+(19, 'pages', 'body', 1, 'pt', '<p>Olá Mundo. Scallywag grog swab Cat o\'nine tails scuttle rigging hardtack cable nipper Yellow Jack. Handsomely spirits knave lad killick landlubber or just lubber deadlights chantey pinnace crack Jennys tea cup. Provost long clothes black spot Yellow Jack bilged on her anchor league lateen sail case shot lee tackle.</p>\r\n<p>Ballast spirits fluke topmast me quarterdeck schooner landlubber or just lubber gabion belaying pin. Pinnace stern galleon starboard warp carouser to go on account dance the hempen jig jolly boat measured fer yer chains. Man-of-war fire in the hole nipperkin handsomely doubloon barkadeer Brethren of the Coast gibbet driver squiffy.</p>', '2019-12-12 07:01:40', '2019-12-12 07:01:40'),
+(20, 'menu_items', 'title', 1, 'pt', 'Painel de Controle', '2019-12-12 07:01:40', '2019-12-12 07:01:40'),
+(21, 'menu_items', 'title', 2, 'pt', 'Media', '2019-12-12 07:01:40', '2019-12-12 07:01:40'),
+(22, 'menu_items', 'title', 12, 'pt', 'Publicações', '2019-12-12 07:01:41', '2019-12-12 07:01:41'),
+(23, 'menu_items', 'title', 3, 'pt', 'Utilizadores', '2019-12-12 07:01:41', '2019-12-12 07:01:41'),
+(24, 'menu_items', 'title', 11, 'pt', 'Categorias', '2019-12-12 07:01:41', '2019-12-12 07:01:41'),
+(25, 'menu_items', 'title', 13, 'pt', 'Páginas', '2019-12-12 07:01:41', '2019-12-12 07:01:41'),
+(26, 'menu_items', 'title', 4, 'pt', 'Funções', '2019-12-12 07:01:41', '2019-12-12 07:01:41'),
+(27, 'menu_items', 'title', 5, 'pt', 'Ferramentas', '2019-12-12 07:01:41', '2019-12-12 07:01:41'),
+(28, 'menu_items', 'title', 6, 'pt', 'Menus', '2019-12-12 07:01:41', '2019-12-12 07:01:41'),
+(29, 'menu_items', 'title', 7, 'pt', 'Base de dados', '2019-12-12 07:01:41', '2019-12-12 07:01:41'),
+(30, 'menu_items', 'title', 10, 'pt', 'Configurações', '2019-12-12 07:01:42', '2019-12-12 07:01:42');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `role_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `avatar` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT 'users/default.png',
+  `email_verified_at` timestamp NULL DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `settings` text COLLATE utf8mb4_unicode_ci,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `users_email_unique` (`email`),
+  KEY `users_role_id_foreign` (`role_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `role_id`, `name`, `email`, `avatar`, `email_verified_at`, `password`, `remember_token`, `settings`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Admin', 'admin@admin.com', 'users/default.png', NULL, '$2y$10$BJD5NK0qLNm9JHSshVt11.n2Nc1Q0s96UJIIAPWGsp9A2y6UHg1i.', 'ZmwNV98y29MVtfXulxkbkNyl4BbFDFe5BkTVQX4C3JpMYtUB0suNQzcRAlb2', NULL, '2019-12-12 07:01:35', '2019-12-12 07:01:35'),
+(2, 2, 'Shahid Hussain', 'shahidhussainaali@gmail.com', 'users/default.png', NULL, '$2y$10$q72UJdfUHQL7N.l2yLwL8.DI5yLs.uevPpgjEVxx7q6WlDNKLaURm', NULL, '{\"locale\":\"en\"}', '2019-12-13 08:40:54', '2019-12-13 08:40:54'),
+(3, 2, 'Shahid', 'shahid@admin.com', 'users/default.png', NULL, '$2y$10$g19ItC88DzfgYqa6BXUYOexiZH0qrTrWViQUmDwrGBVa8NL9MS1/y', NULL, NULL, '2019-12-16 08:04:22', '2019-12-16 08:04:22'),
+(4, 2, 'Shahid', 'shahid2@admin.com', 'users/default.png', NULL, '$2y$10$LMt2WVHjGraJIJZ6Rp7MKexLw7486gs9mSGtDQMCjh6jwD8nleFi6', NULL, NULL, '2019-12-16 08:05:30', '2019-12-16 08:05:30');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_assets`
+--
+
+DROP TABLE IF EXISTS `user_assets`;
+CREATE TABLE IF NOT EXISTS `user_assets` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `asset_type_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `asset_no` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'active',
+  `data` longtext COLLATE utf8mb4_unicode_ci,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_roles`
+--
+
+DROP TABLE IF EXISTS `user_roles`;
+CREATE TABLE IF NOT EXISTS `user_roles` (
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `role_id` bigint(20) UNSIGNED NOT NULL,
+  PRIMARY KEY (`user_id`,`role_id`),
+  KEY `user_roles_user_id_index` (`user_id`),
+  KEY `user_roles_role_id_index` (`role_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `visitors`
+--
+
+DROP TABLE IF EXISTS `visitors`;
+CREATE TABLE IF NOT EXISTS `visitors` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `invited_by_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `invited_by` int(11) DEFAULT NULL,
+  `invited_to_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `vehicle_no` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `person_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `person_phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `person_email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'waiting',
+  `admin_status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'approved',
+  `data` longtext COLLATE utf8mb4_unicode_ci,
+  `date` date DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `visitors`
+--
+
+INSERT INTO `visitors` (`id`, `invited_by_type`, `invited_by`, `invited_to_type`, `vehicle_no`, `person_name`, `person_phone`, `person_email`, `status`, `admin_status`, `data`, `date`, `created_at`, `updated_at`) VALUES
+(1, 'address', 2, 'vehicle', '54321', 'Shahid', '+923324703323', NULL, 'waiting', 'approved', NULL, '2019-12-23', '2019-12-23 06:05:00', '2019-12-23 07:28:07'),
+(2, 'address', 1, 'vehicle', '12345', 'Shahid', '+923324703323', NULL, 'waiting', 'approved', NULL, '2019-12-24', '2019-12-23 07:21:00', '2019-12-23 07:27:40');
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `api_key_access_events`
+--
+ALTER TABLE `api_key_access_events`
+  ADD CONSTRAINT `api_key_access_events_api_key_id_foreign` FOREIGN KEY (`api_key_id`) REFERENCES `api_keys` (`id`);
+
+--
+-- Constraints for table `api_key_admin_events`
+--
+ALTER TABLE `api_key_admin_events`
+  ADD CONSTRAINT `api_key_admin_events_api_key_id_foreign` FOREIGN KEY (`api_key_id`) REFERENCES `api_keys` (`id`);
+
+--
+-- Constraints for table `categories`
+--
+ALTER TABLE `categories`
+  ADD CONSTRAINT `categories_parent_id_foreign` FOREIGN KEY (`parent_id`) REFERENCES `categories` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+--
+-- Constraints for table `data_rows`
+--
+ALTER TABLE `data_rows`
+  ADD CONSTRAINT `data_rows_data_type_id_foreign` FOREIGN KEY (`data_type_id`) REFERENCES `data_types` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `menu_items`
+--
+ALTER TABLE `menu_items`
+  ADD CONSTRAINT `menu_items_menu_id_foreign` FOREIGN KEY (`menu_id`) REFERENCES `menus` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `permission_role`
+--
+ALTER TABLE `permission_role`
+  ADD CONSTRAINT `permission_role_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `permission_role_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `users`
+--
+ALTER TABLE `users`
+  ADD CONSTRAINT `users_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`);
+
+--
+-- Constraints for table `user_roles`
+--
+ALTER TABLE `user_roles`
+  ADD CONSTRAINT `user_roles_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `user_roles_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

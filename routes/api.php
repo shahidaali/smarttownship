@@ -24,5 +24,8 @@ Route::group(['middleware' => 'check.apikey'], function(){
 	Route::get('user', 'API\UserController@getUser');
 
 	// VEHICLE VERIFICATION
-	Route::post('vehicle_verification', 'API\AssetController@vehicleVerification');
+	Route::post('vehicle_verification', 'API\VerificationController@vehicleVerification');
+
+	// VISITOR API
+	Route::post('invite_visitor', 'API\VisitorController@inviteVisitor');
 });

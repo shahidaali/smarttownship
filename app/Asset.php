@@ -14,8 +14,8 @@ class Asset extends Model
     public function assetDetail($params = []){ 
         $args = [];
         
-        if(!empty($params['asset_type_id'])) {
-        	$args['asset_type_id'] = $params['asset_type_id'];
+        if(!empty($params['type'])) {
+        	$args['type'] = $params['type'];
         }
         if(!empty($params['asset_no'])) {
         	$args['asset_no'] = $params['asset_no'];

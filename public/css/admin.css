@@ -1,0 +1,175 @@
+.form-group.form-field {
+    width: 100%;
+    float: left;
+    padding: 0px 10px;
+}
+.form-group.field-text,
+.form-group.field-select_dropdown,
+.form-group.field-relationship {
+    width: 50%;
+    float: left;
+    padding: 0px 10px;
+}
+
+.listing {
+    position: relative;
+    border-radius: 5px;
+    box-shadow: 2px 2px 3px rgb(210, 214, 218);
+    border: 1px solid rgb(210, 214, 218);
+    padding-left: 250px;
+    background: #ffffff;
+    margin-bottom: 10px;
+}
+.listing .listing-left {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 250px;
+    height: 100%;
+    background: #f7f7f7;
+    overflow: hidden;
+}
+.listing .listing-left img {
+    min-width: 100%;
+    min-height: 100%;
+    width: 100%;
+}
+.listing-simple {
+    position: relative;
+    border-radius: 3px;
+    box-shadow: 2px 2px 3px rgb(210, 214, 218);
+    border-bottom: 1px solid rgb(210, 214, 218);
+    background: #ffffff;
+    margin-bottom: 10px;
+}
+.listing-simple.listing-inactive {
+    background: #fff2f2;
+}
+.listing-detail {
+    padding: 15px 25px;
+    color: #7b7b7b;
+    position: relative;
+}
+.listing-detail h2 {
+    margin: 0px 0px 10px;
+    text-transform: uppercase;
+    font-size: 20px;
+}
+.listing-detail .description {
+
+}
+.listing .listing-detail .description {
+    min-height: 100px;
+}
+.listing-items {
+    padding: 0px;
+    margin: 0px;
+}
+.listing-items > li {
+    list-style: none;
+    padding: 0px;
+    border-right: 1px solid #ccc;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    line-height: 15px;
+    padding-right: 5px;
+    margin-right: 5px;
+}
+.listing-items > li:last-child {
+    border-right: none;
+}
+.listing-items > li span {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 0px 5px;
+}
+.listing-links {
+    padding: 0px;
+    margin: 0px;
+    position: absolute;
+    right: 5px;
+    top: 10px;
+}
+.listing-links > li {
+    list-style: none;
+    padding: 0px;
+    border-right: 1px solid #ccc;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    line-height: 15px;
+    padding-right: 5px;
+    margin-right: 5px;
+}
+.listing-links > li:last-child {
+    border-right: none;
+}
+.listing-links > li > a > span {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 0px 5px;
+    font-size: 22px;
+    color: #ccc;
+}
+span.listing-status {
+    background: #67d080;
+    padding: 0px 9px;
+    color: #fff;
+    border-radius: 3px;
+    line-height: 18px;
+    display: inline-block;
+}
+span.listing-status.status-owner {
+    background: #337ab7;
+}
+span.listing-status.status-tenant {
+    background: #f2a654;
+}
+span.listing-status.status-waiting {
+    background: #f2a654;
+}
+span.listing-status.status-visited {
+    background: #337ab7;
+}
+span.listing-status.status-rejected {
+    background: #fa2a00;
+}
+span.listing-status.status-pending {
+    background: #f2a654;
+}
+.dropdown-menu>li {
+    border-bottom: 1px solid #f9f9f9;
+}
+.dropdown-menu>li:last-child {
+    border-bottom: 0px;
+}
+.dropdown-menu>li>a {
+    padding: 8px 5px;
+}
+.dropdown-menu>li:last-child>a {
+     margin-bottom: 0px; 
+}
+.panel-heading {
+    padding: 10px 15px;
+}
+
+.edit-field {
+    display: inline-block;
+    vertical-align: middle;
+    padding-right: 10px;
+}
+.edit-field input {
+    width: 60px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    padding: 5px;
+    height: 26px;
+}
+.address-format {
+    padding: 5px;
+    background: #eaeaea;
+}
+.voyager .listing-simple .panel {
+    border: 1px solid #ccc;    
+}

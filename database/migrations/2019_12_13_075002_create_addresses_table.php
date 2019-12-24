@@ -16,12 +16,14 @@ class CreateAddressesTable extends Migration
         Schema::create('addresses', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('community_id')->nullable();
+            $table->integer('address_type_id')->nullable();
+            $table->string('name')->nullable();
             $table->string('house')->nullable();
             $table->string('street')->nullable();
             $table->string('block')->nullable();
             $table->double('longitude')->nullable();
             $table->double('latitude')->nullable();
-            $table->text('address');
+            $table->text('address')->nullable();
             $table->string('status')->default('active');
             $table->timestamps();
         });

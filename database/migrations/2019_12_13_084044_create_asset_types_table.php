@@ -15,6 +15,7 @@ class CreateAssetTypesTable extends Migration
     {
         Schema::create('asset_types', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('parent_id')->default(0);
             $table->string('title')->nullable();
             $table->string('status')->default('active');
             $table->timestamps();

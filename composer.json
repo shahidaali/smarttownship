@@ -18,6 +18,7 @@
     "require-dev": {
         "facade/ignition": "^1.4",
         "fzaninotto/faker": "^1.4",
+        "laravel/ui": "^1.1",
         "mockery/mockery": "^1.0",
         "nunomaduro/collision": "^3.0",
         "phpunit/phpunit": "^8.0"
@@ -60,10 +61,10 @@
             "@php artisan key:generate --ansi"
         ]
     },
-    "repositories": {
-        "hooks": {
+    "repositories": [
+        {
             "type": "composer",
             "url": "https://larapack.io"
         }
-    }
+    ]
 }

@@ -1,0 +1,24 @@
+{
+  "name": "connectpx/custom",
+    "description": "Simple custom tasks.",
+  "authors": [
+    {
+        "name": "Shahid Aali",
+        "email": "shahidhussainaali@gmail.com"
+    }
+  ],
+  "minimum-stability": "stable",
+  "require": {},
+  "autoload": {
+    "psr-4": {
+      "Connectpx\\Custom\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Connectpx\\Custom\\CustomServiceProvider"
+      ]
+    }
+  }
+}

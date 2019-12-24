@@ -18,6 +18,11 @@ class CreateCommunitiesTable extends Migration
             $table->string('name');
             $table->text('description')->nullable();
             $table->string('banner')->nullable();
+            $table->string('postal_code')->nullable();
+            $table->string('city')->nullable();
+            $table->string('state')->nullable();
+            $table->string('country')->nullable();
+            $table->string('address_format')->nullable();
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });

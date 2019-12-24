@@ -27,6 +27,6 @@ class Resident extends Model
      */
     public function address()
     {
-        return $this->belongsTo('App\Address')->where('status', 'active');
+        return $this->belongsTo('App\Address');
     }
 }

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\API;
 
-use Illuminate\Http\Request; 
 use App\Http\Controllers\Controller; 
-use App; 
+use Illuminate\Http\Request; 
 use Illuminate\Support\Facades\Auth; 
+use App; 
 use Validator;
 
 class AssetController extends ApiController
@@ -26,7 +26,7 @@ class AssetController extends ApiController
 
         $userAsset = new App\AddressAsset();
         $detail = $userAsset->addressAssetDetail([
-            'asset_type_id' => 1,
+            'type' => 'vehicle',
             'asset_no' => $request->vehicle_no
         ]);
 
