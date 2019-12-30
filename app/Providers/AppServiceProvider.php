@@ -3,6 +3,9 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use TCG\Voyager\Facades\Voyager;
+use App\FormFields\CascadingSelectFormField;
+use App\FormFields\CascadingChildFormField;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +16,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        Voyager::addFormField(CascadingSelectFormField::class);
     }
 
     /**

@@ -42,6 +42,7 @@
                                     :community="{{ json_encode($community) }}"
                                     :address-type="{{ json_encode($address_type) }}"
                                     :statuse="{{ json_encode($statuse) }}"
+                                    :tokens="{{ json_encode($address_tokens) }}"
                                     count="{{ $count }}"
                                     :checked="{{ $checked }}"
                                 ></add-address-type>

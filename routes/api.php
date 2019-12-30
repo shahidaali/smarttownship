@@ -24,8 +24,24 @@ Route::group(['middleware' => 'check.apikey'], function(){
 	Route::get('user', 'API\UserController@getUser');
 
 	// VEHICLE VERIFICATION
-	Route::post('vehicle_verification', 'API\VerificationController@vehicleVerification');
+	Route::post('verification/vehicle', 'API\VerificationController@vehicleVerification');
 
 	// VISITOR API
-	Route::post('invite_visitor', 'API\VisitorController@inviteVisitor');
+	Route::post('visitor/invite', 'API\VisitorController@inviteVisitor');
+
+	// ISSUE API
+	Route::post('issues/add', 'API\IssueController@reportIssue');
+	Route::get('issues/list', 'API\IssueController@list');
+
+	// LOST FOUND API
+	Route::post('lost-found/add', 'API\LostFoundController@addLostFound');
+	Route::get('lost-found/list', 'API\LostFoundController@list');
+
+	// SECURITY UPDATES API
+	Route::post('security-updates/add', 'API\SecurityUpdateController@add');
+	Route::get('security-updates/list', 'API\SecurityUpdateController@list');
+
+	// RECOMMENDATIONS API
+	Route::post('recommendations/add', 'API\RecommendationController@add');
+	Route::get('recommendations/list', 'API\RecommendationController@list');
 });

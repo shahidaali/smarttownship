@@ -124,6 +124,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     community: {
@@ -135,6 +136,10 @@ __webpack_require__.r(__webpack_exports__);
       "default": {}
     },
     statuse: {
+      type: Object,
+      "default": {}
+    },
+    tokens: {
       type: Object,
       "default": {}
     },
@@ -213,6 +218,10 @@ __webpack_require__.r(__webpack_exports__);
       type: Object,
       "default": {}
     },
+    tokens: {
+      type: Object,
+      "default": {}
+    },
     count: {
       type: Number,
       "default": 0
@@ -224,7 +233,10 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      is_loading: true
+      is_loading: true,
+      from: this.line.from,
+      to: this.line.to,
+      format: this.line.format
     };
   },
   computed: {},
@@ -232,6 +244,18 @@ __webpack_require__.r(__webpack_exports__);
     fieldName: function fieldName(name) {
       var vm = this;
       return "lines[" + vm.addressType.id + "][series][" + name + "][]";
+    },
+    sampleOutput: function sampleOutput(address) {
+      var vm = this;
+      var address = vm.format;
+      $.each(vm.tokens, function (i, token) {
+        address = address.replace(token.token, token.example);
+      });
+      return "<code>Example Output: " + address + "</code>";
+    },
+    showSample: function showSample() {
+      var vm = this;
+      $('.sample_output').slideToggle();
     }
   },
   mounted: function mounted() {
@@ -484,7 +508,8 @@ var render = function() {
                           number: key,
                           community: _vm.community,
                           "address-type": _vm.addressType,
-                          count: _vm.count
+                          count: _vm.count,
+                          tokens: _vm.tokens
                         }
                       })
                     }),
@@ -529,8 +554,24 @@ var render = function() {
         _c("label", [
           _vm._v("From: "),
           _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.from,
+                expression: "from"
+              }
+            ],
             attrs: { type: "text", name: _vm.fieldName("from") },
-            domProps: { value: _vm.line.from }
+            domProps: { value: _vm.from },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.from = $event.target.value
+              }
+            }
           })
         ])
       ]),
@@ -539,8 +580,24 @@ var render = function() {
         _c("label", [
           _vm._v("To: "),
           _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.to,
+                expression: "to"
+              }
+            ],
             attrs: { type: "text", name: _vm.fieldName("to") },
-            domProps: { value: _vm.line.to }
+            domProps: { value: _vm.to },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.to = $event.target.value
+              }
+            }
           })
         ])
       ]),
@@ -549,47 +606,51 @@ var render = function() {
         _c("label", [
           _vm._v("Format: "),
           _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.format,
+                expression: "format"
+              }
+            ],
             staticStyle: { width: "500px" },
             attrs: { type: "text", name: _vm.fieldName("format") },
-            domProps: { value: _vm.line.format }
+            domProps: { value: _vm.format },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.format = $event.target.value
+              }
+            }
           })
         ]),
-        _vm._m(0)
+        _c("div", {
+          staticClass: "sample_output",
+          staticStyle: { display: "none" },
+          domProps: { innerHTML: _vm._s(_vm.sampleOutput()) }
+        })
       ]),
       _vm._v(" "),
-      _vm._m(1),
+      _c("div", { staticClass: "edit-field" }, [
+        _c(
+          "a",
+          {
+            staticClass: "series-show-example",
+            attrs: { href: "javascript:void(0)" },
+            on: { click: _vm.showSample }
+          },
+          [_c("span", { staticClass: "voyager-angle-down" })]
+        )
+      ]),
       _vm._v(" "),
-      _vm._m(2)
+      _vm._m(0)
     ])
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "sample_output", staticStyle: { display: "none" } },
-      [
-        _c("code", [
-          _vm._v(
-            "Example Output: House 1 Smart Town, 43000, Kajang, Selangor, Malaysia"
-          )
-        ])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "edit-field" }, [
-      _c("a", { staticClass: "series-show-example", attrs: { href: "#" } }, [
-        _c("span", { staticClass: "voyager-angle-down" })
-      ])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -913,7 +974,64 @@ Vue.component('add-address-type', __webpack_require__(/*! ./components/admin/Add
 Vue.component('add-address-type-line', __webpack_require__(/*! ./components/admin/AddAddressTypeLine.vue */ "./resources/js/components/admin/AddAddressTypeLine.vue")["default"]);
 var app = new Vue({
   el: '#app'
-});
+}); // jQuery(document).change(".cascading-select-child", function(){
+// 	alert();
+// });
+
+$('select.cascading-select2-ajax').each(function () {
+  $(this).select2({
+    width: '100%',
+    ajax: {
+      url: $(this).data('get-items-route'),
+      data: function data(params) {
+        var query = {
+          search: params.term,
+          type: $(this).data('get-items-field'),
+          method: $(this).data('method'),
+          page: params.page || 1
+        };
+        var $el = $(this);
+        var parent = $el.data('parent');
+
+        if (parent && $('#' + parent).length > 0) {
+          var parent_id = $('#' + parent).val();
+
+          if (parent_id) {
+            query['selected_parent_id'] = parent_id;
+          }
+        }
+
+        return query;
+      }
+    }
+  });
+  $(this).on('select2:select', function (e) {
+    var data = e.params.data;
+
+    if (data.id == '') {
+      // "None" was selected. Clear all selected options
+      $(this).val([]).trigger('change');
+    } else {
+      $(e.currentTarget).find("option[value='" + data.id + "']").attr('selected', 'selected');
+    }
+  });
+  $(this).on('select2:unselect', function (e) {
+    var data = e.params.data;
+    $(e.currentTarget).find("option[value='" + data.id + "']").attr('selected', false);
+  });
+}); // $('.cascading-select-child').on('select2:open', function(e) {
+//     var $el = $(this);
+//     var route = $el.data('get-items-route');
+//     var parent = $el.data('parent');
+//     if(parent && $('#'+parent).length > 0) {
+//     	var parent_id = $('#'+parent).val();
+//     	if( parent_id ) {
+//     		route += "&selected_parent_id=" +  parent_id;
+//     		$el.attr('data-get-items-route', route);
+//     	}
+//     }
+//     return false;
+// })
 
 /***/ }),
 

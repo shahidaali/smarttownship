@@ -3,9 +3,10 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request; 
 use App\Http\Controllers\Controller; 
-use App\User; 
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth; 
 use Validator;
+use App\User; 
 
 class UserController extends ApiController {
 
@@ -16,7 +17,7 @@ class UserController extends ApiController {
      */ 
     public function login(Request $request){ 
         $validator = Validator::make($request->all(), [ 
-            'email' => 'required|email', 
+            'username' => 'required', 
             'password' => 'required', 
         ]);
 
@@ -24,14 +25,14 @@ class UserController extends ApiController {
             return $this->response('error', $validator->errors()->all());
         }
 
-        if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){ 
+        if(Auth::attempt(['username' => $request->username, 'password' => $request->password])){ 
             $user = Auth::user(); 
 
             $data['user'] = $user;
             return $this->response('success', [], $data);
         } 
         else{ 
-            return $this->response('error', 'Incorrect email or password.');
+            return $this->response('error', 'Incorrect username or password.');
         } 
     }
 
@@ -42,23 +43,39 @@ class UserController extends ApiController {
      */ 
     public function register(Request $request){ 
         $validator = Validator::make($request->all(), [ 
-            'name' => 'required', 
-            'email' => 'required|email', 
-            'password' => 'required', 
-            'confirm_password' => 'required|same:password', 
+            'username' => ['required', 'string', 'max:30', 'unique:users'],
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:6', 'confirmed'],
+            'community_id' => ['required'],
+            'phone_number' => ['required'],
+            'dob' => ['required'],
+            'gender' => ['required'],
         ]);
 
         if ($validator->fails()) { 
             return $this->response('error', $validator->errors()->all());
         }
 
-        if (User::where('email', $request->email)->exists()) {
-            return $this->response('error', 'Email already registered.');
+        $avatar = "";
+        if( !empty($request->avatar) ) {
+            $uploadPath = "users/";
+            $file_response = $this->uploadBase64($uploadPath, $request->avatar);
+
+            if( $file_response ) {
+                $avatar = $file_response;
+            }
         }
 
+        // if (User::where('email', $request->email)->exists()) {
+        //     return $this->response('error', 'Email already registered.');
+        // }
+
         $input = $request->all(); 
-        $input['password'] = bcrypt($input['password']); 
+        $input['password'] = Hash::make($input['password']); 
         $input['role_id'] = 2;
+        $input['avatar'] = $avatar;
+
         $user = User::create( $input );
 
         if( $user ){ 

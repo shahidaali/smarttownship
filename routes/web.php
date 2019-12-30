@@ -12,6 +12,7 @@
 */
 
 Route::get('/', function () {
+    return redirect('/admin');
     return view('welcome');
 });
 
@@ -25,6 +26,8 @@ Route::group(['prefix' => 'admin'], function () {
 		->name('voyager.communities.add-addresses');
     Route::post('communities/{id}/save-address-types', 'CommunityController@saveAddressTypes')
 		->name('voyager.communities.save-address-types');
+    Route::get('cascading-options', 'CascadingFieldController@cascadingOptions')
+		->name('voyager.cascading.options');
 });
 
 Auth::routes();

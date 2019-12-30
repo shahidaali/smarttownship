@@ -17,6 +17,7 @@
                         :community="community"
                         :address-type="addressType"
                         :count="count"
+                        :tokens="tokens"
                         >
                       </add-address-type-line>
                       
@@ -39,6 +40,10 @@ export default {
       default: {}
     },
     statuse: {
+      type: Object,
+      default: {}
+    },
+    tokens: {
       type: Object,
       default: {}
     },

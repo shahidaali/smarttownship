@@ -15,8 +15,9 @@ class CreateResidentsTable extends Migration
     {
         Schema::create('residents', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('address_id');
-            $table->integer('user_id');
+            $table->integer('community_id')->nullable();
+            $table->integer('address_id')->nullable();
+            $table->integer('user_id')->nullable();
             $table->integer('reference_id')->nullable();
             $table->string('type')->default('owner');
             $table->string('status')->default('active');
