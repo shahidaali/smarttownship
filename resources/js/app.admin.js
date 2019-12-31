@@ -13,8 +13,14 @@ Vue.component('dashboard-community-item', require('./components/admin/DashboardC
 Vue.component('add-address-type', require('./components/admin/AddAddressType.vue').default);
 Vue.component('add-address-type-line', require('./components/admin/AddAddressTypeLine.vue').default);
 
+Vue.prototype.$eventHub = new Vue(); // Global event bus
+
 const app = new Vue({
     el: '#app'
+});
+
+const app_inline = new Vue({
+    el: '#app_inline'
 });
 
 // jQuery(document).change(".cascading-select-child", function(){

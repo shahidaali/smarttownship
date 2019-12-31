@@ -4,9 +4,9 @@
           <h5><label><input type="checkbox" name="lines[1][enabled]" value="1" v-model="is_checked" class="enable-address">  {{ addressType.title }}</label> <span class="count">({{ count }})</span></h5>
           <div class="field-panel" v-if="is_checked">
               <div class="edit-fields">
-                  <div class="edit-field"><label>Add New Addresses: <input type="text" :name="fieldName('total')" class="address-total" v-model="total_address"></label></div>
+                  <div class="edit-field"><label>Total Series: <input type="text" :name="fieldName('total_series')" v-model="total_series" v-on:keyup="seriesChanged" autocomplete="off" maxlength="1"></label></div>
               </div>
-              <div class="panel series-panel" v-if="total_address > 0">
+              <div class="panel series-panel" v-if="total_series > 0">
                   <div class="panel-heading">
                       Address Series
                   </div>
@@ -39,10 +39,6 @@ export default {
       type: Object,
       default: {}
     },
-    statuse: {
-      type: Object,
-      default: {}
-    },
     tokens: {
       type: Object,
       default: {}
@@ -60,7 +56,8 @@ export default {
     return {
       is_loading: true,
       is_checked: this.checked,
-      total_address: 0,
+      total_address: 10,
+      total_series: 1,
       series: [],
     }
   },
@@ -72,15 +69,34 @@ export default {
         var vm = this;
         return "lines[" + vm.addressType.id + "][" + name + "]";
     },
+    totalChanged: function() {
+      this.$eventHub.$emit('totalChanged', this.total_address);
+    },
+    seriesChanged: function() {
+      this.createSeries();
+      this.$eventHub.$emit('seriesChanged', this.total_series);
+    },
+    createSeries: function() {
+      var vm = this;
+
+      const series_arr = [];
+      for (var i = 0; i < this.total_series; i++) {
+        var from = i == 0 ? parseInt(vm.count) + 1 : 0;
+        var to = i == 0 ? from + this.total_address -1 : 0;
+        series_arr.push({
+            from : from,
+            to : to,
+            format : vm.community.address_format,
+        });
+      }
+
+      vm.series = series_arr;
+    },
   },
   mounted() {
     var vm = this;
 
-    vm.series.push({
-        from : parseInt(vm.count) + 1,
-        to : 0,
-        format : vm.community.address_format,
-    });
+    vm.seriesChanged();
   },
   created() {
     var vm = this;

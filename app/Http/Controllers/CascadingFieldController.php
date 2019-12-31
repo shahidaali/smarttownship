@@ -50,13 +50,14 @@ class CascadingFieldController extends Controller
                 $skip = $on_page * ($page - 1);
                 $cascading = $options->cascading;
                 $model_name = "App\\" . $cascading->target_model;
+                $search_column = isset($cascading->search_column) ? $cascading->search_column : $cascading->label;
                 
                 $filters = [];
 
                 // If search query, use LIKE to filter results depending on field label
                 if ($search) {
                     // $query::where($cascading->label, 'LIKE', '%'.$search.'%');
-                    $filters[] = [$cascading->label, 'LIKE', '%'.$search.'%'];
+                    $filters[] = [$search_column, 'LIKE', '%'.$search.'%'];
                 }
 
                 if( !empty($cascading->filters) ) {

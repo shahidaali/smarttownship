@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Dec 30, 2019 at 07:22 AM
+-- Generation Time: Dec 31, 2019 at 09:54 AM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.14
 
@@ -126,19 +126,23 @@ CREATE TABLE IF NOT EXISTS `address_types` (
   `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `parent_id` int(11) DEFAULT '0',
   `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `has_sub_address` tinyint(1) NOT NULL DEFAULT '0',
+  `show_add_view` tinyint(1) NOT NULL DEFAULT '1',
+  `address_format` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'active',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `address_types`
 --
 
-INSERT INTO `address_types` (`id`, `parent_id`, `title`, `status`, `created_at`, `updated_at`) VALUES
-(1, 0, 'House', 'active', '2019-12-18 11:55:23', '2019-12-18 11:55:23'),
-(2, 0, 'Building', 'active', '2019-12-18 11:55:39', '2019-12-18 11:55:39');
+INSERT INTO `address_types` (`id`, `parent_id`, `title`, `has_sub_address`, `show_add_view`, `address_format`, `status`, `created_at`, `updated_at`) VALUES
+(1, NULL, 'House', 0, 1, 'House# [HOUSE]', 'active', '2019-12-18 11:55:00', '2019-12-31 02:02:03'),
+(2, NULL, 'Building', 1, 1, 'Building# [HOUSE]', 'active', '2019-12-18 11:55:00', '2019-12-31 02:02:18'),
+(3, 2, 'Flat', 0, 0, 'Building# [HOUSE], Floor# [STORY], Flat# [FLAT]', 'active', '2019-12-31 01:58:00', '2019-12-31 02:02:44');
 
 -- --------------------------------------------------------
 
@@ -184,7 +188,7 @@ CREATE TABLE IF NOT EXISTS `api_key_access_events` (
   PRIMARY KEY (`id`),
   KEY `api_key_access_events_ip_address_index` (`ip_address`),
   KEY `api_key_access_events_api_key_id_foreign` (`api_key_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=202 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=218 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `api_key_access_events`
@@ -391,7 +395,23 @@ INSERT INTO `api_key_access_events` (`id`, `api_key_id`, `ip_address`, `url`, `c
 (198, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/register', '2019-12-30 02:14:13', '2019-12-30 02:14:13'),
 (199, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/register', '2019-12-30 02:14:26', '2019-12-30 02:14:26'),
 (200, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/register', '2019-12-30 02:17:20', '2019-12-30 02:17:20'),
-(201, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/register', '2019-12-30 02:18:16', '2019-12-30 02:18:16');
+(201, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/register', '2019-12-30 02:18:16', '2019-12-30 02:18:16'),
+(202, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/register', '2019-12-30 02:25:35', '2019-12-30 02:25:35'),
+(203, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/register', '2019-12-30 02:25:48', '2019-12-30 02:25:48'),
+(204, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/register', '2019-12-30 02:26:01', '2019-12-30 02:26:01'),
+(205, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/register', '2019-12-30 02:26:54', '2019-12-30 02:26:54'),
+(206, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/register', '2019-12-30 02:27:00', '2019-12-30 02:27:00'),
+(207, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/register', '2019-12-30 02:27:11', '2019-12-30 02:27:11'),
+(208, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/security-updates/list?community_id=1', '2019-12-30 02:39:27', '2019-12-30 02:39:27'),
+(209, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/login', '2019-12-30 04:11:32', '2019-12-30 04:11:32'),
+(210, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/login', '2019-12-31 04:14:13', '2019-12-31 04:14:13'),
+(211, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/login', '2019-12-31 04:16:06', '2019-12-31 04:16:06'),
+(212, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/login', '2019-12-31 04:17:20', '2019-12-31 04:17:20'),
+(213, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/login', '2019-12-31 04:17:29', '2019-12-31 04:17:29'),
+(214, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/login', '2019-12-31 04:17:48', '2019-12-31 04:17:48'),
+(215, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/login', '2019-12-31 04:18:30', '2019-12-31 04:18:30'),
+(216, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/verification/vehicle', '2019-12-31 04:49:45', '2019-12-31 04:49:45'),
+(217, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/verification/vehicle', '2019-12-31 04:49:52', '2019-12-31 04:49:52');
 
 -- --------------------------------------------------------
 
@@ -499,8 +519,8 @@ CREATE TABLE IF NOT EXISTS `communities` (
 --
 
 INSERT INTO `communities` (`id`, `name`, `description`, `banner`, `postal_code`, `city`, `state`, `country`, `address_format`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Smart Town', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.', 'communities\\December2019\\z8GvSpOeksdKkkkHSmCz.jpg', '43000', 'Kajang', 'Selangor', 'MY', '[HOUSE] [COMMUNITY], [POSTAL_CODE] [CITY], [STATE], [COUNTRY]', 1, '2019-12-13 02:33:00', '2019-12-19 11:47:33'),
-(2, 'Johar Town', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.', 'communities\\December2019\\0AfWYRfZrqAQjv6TklW0.jpg', '54000', 'Kajang', 'Selangor', 'MY', '[HOUSE] [COMMUNITY], [POSTAL_CODE], [CITY], [STATE], [COUNTRY]', 1, '2019-12-20 05:38:46', '2019-12-20 05:38:46');
+(1, 'Smart Town', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.', 'communities\\December2019\\z8GvSpOeksdKkkkHSmCz.jpg', '43000', 'Kajang', 'Selangor', 'MY', '[HOUSE] St# [STREET] Block [BLOCK] [COMMUNITY], [POSTAL_CODE] [CITY], [STATE], [COUNTRY]', 1, '2019-12-13 02:33:00', '2019-12-30 12:10:48'),
+(2, 'Johar Town', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.', 'communities\\December2019\\0AfWYRfZrqAQjv6TklW0.jpg', '54000', 'Kajang', 'Selangor', 'MY', '[HOUSE] St# [STREET] Block [BLOCK] [COMMUNITY], [POSTAL_CODE] [CITY], [STATE], [COUNTRY]', 1, '2019-12-20 05:38:46', '2019-12-30 12:11:25');
 
 -- --------------------------------------------------------
 
@@ -574,7 +594,7 @@ CREATE TABLE IF NOT EXISTS `data_rows` (
   `order` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   KEY `data_rows_data_type_id_foreign` (`data_type_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=267 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=281 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `data_rows`
@@ -584,24 +604,24 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (1, 1, 'id', 'number', 'ID', 1, 1, 0, 0, 0, 0, '{}', 1),
 (2, 1, 'name', 'text', 'Name', 1, 1, 1, 1, 1, 1, '{}', 2),
 (3, 1, 'email', 'text', 'Email', 1, 1, 1, 1, 1, 1, '{}', 3),
-(4, 1, 'password', 'password', 'Password', 1, 0, 0, 1, 1, 0, '{}', 4),
-(5, 1, 'remember_token', 'text', 'Remember Token', 0, 0, 0, 0, 0, 0, '{}', 5),
-(6, 1, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 0, 0, 0, '{}', 6),
-(7, 1, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 7),
-(8, 1, 'avatar', 'image', 'Avatar', 0, 1, 1, 1, 1, 1, '{}', 8),
-(9, 1, 'user_belongsto_role_relationship', 'relationship', 'Role', 0, 1, 1, 1, 1, 0, '{\"model\":\"TCG\\\\Voyager\\\\Models\\\\Role\",\"table\":\"roles\",\"type\":\"belongsTo\",\"column\":\"role_id\",\"key\":\"id\",\"label\":\"display_name\",\"pivot_table\":\"roles\",\"pivot\":\"0\",\"taggable\":\"0\"}', 10),
-(10, 1, 'user_belongstomany_role_relationship', 'relationship', 'Roles', 0, 1, 1, 1, 1, 0, '{\"model\":\"TCG\\\\Voyager\\\\Models\\\\Role\",\"table\":\"roles\",\"type\":\"belongsToMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"display_name\",\"pivot_table\":\"user_roles\",\"pivot\":\"1\",\"taggable\":\"0\"}', 11),
-(11, 1, 'settings', 'hidden', 'Settings', 0, 0, 0, 0, 0, 0, '{}', 12),
+(4, 1, 'password', 'password', 'Password', 1, 0, 0, 1, 1, 0, '{}', 5),
+(5, 1, 'remember_token', 'text', 'Remember Token', 0, 0, 0, 0, 0, 0, '{}', 6),
+(6, 1, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 0, 0, 0, '{}', 21),
+(7, 1, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 22),
+(8, 1, 'avatar', 'image', 'Avatar', 0, 1, 1, 1, 1, 1, '{}', 17),
+(9, 1, 'user_belongsto_role_relationship', 'relationship', 'Role', 0, 1, 1, 1, 1, 0, '{\"model\":\"TCG\\\\Voyager\\\\Models\\\\Role\",\"table\":\"roles\",\"type\":\"belongsTo\",\"column\":\"role_id\",\"key\":\"id\",\"label\":\"display_name\",\"pivot_table\":\"roles\",\"pivot\":\"0\",\"taggable\":\"0\"}', 12),
+(10, 1, 'user_belongstomany_role_relationship', 'relationship', 'Sub Roles', 0, 0, 0, 0, 0, 0, '{\"model\":\"TCG\\\\Voyager\\\\Models\\\\Role\",\"table\":\"roles\",\"type\":\"belongsToMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"display_name\",\"pivot_table\":\"user_roles\",\"pivot\":\"1\",\"taggable\":\"0\"}', 14),
+(11, 1, 'settings', 'hidden', 'Settings', 0, 0, 0, 0, 0, 0, '{}', 19),
 (12, 2, 'id', 'number', 'ID', 1, 0, 0, 0, 0, 0, NULL, 1),
 (13, 2, 'name', 'text', 'Name', 1, 1, 1, 1, 1, 1, NULL, 2),
 (14, 2, 'created_at', 'timestamp', 'Created At', 0, 0, 0, 0, 0, 0, NULL, 3),
 (15, 2, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, NULL, 4),
-(16, 3, 'id', 'number', 'ID', 1, 0, 0, 0, 0, 0, NULL, 1),
-(17, 3, 'name', 'text', 'Name', 1, 1, 1, 1, 1, 1, NULL, 2),
-(18, 3, 'created_at', 'timestamp', 'Created At', 0, 0, 0, 0, 0, 0, NULL, 3),
-(19, 3, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, NULL, 4),
-(20, 3, 'display_name', 'text', 'Display Name', 1, 1, 1, 1, 1, 1, NULL, 5),
-(21, 1, 'role_id', 'text', 'Role', 0, 1, 1, 1, 1, 1, '{}', 9),
+(16, 3, 'id', 'number', 'ID', 1, 1, 0, 0, 0, 0, '{}', 1),
+(17, 3, 'name', 'text', 'Name', 1, 1, 1, 1, 1, 1, '{}', 2),
+(18, 3, 'created_at', 'timestamp', 'Created At', 0, 0, 0, 0, 0, 0, '{}', 3),
+(19, 3, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 4),
+(20, 3, 'display_name', 'text', 'Display Name', 1, 1, 1, 1, 1, 1, '{}', 5),
+(21, 1, 'role_id', 'text', 'Role', 0, 1, 1, 1, 1, 1, '{}', 11),
 (22, 4, 'id', 'number', 'ID', 1, 0, 0, 0, 0, 0, NULL, 1),
 (23, 4, 'parent_id', 'select_dropdown', 'Parent', 0, 0, 1, 1, 1, 1, '{\"default\":\"\",\"null\":\"\",\"options\":{\"\":\"-- None --\"},\"relationship\":{\"key\":\"id\",\"label\":\"name\"}}', 2),
 (24, 4, 'order', 'text', 'Order', 1, 1, 1, 1, 1, 1, '{\"default\":1}', 3),
@@ -643,7 +663,7 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (60, 7, 'status', 'checkbox', 'Status', 1, 1, 1, 1, 1, 1, '{}', 10),
 (61, 7, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 0, 0, 1, '{}', 11),
 (62, 7, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 12),
-(63, 1, 'email_verified_at', 'timestamp', 'Email Verified At', 0, 1, 1, 1, 1, 1, '{}', 6),
+(63, 1, 'email_verified_at', 'timestamp', 'Email Verified At', 0, 0, 1, 0, 0, 0, '{}', 20),
 (64, 8, 'id', 'text', 'Id', 1, 1, 0, 0, 0, 0, '{}', 1),
 (65, 8, 'community_id', 'hidden', 'Community Id', 0, 0, 1, 1, 1, 1, '{}', 5),
 (66, 8, 'house', 'text', 'House', 0, 1, 1, 1, 1, 1, '{}', 6),
@@ -706,9 +726,6 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (124, 13, 'status', 'select_dropdown', 'Status', 1, 1, 1, 1, 1, 1, '{\"default\":\"active\",\"options\":{\"active\":\"active\",\"inactive\":\"inactive\"}}', 11),
 (125, 13, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 12),
 (126, 13, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 13),
-(127, 13, 'resident_belongsto_address_relationship', 'relationship', 'Select Address', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Address\",\"table\":\"addresses\",\"type\":\"belongsTo\",\"column\":\"address_id\",\"key\":\"id\",\"label\":\"address\",\"pivot_table\":\"addresses\",\"pivot\":\"0\",\"taggable\":\"0\"}', 5),
-(128, 13, 'resident_belongsto_user_relationship', 'relationship', 'Select User', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\User\",\"table\":\"users\",\"type\":\"belongsTo\",\"column\":\"user_id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"addresses\",\"pivot\":\"0\",\"taggable\":\"0\"}', 6),
-(129, 13, 'resident_belongsto_user_relationship_1', 'relationship', 'By Reference', 0, 0, 1, 1, 1, 1, '{\"model\":\"App\\\\User\",\"table\":\"users\",\"type\":\"belongsTo\",\"column\":\"reference_id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"addresses\",\"pivot\":\"0\",\"taggable\":\"0\"}', 7),
 (130, 14, 'id', 'text', 'Id', 1, 1, 0, 0, 0, 0, '{}', 1),
 (132, 14, 'address_id', 'hidden', 'Address Id', 1, 1, 1, 1, 1, 1, '{}', 3),
 (133, 14, 'name', 'text', 'Name', 0, 1, 1, 1, 1, 1, '{\"display\":{\"width\":\"6\"}}', 6),
@@ -722,9 +739,9 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (141, 14, 'address_asset_belongsto_address_relationship', 'relationship', 'Address', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Address\",\"table\":\"addresses\",\"type\":\"belongsTo\",\"column\":\"address_id\",\"key\":\"id\",\"label\":\"address\",\"pivot_table\":\"address_assets\",\"pivot\":\"0\",\"taggable\":\"0\"}', 5),
 (143, 16, 'id', 'text', 'Id', 1, 1, 0, 0, 0, 0, '{}', 1),
 (144, 16, 'title', 'text', 'Title', 0, 1, 1, 1, 1, 1, '{}', 3),
-(145, 16, 'status', 'select_dropdown', 'Status', 1, 1, 1, 1, 1, 1, '{\"default\":\"active\",\"options\":{\"active\":\"active\",\"inactive\":\"inactive\"}}', 5),
-(146, 16, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 6),
-(147, 16, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 7),
+(145, 16, 'status', 'select_dropdown', 'Status', 1, 1, 1, 1, 1, 1, '{\"default\":\"active\",\"options\":{\"active\":\"active\",\"inactive\":\"inactive\"}}', 7),
+(146, 16, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 9),
+(147, 16, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 10),
 (148, 17, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
 (149, 17, 'community_id', 'hidden', 'Community Id', 1, 1, 1, 1, 1, 1, '{}', 2),
 (150, 17, 'address_type_id', 'hidden', 'Address Type Id', 1, 1, 1, 1, 1, 1, '{}', 3),
@@ -736,7 +753,7 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (156, 7, 'city', 'text', 'City', 0, 1, 1, 1, 1, 1, '{}', 4),
 (157, 7, 'state', 'select_dropdown', 'State', 0, 1, 1, 1, 1, 1, '{\"default\":\"Kuala Lumpur\",\"options\":{\"Kuala Lumpur\":\"Kuala Lumpur\",\"Selangor\":\"Selangor\"}}', 6),
 (158, 7, 'country', 'select_dropdown', 'Country', 0, 1, 1, 1, 1, 1, '{\"default\":\"MY\",\"options\":{\"MY\":\"Malaysia\"}}', 5),
-(159, 7, 'address_format', 'text_area', 'Address Format <br>Tokens: <code>[HOUSE], [COMMUNITY], [POSTAL_CODE], [CITY], [STATE], [COUNTRY]</code>', 0, 1, 1, 1, 1, 1, '{\"description\":\"e.g [HOUSE] [COMMUNITY], [POSTAL_CODE] [CITY], [STATE], [COUNTRY] will output as: 75 Kg Sg Ramal Lua Smart Town, 43000 Kajang, Selangor, Malaysia\"}', 7),
+(159, 7, 'address_format', 'text_area', 'Address Format <br>Tokens: <code>[HOUSE], [COMMUNITY], [POSTAL_CODE], [CITY], [STATE], [COUNTRY]</code>', 0, 1, 1, 1, 1, 1, '{\"description\":\"e.g [HOUSE] St# [STREET] Block [BLOCK] [COMMUNITY], [POSTAL_CODE] [CITY], [STATE], [COUNTRY] will output as: 75 Kg Sg Ramal Lua St# 2 Block F Smart Town, 43000 Kajang, Selangor, Malaysia\"}', 7),
 (160, 8, 'address_type_id', 'hidden', 'Address Type Id', 0, 1, 1, 1, 1, 1, '{}', 4),
 (161, 8, 'name', 'text', 'Name', 0, 1, 1, 1, 1, 1, '{}', 7),
 (162, 8, 'address_belongsto_address_type_relationship', 'relationship', 'Address Type', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\AddressType\",\"table\":\"address_types\",\"type\":\"belongsTo\",\"column\":\"address_type_id\",\"key\":\"id\",\"label\":\"title\",\"pivot_table\":\"address_assets\",\"pivot\":\"0\",\"taggable\":\"0\"}', 3),
@@ -783,15 +800,14 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (205, 20, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 0, 0, 1, '{}', 20),
 (206, 20, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 21),
 (207, 20, 'community_id', 'cascading_select', 'Community Id', 0, 1, 1, 1, 1, 1, '{\"cascading\":{\"target_model\":\"Community\",\"key\":\"id\",\"column\":\"community_id\",\"label\":\"name\"}}', 2),
-(208, 20, 'user_id', 'cascading_select', 'User Id', 0, 1, 1, 1, 1, 1, '{\"cascading\":{\"target_model\":\"User\",\"key\":\"id\",\"column\":\"user_id\",\"label\":\"name\",\"filters\":{\"role_id\":2},\"parent\":{\"field_id\":\"community_id\",\"column\":\"community_id\"}}}', 3),
+(208, 20, 'user_id', 'cascading_select', 'User Id', 0, 1, 1, 1, 1, 1, '{\"cascading\":{\"target_model\":\"User\",\"key\":\"id\",\"column\":\"user_id\",\"label\":\"user_label\",\"search_column\":\"name\",\"filters\":{\"role_id\":2},\"parent\":{\"field_id\":\"community_id\",\"column\":\"community_id\"}}}', 3),
 (209, 20, 'fixed_date', 'timestamp', 'Fixed Date', 0, 1, 1, 1, 1, 1, '{}', 17),
 (210, 20, 'fixed_detail', 'text_area', 'Fixed Detail', 0, 0, 1, 1, 1, 1, '{}', 19),
-(211, 13, 'resident_belongsto_community_relationship', 'relationship', 'Communy', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Community\",\"table\":\"communities\",\"type\":\"belongsTo\",\"column\":\"community_id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"address_assets\",\"pivot\":\"0\",\"taggable\":\"0\"}', 4),
 (212, 13, 'community_id', 'text', 'Community Id', 0, 1, 1, 1, 1, 1, '{}', 3),
 (215, 21, 'id', 'text', 'Id', 1, 1, 0, 0, 0, 0, '{}', 1),
 (216, 21, 'community_id', 'cascading_select', 'Community', 0, 1, 1, 1, 1, 1, '{\"cascading\":{\"target_model\":\"Community\",\"key\":\"id\",\"column\":\"community_id\",\"label\":\"name\"}}', 2),
-(217, 21, 'user_id', 'cascading_select', 'Added By', 0, 1, 1, 1, 1, 1, '{\"cascading\":{\"target_model\":\"User\",\"key\":\"id\",\"column\":\"user_id\",\"label\":\"name\",\"filters\":{\"role_id\":2},\"parent\":{\"field_id\":\"community_id\",\"column\":\"community_id\"}}}', 3),
-(218, 21, 'user_id_collected', 'cascading_select', 'Collected By', 0, 1, 1, 1, 1, 1, '{\"cascading\":{\"target_model\":\"User\",\"key\":\"id\",\"column\":\"user_id_collected\",\"label\":\"name\",\"filters\":{\"role_id\":2},\"parent\":{\"field_id\":\"community_id\",\"column\":\"community_id\"}}}', 14),
+(217, 21, 'user_id', 'cascading_select', 'Added By', 0, 1, 1, 1, 1, 1, '{\"cascading\":{\"target_model\":\"User\",\"key\":\"id\",\"column\":\"user_id\",\"label\":\"user_label\",\"search_column\":\"name\",\"filters\":{\"role_id\":2},\"parent\":{\"field_id\":\"community_id\",\"column\":\"community_id\"}}}', 3),
+(218, 21, 'user_id_collected', 'cascading_select', 'Collected By', 0, 1, 1, 1, 1, 1, '{\"cascading\":{\"target_model\":\"User\",\"key\":\"id\",\"column\":\"user_id_collected\",\"label\":\"user_label\",\"search_column\":\"name\",\"filters\":{\"role_id\":2},\"parent\":{\"field_id\":\"community_id\",\"column\":\"community_id\"}}}', 14),
 (219, 21, 'title', 'text', 'Title', 0, 1, 1, 1, 1, 1, '{}', 5),
 (220, 21, 'address', 'text', 'Address', 0, 1, 1, 1, 1, 1, '{}', 6),
 (221, 21, 'name', 'text', 'Name', 0, 1, 1, 1, 1, 1, '{}', 7),
@@ -830,7 +846,19 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (261, 25, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 14),
 (262, 25, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 15),
 (265, 25, 'is_active', 'checkbox', 'Is Active', 1, 1, 1, 1, 1, 1, '{\"on\":\"Yes\",\"off\":\"No\",\"checked\":true}', 11),
-(266, 23, 'is_active', 'checkbox', 'Is Active', 1, 1, 1, 1, 1, 1, '{\"on\":\"Yes\",\"off\":\"No\",\"checked\":true}', 10);
+(266, 23, 'is_active', 'checkbox', 'Is Active', 1, 1, 1, 1, 1, 1, '{\"on\":\"Yes\",\"off\":\"No\",\"checked\":true}', 10),
+(269, 16, 'show_add_view', 'checkbox', 'Show In Add View', 1, 1, 1, 1, 1, 1, '{\"on\":\"Yes\",\"off\":\"No\",\"checked\":true}', 6),
+(270, 16, 'address_format', 'text_area', 'Address Format', 0, 1, 1, 1, 1, 1, '{}', 8),
+(271, 16, 'has_sub_address', 'text', 'Has Sub Address', 1, 1, 1, 1, 1, 1, '{\"on\":\"Yes\",\"off\":\"No\",\"checked\":false}', 5),
+(272, 1, 'username', 'text', 'Username', 1, 1, 1, 1, 1, 1, '{}', 4),
+(273, 1, 'community_id', 'text', 'Community Id', 0, 1, 1, 1, 1, 1, '{}', 7),
+(274, 1, 'phone_number', 'text', 'Phone Number', 0, 1, 1, 1, 1, 1, '{}', 8),
+(275, 1, 'dob', 'date', 'Dob', 0, 1, 1, 1, 1, 1, '{}', 9),
+(276, 1, 'gender', 'select_dropdown', 'Gender', 0, 1, 1, 1, 1, 1, '{\"default\":\"Male\",\"options\":{\"Male\":\"Male\",\"Female\":\"Female\"}}', 10),
+(277, 1, 'verification_code', 'hidden', 'Verification Code', 0, 0, 1, 1, 0, 0, '{}', 13),
+(278, 1, 'verification_status', 'hidden', 'Verification Status', 1, 0, 1, 0, 0, 0, '{}', 18),
+(279, 1, 'is_active', 'checkbox', 'Is Active', 1, 1, 1, 1, 1, 1, '{\"on\":\"Yes\",\"off\":\"No\",\"checked\":true}', 15),
+(280, 1, 'user_belongsto_community_relationship', 'relationship', 'Community', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Community\",\"table\":\"communities\",\"type\":\"belongsTo\",\"column\":\"community_id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"address_assets\",\"pivot\":\"0\",\"taggable\":\"0\"}', 16);
 
 -- --------------------------------------------------------
 
@@ -865,13 +893,13 @@ CREATE TABLE IF NOT EXISTS `data_types` (
 --
 
 INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `display_name_plural`, `icon`, `model_name`, `policy_name`, `controller`, `description`, `generate_permissions`, `server_side`, `details`, `created_at`, `updated_at`) VALUES
-(1, 'users', 'users', 'User', 'Users', 'voyager-person', 'TCG\\Voyager\\Models\\User', 'TCG\\Voyager\\Policies\\UserPolicy', 'TCG\\Voyager\\Http\\Controllers\\VoyagerUserController', NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"desc\",\"default_search_key\":null,\"scope\":null}', '2019-12-12 07:01:26', '2019-12-13 02:40:46'),
+(1, 'users', 'users', 'User', 'Users', 'voyager-person', 'TCG\\Voyager\\Models\\User', 'TCG\\Voyager\\Policies\\UserPolicy', 'TCG\\Voyager\\Http\\Controllers\\VoyagerUserController', NULL, 1, 1, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"desc\",\"default_search_key\":\"name\",\"scope\":null}', '2019-12-12 07:01:26', '2019-12-31 04:38:34'),
 (2, 'menus', 'menus', 'Menu', 'Menus', 'voyager-list', 'TCG\\Voyager\\Models\\Menu', NULL, '', '', 1, 0, NULL, '2019-12-12 07:01:26', '2019-12-12 07:01:26'),
-(3, 'roles', 'roles', 'Role', 'Roles', 'voyager-lock', 'TCG\\Voyager\\Models\\Role', NULL, '', '', 1, 0, NULL, '2019-12-12 07:01:26', '2019-12-12 07:01:26'),
+(3, 'roles', 'roles', 'Role', 'Roles', 'voyager-lock', 'TCG\\Voyager\\Models\\Role', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"desc\",\"default_search_key\":null,\"scope\":null}', '2019-12-12 07:01:26', '2019-12-31 03:41:56'),
 (4, 'categories', 'categories', 'Category', 'Categories', 'voyager-categories', 'TCG\\Voyager\\Models\\Category', NULL, '', '', 1, 0, NULL, '2019-12-12 07:01:34', '2019-12-12 07:01:34'),
 (5, 'posts', 'posts', 'Post', 'Posts', 'voyager-news', 'TCG\\Voyager\\Models\\Post', 'TCG\\Voyager\\Policies\\PostPolicy', '', '', 1, 0, NULL, '2019-12-12 07:01:35', '2019-12-12 07:01:35'),
 (6, 'pages', 'pages', 'Page', 'Pages', 'voyager-file-text', 'TCG\\Voyager\\Models\\Page', NULL, '', '', 1, 0, NULL, '2019-12-12 07:01:37', '2019-12-12 07:01:37'),
-(7, 'communities', 'communities', 'Community', 'Communities', 'voyager-categories', 'App\\Community', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-12-12 07:04:25', '2019-12-19 11:47:04'),
+(7, 'communities', 'communities', 'Community', 'Communities', 'voyager-categories', 'App\\Community', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-12-12 07:04:25', '2019-12-30 12:13:46'),
 (8, 'addresses', 'addresses', 'Address', 'Addresses', 'voyager-logbook', 'App\\Address', NULL, NULL, NULL, 1, 1, '{\"order_column\":\"id\",\"order_display_column\":\"id\",\"order_direction\":\"desc\",\"default_search_key\":\"address\",\"scope\":null}', '2019-12-13 05:18:27', '2019-12-20 11:40:18'),
 (9, 'asset_types', 'asset-types', 'Asset Type', 'Asset Types', 'voyager-harddrive', 'App\\AssetType', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-12-13 06:23:35', '2019-12-13 07:17:09'),
 (10, 'assets', 'assets', 'Asset', 'Assets', 'voyager-harddrive', 'App\\Asset', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-12-13 06:26:51', '2019-12-13 06:45:14'),
@@ -879,12 +907,12 @@ INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `displa
 (12, 'user_assets', 'user-assets', 'User Asset', 'User Assets', 'voyager-harddrive', 'App\\UserAsset', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-12-13 08:37:24', '2019-12-13 08:47:22'),
 (13, 'residents', 'residents', 'Resident', 'Residents', NULL, 'App\\Resident', NULL, NULL, NULL, 1, 1, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":\"type\",\"scope\":null}', '2019-12-17 01:57:06', '2019-12-26 02:28:08'),
 (14, 'address_assets', 'address-assets', 'Address Asset', 'Address Assets', 'voyager-logbook', 'App\\AddressAsset', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-12-17 02:32:26', '2019-12-20 04:03:04'),
-(16, 'address_types', 'address-types', 'Address Type', 'Address Types', 'voyager-logbook', 'App\\AddressType', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-12-18 11:54:52', '2019-12-24 02:06:57'),
+(16, 'address_types', 'address-types', 'Address Type', 'Address Types', 'voyager-logbook', 'App\\AddressType', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-12-18 11:54:52', '2019-12-31 03:37:47'),
 (17, 'community_address_types', 'community-address-types', 'Community Address Type', 'Community Address Types', 'voyager-logbook', 'App\\CommunityAddressType', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-12-18 11:56:55', '2019-12-18 12:00:24'),
 (18, 'invitations', 'invitations', 'Invitation', 'Invitations', 'voyager-bell', 'App\\Invitation', NULL, NULL, NULL, 1, 1, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-12-23 04:24:02', '2019-12-23 04:27:48'),
 (19, 'visitors', 'visitors', 'Visitor', 'Visitors', 'voyager-bell', 'App\\Visitor', NULL, NULL, NULL, 1, 1, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-12-23 05:43:43', '2019-12-27 10:25:58'),
-(20, 'issues', 'issues', 'Issue', 'Issues', 'voyager-warning', 'App\\Issue', NULL, NULL, NULL, 1, 1, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-12-24 07:49:59', '2019-12-27 10:25:19'),
-(21, 'lost_founds', 'lost-founds', 'Lost Found', 'Lost Founds', 'voyager-flashlight', 'App\\LostFound', NULL, NULL, NULL, 1, 1, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-12-26 03:35:43', '2019-12-27 10:25:04'),
+(20, 'issues', 'issues', 'Issue', 'Issues', 'voyager-warning', 'App\\Issue', NULL, NULL, NULL, 1, 1, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-12-24 07:49:59', '2019-12-30 02:56:12'),
+(21, 'lost_founds', 'lost-founds', 'Lost Found', 'Lost Founds', 'voyager-flashlight', 'App\\LostFound', NULL, NULL, NULL, 1, 1, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-12-26 03:35:43', '2019-12-30 02:58:33'),
 (23, 'security_updates', 'security-updates', 'Security Update', 'Security Updates', 'voyager-key', 'App\\SecurityUpdate', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-12-26 08:47:23', '2019-12-27 10:07:50'),
 (25, 'recommendations', 'recommendations', 'Recommendation', 'Recommendations', 'voyager-lightbulb', 'App\\Recommendation', NULL, NULL, NULL, 1, 1, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-12-26 09:01:02', '2019-12-27 10:31:07');
 
@@ -1591,17 +1619,18 @@ CREATE TABLE IF NOT EXISTS `roles` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `roles_name_unique` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `roles`
 --
 
 INSERT INTO `roles` (`id`, `name`, `display_name`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'Administrator', '2019-12-12 07:01:30', '2019-12-12 07:01:30'),
-(2, 'user', 'Normal User', '2019-12-12 07:01:30', '2019-12-12 07:01:30'),
+(1, 'admin', 'Admin', '2019-12-12 07:01:30', '2019-12-31 04:37:23'),
+(2, 'user', 'Resident', '2019-12-12 07:01:30', '2019-12-31 04:36:58'),
 (3, 'manager', 'Manager', '2019-12-13 02:39:40', '2019-12-13 02:39:40'),
-(4, 'staff', 'Staff', '2019-12-13 02:40:06', '2019-12-13 02:40:06');
+(4, 'staff', 'Staff', '2019-12-13 02:40:06', '2019-12-13 02:40:06'),
+(5, 'security', 'Security', '2019-12-31 03:41:30', '2019-12-31 04:36:42');
 
 -- --------------------------------------------------------
 
@@ -1668,7 +1697,7 @@ INSERT INTO `settings` (`id`, `key`, `display_name`, `value`, `details`, `type`,
 (8, 'admin.loader', 'Admin Loader', '', '', 'image', 3, 'Admin'),
 (9, 'admin.icon_image', 'Admin Icon Image', '', '', 'image', 4, 'Admin'),
 (10, 'admin.google_analytics_client_id', 'Google Analytics Client ID (used for admin dashboard)', NULL, '', 'text', 1, 'Admin'),
-(11, 'admin.address_format_tokens', 'Address Format Tokens', '[{\"token\":\"[HOUSE]\",\"example\":\"House 1\"},{\"token\":\"[COMMUNITY]\",\"example\":\"Smart Town\"},{\"token\":\"[POSTAL_CODE]\",\"example\":\"43000\"},{\"token\":\"[CITY]\",\"example\":\"Kajang\"},{\"token\":\"[STATE]\",\"example\":\"Selangor\"},{\"token\":\"[COUNTRY]\",\"example\":\"Malaysia\"}]', NULL, 'text_area', 6, 'Admin');
+(11, 'admin.address_format_tokens', 'Address Format Tokens', '[{\"token\":\"[HOUSE]\",\"example\":\"House 1\"},{\"token\":\"[STREET]\",\"example\":\"1\"},{\"token\":\"[BLOCK]\",\"example\":\"F\"},{\"token\":\"[COMMUNITY]\",\"example\":\"Smart Town\"},{\"token\":\"[POSTAL_CODE]\",\"example\":\"43000\"},{\"token\":\"[CITY]\",\"example\":\"Kajang\"},{\"token\":\"[STATE]\",\"example\":\"Selangor\"},{\"token\":\"[COUNTRY]\",\"example\":\"Malaysia\"}]', NULL, 'text_area', 6, 'Admin');
 
 -- --------------------------------------------------------
 
@@ -1757,7 +1786,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `users_email_unique` (`email`),
   UNIQUE KEY `username` (`username`),
   KEY `users_role_id_foreign` (`role_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `users`
@@ -1768,13 +1797,17 @@ INSERT INTO `users` (`id`, `username`, `role_id`, `name`, `email`, `community_id
 (2, 'shahidhussainaali', 2, 'Shahid Hussain', 'shahidhussainaali@gmail.com', 1, NULL, NULL, NULL, NULL, 1, 1, 'users/default.png', NULL, '$2y$10$q72UJdfUHQL7N.l2yLwL8.DI5yLs.uevPpgjEVxx7q6WlDNKLaURm', NULL, '{\"locale\":\"en\"}', '2019-12-13 08:40:54', '2019-12-13 08:40:54'),
 (3, 'shahid', 2, 'Shahid', 'shahid@admin.com', 1, NULL, NULL, NULL, NULL, 1, 1, 'users/default.png', NULL, '$2y$10$g19ItC88DzfgYqa6BXUYOexiZH0qrTrWViQUmDwrGBVa8NL9MS1/y', NULL, NULL, '2019-12-16 08:04:22', '2019-12-16 08:04:22'),
 (4, 'shahid2', 2, 'Shahid', 'shahid2@admin.com', 2, NULL, NULL, NULL, NULL, 1, 1, 'users/default.png', NULL, '$2y$10$LMt2WVHjGraJIJZ6Rp7MKexLw7486gs9mSGtDQMCjh6jwD8nleFi6', NULL, NULL, '2019-12-16 08:05:30', '2019-12-16 08:05:30'),
-(5, 'shahidaali', 2, 'Shahid', 'shahidaali@admin.com', 1, '+923324703323', '1993-04-15', NULL, NULL, 1, 1, 'users/default.png', NULL, '$2y$10$RKFguccSxhn9rE/foCfxZu9U6Ay5YSIKLZJ7nKt1rgq/e9ABp0fi.', NULL, NULL, '2019-12-30 01:46:36', '2019-12-30 01:46:36'),
+(5, 'shahidaali', 2, 'Shahid', 'shahidaali@admin.com', 1, '+923324703323', '1993-04-15', 'Male', NULL, 1, 1, 'users/default.png', NULL, '$2y$10$RKFguccSxhn9rE/foCfxZu9U6Ay5YSIKLZJ7nKt1rgq/e9ABp0fi.', NULL, NULL, '2019-12-30 01:46:36', '2019-12-31 04:02:44'),
 (6, 'shahidaali1', 2, 'Shahid', 'shahidaali1@admin.com', 1, '+923324703323', '1993-04-15', 'male', NULL, 1, 1, 'users/default.png', NULL, '$2y$10$TE72TKzLbS9TphVQeeOEuu99USe6/LN5b1Mn44rmbskf43f..1NXm', NULL, NULL, '2019-12-30 01:47:02', '2019-12-30 01:47:02'),
 (7, 'shahidaali2', 2, 'Shahid', 'shahidaali2@admin.com', 1, '+923324703323', '1993-04-15', 'female', NULL, 1, 1, 'users/default.png', NULL, '$2y$10$d3SR0cy2rrfVVof4EbqkduWL34zwlzEaKPPBiFDIk06k.cAysap/m', NULL, NULL, '2019-12-30 01:47:24', '2019-12-30 01:47:24'),
 (8, 'shahidaali3', 2, 'Shahid', 'shahidaali3@admin.com', 1, '+923324703323', '1993-04-15', 'male', NULL, 1, 1, 'users/default.png', NULL, '$2y$10$dfmQ3h86M/1MwQm9QfTNJ.8/EkxT/AJmKgnMt4/DA6zV06ngiEEMC', NULL, NULL, '2019-12-30 01:48:24', '2019-12-30 01:48:24'),
 (9, 'shahidaali4', 2, 'Shahid', 'shahidaali4@admin.com', 1, '+923324703323', '1993-04-15', 'Male', NULL, 1, 1, 'users/default.png', NULL, '$2y$10$MgqxwP1iNXfLq54l3XykE.VcQNg70R2dPlvPndRDzHTBQWEw0Xsfe', NULL, NULL, '2019-12-30 02:14:27', '2019-12-30 02:14:27'),
 (10, 'shahidaali5', 2, 'Shahid', 'shahidaali5@admin.com', 1, '+923324703323', '1993-04-15', 'Male', NULL, 1, 1, 'users/December2019/8eMcXWS2KGZp04hPgIt2.png', NULL, '$2y$10$buUhOX/3WauTCGi6G68UVuVvIsdlC9vieDvXCjafs8iRJeUCWv1vy', NULL, NULL, '2019-12-30 02:17:21', '2019-12-30 02:17:21'),
-(11, 'shahidaali6', 2, 'Shahid', 'shahidaali6@admin.com', 1, '+923324703323', '1993-04-15', 'Male', NULL, 1, 1, 'users/wKBcDW4DaB0rKHPrB75m.png', NULL, '$2y$10$D1Gonec7HPx2xyX2qLd7Uuem.EjA240W8dPESdf21GD26jcUzk7Nm', NULL, NULL, '2019-12-30 02:18:16', '2019-12-30 02:18:16');
+(11, 'shahidaali6', 2, 'Shahid', 'shahidaali6@admin.com', 1, '+923324703323', '1993-04-15', 'Male', NULL, 1, 1, 'users/wKBcDW4DaB0rKHPrB75m.png', NULL, '$2y$10$D1Gonec7HPx2xyX2qLd7Uuem.EjA240W8dPESdf21GD26jcUzk7Nm', NULL, NULL, '2019-12-30 02:18:16', '2019-12-30 02:18:16'),
+(12, 'shahidaali7', 2, 'Shahid', 'shahidaali7@admin.com', 1, '+923324703323', '1993-04-15', 'Male', NULL, 1, 1, '', NULL, '$2y$10$HOWvXSYxPqzFw4oqCj94AO8cydaGtXImNP/LD3ZXPIgPEvWq0uGAm', NULL, NULL, '2019-12-30 02:25:48', '2019-12-30 02:25:49'),
+(13, 'shahidaali8', 4, 'Shahid', 'shahidaali8@admin.com', 1, '+923324703323', '1993-04-15', 'Male', NULL, 1, 1, 'users/O67RPgZ1MmcWUwZYfiue.png', NULL, '$2y$10$rNXrq/jCWTAVW3Ne1ppQoeXiEzf.yKPEfYQ80SK3oSUoc3nDeARGi', NULL, NULL, '2019-12-30 02:26:54', '2019-12-31 04:47:35'),
+(14, 'shahidaali9', 5, 'Shahid', 'shahidaali9@admin.com', 1, '+923324703323', '1993-04-15', 'Male', NULL, 1, 1, 'users/default.png', NULL, '$2y$10$OHfrMCIU6qwfAEv9UU4AgeWvyNzYtjYWCjOrhKAEEu36el6oWYknC', NULL, NULL, '2019-12-30 02:27:12', '2019-12-31 04:36:18'),
+(15, 'Security', 5, 'Security', 'security@admin.com', 1, '+923324703323', '2019-12-31', 'Male', NULL, 1, 1, 'users/default.png', NULL, '$2y$10$DcRw1GEZhA7E5/24ZXeA8..XqvQpegYEuaMRvZvorJamFm8d03nRy', NULL, NULL, '2019-12-31 04:53:48', '2019-12-31 04:53:48');
 
 -- --------------------------------------------------------
 

@@ -17,6 +17,9 @@ class CreateAddressTypesTable extends Migration
             $table->bigIncrements('id');
             $table->string('title')->nullable();
             $table->string('status')->default('active');
+            $table->boolean('has_sub_address')->default(0);
+            $table->boolean('show_add_view')->default(1);
+            $table->string('address_format')->nullable();
             $table->timestamps();
         });
     }

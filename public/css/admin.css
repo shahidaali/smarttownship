@@ -8,7 +8,9 @@
 .form-group.field-select_dropdown,
 .form-group.field-relationship,
 .form-group.field-cascading_select,
-.form-group.field-timestamp {
+.form-group.field-timestamp,
+.form-group.field-checkbox,
+.form-group.field-password {
     width: 50%;
     float: left;
     padding: 0px 10px;
@@ -141,6 +143,18 @@ span.listing-status.status-rejected {
 span.listing-status.status-pending {
     background: #f2a654;
 }
+span.listing-status.status-admin {
+    background: #8c85ff;
+}
+span.listing-status.status-user {
+    background: #f968da;
+}
+span.listing-status.status-staff {
+    background: #62d0c0;
+}
+span.listing-status.status-security {
+    background: #999;
+}
 .dropdown-menu>li {
     border-bottom: 1px solid #f9f9f9;
 }
@@ -163,15 +177,16 @@ span.listing-status.status-pending {
     padding-right: 10px;
 }
 .edit-field input {
-    width: 60px;
+    width: 50px;
     border-radius: 3px;
     border: 1px solid #ccc;
     padding: 5px;
     height: 26px;
 }
 .address-format {
-    padding: 5px;
+    padding: 15px 5px;
     background: #eaeaea;
+    border-bottom: 1px solid #ccc;
 }
 .voyager .listing-simple .panel {
     border: 1px solid #ccc;    

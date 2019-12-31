@@ -106,6 +106,7 @@ class CommunityController extends Controller
                         $address_count = $addressType->addresses()->get()->count();
                         $series = $line['series'];
 
+                        $formated_series = $this->formatSeries($series);
                         $address_series = [];
 
                         // dd($address_series);
@@ -114,13 +115,20 @@ class CommunityController extends Controller
                             $house_no = $i;
                             $address_name = $address_type_name . ' ' . $house_no;
 
+                            $matched_series = $this->getMatchedSeries($formated_series, $i);
+                            dd($matched_series);
+
                             $format = $this->getAddressFormat($community, $series, $i, $default_address);
                             $address = str_replace("[HOUSE]", $address_name, $format);
+                            $address = str_replace("[STREET]", $street, $format);
+                            $address = str_replace("[BLOCK]", $block, $format);
                             $addresses[] = [
                                 'community_id' => $community_id,
                                 'address_type_id' => $address_type_id,
                                 'name' => $address_name,
                                 'house' => $house_no,
+                                'street' => $street,
+                                'block' => $block,
                                 'address' => $address,
                                 'status' => 'active',
                                 'created_at'=>$now, 
@@ -186,6 +194,39 @@ class CommunityController extends Controller
         ], $address_format);
 
         return $address;
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function formatSeries( $series )
+    {
+        $formated = [];
+        foreach ($series as $field => $data) {
+            foreach ($data as $key => $value) {
+                $formated[$key][$field] = $value;
+            }
+        }
+        return $formated;
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function getMatchedSeries( $series, $number )
+    {
+        foreach ($series as $key => $data) {
+            $from = $data['from'];
+            $to = $data['to'];
+
+            if( $number >= $from && $number <= $to ) {
+                return $data;
+            }
+        }
     }
 
     /**

@@ -135,10 +135,6 @@ __webpack_require__.r(__webpack_exports__);
       type: Object,
       "default": {}
     },
-    statuse: {
-      type: Object,
-      "default": {}
-    },
     tokens: {
       type: Object,
       "default": {}
@@ -156,7 +152,8 @@ __webpack_require__.r(__webpack_exports__);
     return {
       is_loading: true,
       is_checked: this.checked,
-      total_address: 0,
+      total_address: 10,
+      total_series: 1,
       series: []
     };
   },
@@ -165,15 +162,34 @@ __webpack_require__.r(__webpack_exports__);
     fieldName: function fieldName(name) {
       var vm = this;
       return "lines[" + vm.addressType.id + "][" + name + "]";
+    },
+    totalChanged: function totalChanged() {
+      this.$eventHub.$emit('totalChanged', this.total_address);
+    },
+    seriesChanged: function seriesChanged() {
+      this.createSeries();
+      this.$eventHub.$emit('seriesChanged', this.total_series);
+    },
+    createSeries: function createSeries() {
+      var vm = this;
+      var series_arr = [];
+
+      for (var i = 0; i < this.total_series; i++) {
+        var from = i == 0 ? parseInt(vm.count) + 1 : 0;
+        var to = i == 0 ? from + this.total_address - 1 : 0;
+        series_arr.push({
+          from: from,
+          to: to,
+          format: vm.community.address_format
+        });
+      }
+
+      vm.series = series_arr;
     }
   },
   mounted: function mounted() {
     var vm = this;
-    vm.series.push({
-      from: parseInt(vm.count) + 1,
-      to: 0,
-      format: vm.community.address_format
-    });
+    vm.seriesChanged();
   },
   created: function created() {
     var vm = this;
@@ -191,6 +207,9 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
 //
 //
 //
@@ -234,6 +253,9 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       is_loading: true,
+      show_sample: false,
+      street: 0,
+      block: 0,
       from: this.line.from,
       to: this.line.to,
       format: this.line.format
@@ -255,7 +277,10 @@ __webpack_require__.r(__webpack_exports__);
     },
     showSample: function showSample() {
       var vm = this;
-      $('.sample_output').slideToggle();
+      this.show_sample = !this.show_sample;
+    },
+    totalChanged: function totalChanged(total_address) {
+      this.to = parseInt(this.line.from) + parseInt(total_address) - 1;
     }
   },
   mounted: function mounted() {
@@ -263,6 +288,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {
     var vm = this;
+    this.$eventHub.$on('totalChanged', this.totalChanged);
   }
 });
 
@@ -463,25 +489,30 @@ var render = function() {
             _c("div", { staticClass: "edit-fields" }, [
               _c("div", { staticClass: "edit-field" }, [
                 _c("label", [
-                  _vm._v("Add New Addresses: "),
+                  _vm._v("Total Series: "),
                   _c("input", {
                     directives: [
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.total_address,
-                        expression: "total_address"
+                        value: _vm.total_series,
+                        expression: "total_series"
                       }
                     ],
-                    staticClass: "address-total",
-                    attrs: { type: "text", name: _vm.fieldName("total") },
-                    domProps: { value: _vm.total_address },
+                    attrs: {
+                      type: "text",
+                      name: _vm.fieldName("total_series"),
+                      autocomplete: "off",
+                      maxlength: "1"
+                    },
+                    domProps: { value: _vm.total_series },
                     on: {
+                      keyup: _vm.seriesChanged,
                       input: function($event) {
                         if ($event.target.composing) {
                           return
                         }
-                        _vm.total_address = $event.target.value
+                        _vm.total_series = $event.target.value
                       }
                     }
                   })
@@ -489,7 +520,7 @@ var render = function() {
               ])
             ]),
             _vm._v(" "),
-            _vm.total_address > 0
+            _vm.total_series > 0
               ? _c("div", { staticClass: "panel series-panel" }, [
                   _c("div", { staticClass: "panel-heading" }, [
                     _vm._v(
@@ -562,7 +593,11 @@ var render = function() {
                 expression: "from"
               }
             ],
-            attrs: { type: "text", name: _vm.fieldName("from") },
+            attrs: {
+              type: "text",
+              name: _vm.fieldName("from"),
+              autocomplete: "off"
+            },
             domProps: { value: _vm.from },
             on: {
               input: function($event) {
@@ -588,7 +623,11 @@ var render = function() {
                 expression: "to"
               }
             ],
-            attrs: { type: "text", name: _vm.fieldName("to") },
+            attrs: {
+              type: "text",
+              name: _vm.fieldName("to"),
+              autocomplete: "off"
+            },
             domProps: { value: _vm.to },
             on: {
               input: function($event) {
@@ -596,6 +635,66 @@ var render = function() {
                   return
                 }
                 _vm.to = $event.target.value
+              }
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "edit-field" }, [
+        _c("label", [
+          _vm._v("ST#: "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.street,
+                expression: "street"
+              }
+            ],
+            attrs: {
+              type: "text",
+              name: _vm.fieldName("street"),
+              autocomplete: "off"
+            },
+            domProps: { value: _vm.street },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.street = $event.target.value
+              }
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "edit-field" }, [
+        _c("label", [
+          _vm._v("BL#: "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.block,
+                expression: "block"
+              }
+            ],
+            attrs: {
+              type: "text",
+              name: _vm.fieldName("block"),
+              autocomplete: "off"
+            },
+            domProps: { value: _vm.block },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.block = $event.target.value
               }
             }
           })
@@ -614,8 +713,12 @@ var render = function() {
                 expression: "format"
               }
             ],
-            staticStyle: { width: "500px" },
-            attrs: { type: "text", name: _vm.fieldName("format") },
+            staticStyle: { width: "420px" },
+            attrs: {
+              type: "text",
+              name: _vm.fieldName("format"),
+              autocomplete: "off"
+            },
             domProps: { value: _vm.format },
             on: {
               input: function($event) {
@@ -626,12 +729,7 @@ var render = function() {
               }
             }
           })
-        ]),
-        _c("div", {
-          staticClass: "sample_output",
-          staticStyle: { display: "none" },
-          domProps: { innerHTML: _vm._s(_vm.sampleOutput()) }
-        })
+        ])
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "edit-field" }, [
@@ -646,7 +744,16 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
-      _vm._m(0)
+      _vm._m(0),
+      _vm._v(" "),
+      _vm.show_sample
+        ? _c("div", { staticClass: "edit-field" }, [
+            _c("div", {
+              staticClass: "sample_output",
+              domProps: { innerHTML: _vm._s(_vm.sampleOutput()) }
+            })
+          ])
+        : _vm._e()
     ])
   ])
 }
@@ -972,8 +1079,13 @@ Vue.component('dashboard-communities', __webpack_require__(/*! ./components/admi
 Vue.component('dashboard-community-item', __webpack_require__(/*! ./components/admin/DashboardCommunityItem.vue */ "./resources/js/components/admin/DashboardCommunityItem.vue")["default"]);
 Vue.component('add-address-type', __webpack_require__(/*! ./components/admin/AddAddressType.vue */ "./resources/js/components/admin/AddAddressType.vue")["default"]);
 Vue.component('add-address-type-line', __webpack_require__(/*! ./components/admin/AddAddressTypeLine.vue */ "./resources/js/components/admin/AddAddressTypeLine.vue")["default"]);
+Vue.prototype.$eventHub = new Vue(); // Global event bus
+
 var app = new Vue({
   el: '#app'
+});
+var app_inline = new Vue({
+  el: '#app_inline'
 }); // jQuery(document).change(".cascading-select-child", function(){
 // 	alert();
 // });

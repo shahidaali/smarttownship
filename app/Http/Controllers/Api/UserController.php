@@ -29,6 +29,7 @@ class UserController extends ApiController {
             $user = Auth::user(); 
 
             $data['user'] = $user;
+            //$data['user']['roles_all'] = $user->roles_all()->pluck('name','id')->toArray();
             return $this->response('success', [], $data);
         } 
         else{ 
@@ -57,7 +58,7 @@ class UserController extends ApiController {
             return $this->response('error', $validator->errors()->all());
         }
 
-        $avatar = "";
+        $avatar = "users/default.png";
         if( !empty($request->avatar) ) {
             $uploadPath = "users/";
             $file_response = $this->uploadBase64($uploadPath, $request->avatar);

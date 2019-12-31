@@ -38,6 +38,16 @@ class User extends \TCG\Voyager\Models\User
     ];
 
     /**
+     * Get the booking is_serving
+     *
+     * @return string
+     */
+    public function getUserLabelAttribute()
+    {
+        return "#{$this->id} {$this->name} ({$this->username})";
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\belongsTo
      */
     public function residents()

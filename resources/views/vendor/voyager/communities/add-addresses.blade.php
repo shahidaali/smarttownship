@@ -22,7 +22,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <!-- ### TITLE ### -->
-                     @if (count($errors) > 0)
+                        @if (count($errors) > 0)
                             <div class="alert alert-danger">
                                 <ul>
                                     @foreach ($errors->all() as $error)
@@ -31,17 +31,20 @@
                                 </ul>
                             </div>
                         @endif
-                        <div id="app">
+
+                        <div id="app_inline">
                             @foreach($address_types as $address_type)
                                 @php
+                                if( !$address_type->show_add_view )
+                                    continue;
+
                                 $count = $address_type->addresses()->where('community_id', $community->id)->get()->count();
-                                $checked = (isset($statuse[$address_type->id]) && $statuse[$address_type->id] == 'active') ? 'checked="checked"' : "";
+                                $checked = (isset($statuse[$address_type->id]) && $statuse[$address_type->id] == 'active') ? 1 : 0;
                                 @endphp
                                 
                                 <add-address-type
                                     :community="{{ json_encode($community) }}"
                                     :address-type="{{ json_encode($address_type) }}"
-                                    :statuse="{{ json_encode($statuse) }}"
                                     :tokens="{{ json_encode($address_tokens) }}"
                                     count="{{ $count }}"
                                     :checked="{{ $checked }}"
@@ -71,7 +74,9 @@
                 <div class="modal-body">
                     <h5>Tokens</h5>
                     <ul>
-                        <li><code>[HOUSE]</code> - Auto generated house no</li>
+                        <li><code>[HOUSE]</code> - Auto generated house no e.g House 1, Building 1</li>
+                        <li><code>[STREET]</code> - Street No e.g 1</li>
+                        <li><code>[BLOCK]</code> - Block No e.g F</li>
                         <li><code>[COMMUNITY]</code> - Community name</li>
                         <li><code>[POSTAL_CODE]</code> - Community postal code</li>
                         <li><code>[CITY]</code> - Community city</li>
