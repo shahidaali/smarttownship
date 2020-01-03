@@ -10,8 +10,11 @@ Vue.use(shared);
 
 Vue.component('dashboard-communities', require('./components/admin/DashboardCommunities.vue').default);
 Vue.component('dashboard-community-item', require('./components/admin/DashboardCommunityItem.vue').default);
+Vue.component('add-addresses', require('./components/admin/AddAddresses.vue').default);
 Vue.component('add-address-type', require('./components/admin/AddAddressType.vue').default);
 Vue.component('add-address-type-line', require('./components/admin/AddAddressTypeLine.vue').default);
+Vue.component('preview-addresses', require('./components/admin/PreviewAddresses.vue').default);
+Vue.component('preview-address-line', require('./components/admin/PreviewAddressLine.vue').default);
 
 Vue.prototype.$eventHub = new Vue(); // Global event bus
 

@@ -176,12 +176,19 @@ span.listing-status.status-security {
     vertical-align: middle;
     padding-right: 10px;
 }
-.edit-field input {
-    width: 50px;
+.edit-field-col > label {
+    min-width: 70px;
+    text-align: right;
+}
+.edit-field input[type="text"],
+.edit-field input[type="number"],
+.edit-field select {
+    width: 65px;
     border-radius: 3px;
     border: 1px solid #ccc;
-    padding: 5px;
+    padding: 2px 5px;
     height: 26px;
+    box-sizing: border-box;
 }
 .address-format {
     padding: 15px 5px;
@@ -190,4 +197,30 @@ span.listing-status.status-security {
 }
 .voyager .listing-simple .panel {
     border: 1px solid #ccc;    
+}
+.address-preview-panel {
+    max-height: 300px;
+    overflow: auto;
+}
+.address-preview-series {
+    margin-bottom: 20px;
+}
+.address-preview-series .series-body.address-format {
+    max-height: 150px;
+    overflow: auto;
+}
+.address-format.series-with-no {
+    position: relative;
+    padding-left: 45px;
+}
+.series-no {
+    position: absolute;
+    left: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.series-sctions {
+    position: absolute;
+    top: 5px;
+    right: 0px;
 }

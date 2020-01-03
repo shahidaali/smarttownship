@@ -23,4 +23,12 @@ class Recommendation extends Model
     {
         return $this->belongsTo('App\Address', 'invited_by');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\belongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
 }

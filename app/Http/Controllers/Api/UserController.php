@@ -27,8 +27,9 @@ class UserController extends ApiController {
 
         if(Auth::attempt(['username' => $request->username, 'password' => $request->password])){ 
             $user = Auth::user(); 
-
+            $address_ids = $user->residents()->pluck('address_id')->toArray();
             $data['user'] = $user;
+            $data['user']['address_ids'] = $address_ids;
             //$data['user']['roles_all'] = $user->roles_all()->pluck('name','id')->toArray();
             return $this->response('success', [], $data);
         } 
@@ -52,6 +53,7 @@ class UserController extends ApiController {
             'phone_number' => ['required'],
             'dob' => ['required'],
             'gender' => ['required'],
+            'role_id' => ['required'],
         ]);
 
         if ($validator->fails()) { 
@@ -74,13 +76,15 @@ class UserController extends ApiController {
 
         $input = $request->all(); 
         $input['password'] = Hash::make($input['password']); 
-        $input['role_id'] = 2;
         $input['avatar'] = $avatar;
 
         $user = User::create( $input );
 
         if( $user ){ 
-            $data['user'] = User::find( $user->id );
+            $user = User::find( $user->id );
+            // $address_ids = $user->residents()->pluck('address_id')->toArray();
+            $data['user'] = $user;
+            // $data['address_ids'] = $address_ids;
             return $this->response('success', [], $data);
         } 
         else{ 

@@ -57,8 +57,8 @@
                                         <a href="#" class="dropdown-toggle text-right" data-toggle="dropdown" role="button" aria-expanded="false"><span class="voyager-dot-3"></span></a>
                                         <ul class="dropdown-menu dropdown-menu-animated">
                                             <li><a href="{{ route('voyager.'.$dataType->slug.'.edit', $data->id) }}"><span class="voyager-edit"></span> Edit</a></li>
-                                            <li><a href="{{ route('voyager.'.$dataType->slug.'.edit-address-types', $data->id) }}"><span class="voyager-file-text"></span> Addresse Types</a></li>
-                                            <li><a href="{{ route('voyager.addresses.index') }}?key=community_id&filter=equals&s={{$data->id}}"><span class="voyager-logbook"></span> Addresses</a></li>
+                                            <li><a href="{{ route('voyager.'.$dataType->slug.'.add-addresses', $data->id) }}"><span class="voyager-file-text"></span> Add Addresses</a></li>
+                                            <li><a href="{{ route('voyager.addresses.index') }}?key=community_id&filter=equals&s={{$data->id}}"><span class="voyager-logbook"></span> View Addresses</a></li>
                                             <!-- <li><a href=""><span class="voyager-harddrive"></span> Assets</a></li> -->
                                         </ul>
                                       </li>

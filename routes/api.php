@@ -44,4 +44,16 @@ Route::group(['middleware' => 'check.apikey'], function(){
 	// RECOMMENDATIONS API
 	Route::post('recommendations/add', 'API\RecommendationController@add');
 	Route::get('recommendations/list', 'API\RecommendationController@list');
+
+	// ADDRESS API
+	Route::get('address/get', 'API\AddressController@get');
+	Route::get('address/list', 'API\AddressController@list');
+
+	// COMMUNITY API
+	Route::get('community/get', 'API\CommunityController@get');
+	Route::get('community/list', 'API\CommunityController@list');
+
+	// ACTIVITY API
+	Route::get('activity/get', 'API\ActivityController@get');
+	Route::get('activity/list', 'API\ActivityController@list');
 });

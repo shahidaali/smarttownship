@@ -16,51 +16,16 @@
 
 @section('content')
     <div class="page-content container-fluid">
-        <form class="form-edit-add" role="form" action="{{ route('voyager.communities.save-address-types', $community->id) }}" method="POST" enctype="multipart/form-data">
-            {{ csrf_field() }}
-
-            <div class="row">
-                <div class="col-md-12">
-                    <!-- ### TITLE ### -->
-                        @if (count($errors) > 0)
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
-
-                        <div id="app_inline">
-                            @foreach($address_types as $address_type)
-                                @php
-                                if( !$address_type->show_add_view )
-                                    continue;
-
-                                $count = $address_type->addresses()->where('community_id', $community->id)->get()->count();
-                                $checked = (isset($statuse[$address_type->id]) && $statuse[$address_type->id] == 'active') ? 1 : 0;
-                                @endphp
-                                
-                                <add-address-type
-                                    :community="{{ json_encode($community) }}"
-                                    :address-type="{{ json_encode($address_type) }}"
-                                    :tokens="{{ json_encode($address_tokens) }}"
-                                    count="{{ $count }}"
-                                    :checked="{{ $checked }}"
-                                ></add-address-type>
-                            @endforeach
-                        </div>
-                </div>
-            </div>
-
-            <button type="submit" class="btn btn-primary pull-right">
-                <i class="icon wb-plus-circle"></i> {{ __('Update Addresses') }}
-            </button>
-
-            <input type="hidden" name="community_id" value="{{ $community->id }}">
-        </form>
-
+        <div id="app_inline">
+            <add-addresses
+                csrf-token="{{ csrf_token() }}"
+                load-address-save-path="{{ route('voyager.communities.load-address-save') }}"
+                load-address-type-path="{{ route('voyager.communities.load-address-type') }}"
+                load-address-preview-path="{{ route('voyager.communities.load-address-preview') }}"
+                :community="{{ json_encode($community) }}"
+                :address-types="{{ json_encode($address_types) }}"
+            ></add-addresses>
+        </div>
     </div>
 
     {{-- Address Format Help --}}
@@ -74,17 +39,17 @@
                 <div class="modal-body">
                     <h5>Tokens</h5>
                     <ul>
-                        <li><code>[HOUSE]</code> - Auto generated house no e.g House 1, Building 1</li>
-                        <li><code>[STREET]</code> - Street No e.g 1</li>
-                        <li><code>[BLOCK]</code> - Block No e.g F</li>
-                        <li><code>[COMMUNITY]</code> - Community name</li>
-                        <li><code>[POSTAL_CODE]</code> - Community postal code</li>
-                        <li><code>[CITY]</code> - Community city</li>
-                        <li><code>[STATE]</code> - Community state</li>
-                        <li><code>[COUNTRY]</code> - Community country</li>
+                        @php 
+                        $tokens = setting("admin.address_format_tokens");
+                        $tokens = json_decode($tokens);
+                        @endphp
+
+                        @foreach($tokens as $token) 
+                            <li><code>{{ $token->token }}</code> - {{ $token->description }}</li>
+                        @endforeach
                     </ul>
                     <h5>Example</h5>
-                    <p>[HOUSE] [COMMUNITY], [POSTAL_CODE], [CITY], [STATE], [COUNTRY]</p>
+                    <p>House [HOUSE] [COMMUNITY], [POSTAL_CODE], [CITY], [STATE], [COUNTRY]</p>
                     <h5>Output</h5>
                     <p>House 1 Smart Town, 43000, Kajang, Selangor, Malaysia</p>
                 </div>
@@ -97,45 +62,5 @@
 @stop
 
 @section('javascript')
-    <script type="text/javascript">
-        // var address = "[HOUSE] [COMMUNITY], [POSTAL_CODE] [CITY], [STATE], [COUNTRY]";
-        function get_sample_address( address ) {
-            var tokens = JSON.parse('{!! json_encode($address_tokens) !!}');
-            $.each(tokens, function(i, token){
-                address = address.replace(token.token, token.example);
-            });
-            return "<code>Example Output: " + address + "</code>";
-        }
-
-        // jQuery(document).ready(function() {
-        //     $(document).on('click', '.series-show-example', function(e) {
-        //         e.preventDefault();
-        //         $(this).closest('.address-format').find('.sample_output').slideToggle();
-        //     });
-        //     $(document).on('keyup change', '.address-format-input', function() {
-        //         $(this).closest('.address-format').find('.sample_output').html( get_sample_address( $(this).val() ) );
-        //     });
-        //     $('.address-format-input').change();
-
-        //     $(document).on('change', '.enable-address', function() {
-        //         if($(this).is(':checked')) {
-        //             $(this).closest('.listing-simple').find('.field-panel').slideDown();
-        //         } else {
-        //             $(this).closest('.listing-simple').find('.field-panel').slideUp();
-        //         }
-        //     });
-        //     $('.enable-address').change();
-
-        //     $(document).on('keyup change', '.address-total', function() {
-        //         if( $(this).val() > 0 ) {
-        //             var from = $(this).closest('.listing-simple').find('.address-format:first .series_from').val();
-        //             var to = parseInt(from) + parseInt($(this).val()) - 1;
-        //             $(this).closest('.listing-simple').find('.series-panel').slideDown();
-        //             $(this).closest('.listing-simple').find('.address-format:first .series_to').val(to);
-        //         } else {
-        //             $(this).closest('.listing-simple').find('.series-panel').slideUp();
-        //         }
-        //     });
-        // });
-    </script>
+   
 @stop

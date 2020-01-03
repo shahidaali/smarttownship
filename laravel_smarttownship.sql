@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Dec 31, 2019 at 09:54 AM
+-- Generation Time: Jan 03, 2020 at 08:40 AM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.14
 
@@ -35,56 +35,100 @@ CREATE TABLE IF NOT EXISTS `addresses` (
   `address_type_id` int(11) DEFAULT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `house` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `floor` int(11) DEFAULT NULL,
+  `flat` int(11) DEFAULT NULL,
   `street` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `block` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `longitude` double DEFAULT NULL,
   `latitude` double DEFAULT NULL,
   `address` text COLLATE utf8mb4_unicode_ci,
+  `bedroom` int(11) DEFAULT NULL,
+  `bath` int(11) DEFAULT NULL,
+  `garage` int(11) DEFAULT NULL,
+  `area` double DEFAULT NULL,
+  `area_unit` enum('sq_ft') COLLATE utf8mb4_unicode_ci DEFAULT 'sq_ft',
+  `has_ground_floor` tinyint(1) NOT NULL DEFAULT '0',
   `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'active',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `addresses`
 --
 
-INSERT INTO `addresses` (`id`, `community_id`, `address_type_id`, `name`, `house`, `street`, `block`, `longitude`, `latitude`, `address`, `status`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 'House 1', '1', NULL, NULL, NULL, NULL, 'House 1 Smart Town, 43000 Kajang, Selangor, MY', 'active', '2019-12-20 03:01:16', '2019-12-20 03:01:16'),
-(2, 1, 1, 'House 2', '2', NULL, NULL, NULL, NULL, 'House 2 Smart Town, 43000 Kajang, Selangor, MY', 'active', '2019-12-20 03:01:16', '2019-12-20 03:01:16'),
-(3, 1, 1, 'House 3', '3', NULL, NULL, NULL, NULL, 'House 3 Smart Town, 43000 Kajang, Selangor, MY', 'active', '2019-12-20 03:01:16', '2019-12-20 03:01:16'),
-(4, 1, 1, 'House 4', '4', NULL, NULL, NULL, NULL, 'House 4 Smart Town, 43000 Kajang, Selangor, MY', 'active', '2019-12-20 04:47:02', '2019-12-20 04:47:02'),
-(5, 1, 1, 'House 5', '5', NULL, NULL, NULL, NULL, 'House 5 Smart Town, 43000 Kajang, Selangor, MY', 'active', '2019-12-20 04:47:02', '2019-12-20 04:47:02'),
-(6, 1, 2, 'Building 1', '1', NULL, NULL, NULL, NULL, 'Building 1 Smart Town, 43000 Kajang, Selangor, MY', 'active', '2019-12-20 04:47:02', '2019-12-20 04:47:02'),
-(7, 1, 2, 'Building 2', '2', NULL, NULL, NULL, NULL, 'Building 2 Smart Town, 43000 Kajang, Selangor, MY', 'active', '2019-12-20 04:47:02', '2019-12-20 04:47:02'),
-(8, 1, 1, 'House 6', '6', NULL, NULL, NULL, NULL, 'House 6 Smart Town, 43000 Kajang, Selangor, MY', 'active', '2019-12-20 04:47:14', '2019-12-20 04:47:14'),
-(9, 1, 1, 'House 7', '7', NULL, NULL, NULL, NULL, 'House 7 Smart Town, 43000 Kajang, Selangor, MY', 'active', '2019-12-20 04:47:14', '2019-12-20 04:47:14'),
-(10, 2, 1, 'House 8', '8', NULL, NULL, NULL, NULL, 'House 8 Johar Town, 54000, Kajang, Selangor, MY', 'active', '2019-12-20 05:52:08', '2019-12-20 05:52:08'),
-(11, 2, 1, 'House 9', '9', NULL, NULL, NULL, NULL, 'House 9 Johar Town, 54000, Kajang, Selangor, MY', 'active', '2019-12-20 05:52:08', '2019-12-20 05:52:08'),
-(12, 2, 1, 'House 10', '10', NULL, NULL, NULL, NULL, 'House 10 Johar Town, 54000, Kajang, Selangor, MY', 'active', '2019-12-20 05:52:08', '2019-12-20 05:52:08'),
-(13, 2, 1, 'House 11', '11', NULL, NULL, NULL, NULL, '', 'active', '2019-12-20 05:52:08', '2019-12-20 05:52:08'),
-(14, 2, 1, 'House 12', '12', NULL, NULL, NULL, NULL, '', 'active', '2019-12-20 05:52:08', '2019-12-20 05:52:08'),
-(15, 2, 1, 'House 13', '13', NULL, NULL, NULL, NULL, '', 'active', '2019-12-20 05:52:08', '2019-12-20 05:52:08'),
-(16, 2, 1, 'House 14', '14', NULL, NULL, NULL, NULL, '', 'active', '2019-12-20 05:52:08', '2019-12-20 05:52:08'),
-(17, 2, 1, 'House 15', '15', NULL, NULL, NULL, NULL, '', 'active', '2019-12-20 05:52:08', '2019-12-20 05:52:08'),
-(18, 2, 1, 'House 16', '16', NULL, NULL, NULL, NULL, '', 'active', '2019-12-20 05:52:08', '2019-12-20 05:52:08'),
-(19, 2, 1, 'House 17', '17', NULL, NULL, NULL, NULL, '', 'active', '2019-12-20 05:52:08', '2019-12-20 05:52:08'),
-(20, 2, 2, 'Building 3', '3', NULL, NULL, NULL, NULL, 'Building 3 Johar Town, 54000, Kajang, Selangor, MY', 'active', '2019-12-20 05:52:08', '2019-12-20 05:52:08'),
-(21, 2, 2, 'Building 4', '4', NULL, NULL, NULL, NULL, 'Building 4 Johar Town, 54000, Kajang, Selangor, MY', 'active', '2019-12-20 05:52:08', '2019-12-20 05:52:08'),
-(22, 2, 2, 'Building 5', '5', NULL, NULL, NULL, NULL, 'Building 5 Johar Town, 54000, Kajang, Selangor, MY', 'active', '2019-12-20 05:52:08', '2019-12-20 05:52:08'),
-(23, 2, 2, 'Building 6', '6', NULL, NULL, NULL, NULL, '', 'active', '2019-12-20 05:52:08', '2019-12-20 05:52:08'),
-(24, 2, 2, 'Building 7', '7', NULL, NULL, NULL, NULL, '', 'active', '2019-12-20 05:52:08', '2019-12-20 05:52:08'),
-(25, 2, 1, 'House 18', '18', NULL, NULL, NULL, NULL, 'House 18 Johar Town, 54000, Kajang, Selangor, MY', 'active', '2019-12-20 05:54:17', '2019-12-20 05:54:17'),
-(26, 2, 1, 'House 19', '19', NULL, NULL, NULL, NULL, 'House 19 Johar Town, 54000, Kajang, Selangor, MY', 'active', '2019-12-20 05:54:17', '2019-12-20 05:54:17'),
-(27, 2, 1, 'House 20', '20', NULL, NULL, NULL, NULL, 'House 20 Johar Town, 54000, Kajang, Selangor, MY', 'active', '2019-12-20 05:54:17', '2019-12-20 05:54:17'),
-(28, 2, 1, 'House 21', '21', NULL, NULL, NULL, NULL, '', 'active', '2019-12-20 05:54:17', '2019-12-20 05:54:17'),
-(29, 2, 1, 'House 22', '22', NULL, NULL, NULL, NULL, '', 'active', '2019-12-20 05:54:17', '2019-12-20 05:54:17'),
-(30, 2, 1, 'House 23', '23', NULL, NULL, NULL, NULL, '', 'active', '2019-12-20 05:54:17', '2019-12-20 05:54:17'),
-(31, 2, 1, 'House 24', '24', NULL, NULL, NULL, NULL, '', 'active', '2019-12-20 05:54:17', '2019-12-20 05:54:17'),
-(32, 2, 1, 'House 25', '25', NULL, NULL, NULL, NULL, '', 'active', '2019-12-20 05:54:17', '2019-12-20 05:54:17'),
-(33, 2, 1, 'House 26', '26', NULL, NULL, NULL, NULL, '', 'active', '2019-12-20 05:54:17', '2019-12-20 05:54:17'),
-(34, 2, 1, 'House 27', '27', NULL, NULL, NULL, NULL, NULL, 'active', '2019-12-20 05:54:00', '2019-12-20 11:43:30');
+INSERT INTO `addresses` (`id`, `community_id`, `address_type_id`, `name`, `house`, `floor`, `flat`, `street`, `block`, `longitude`, `latitude`, `address`, `bedroom`, `bath`, `garage`, `area`, `area_unit`, `has_ground_floor`, `status`, `created_at`, `updated_at`) VALUES
+(1, 2, 1, 'House 1', '1', 1, 1, '1', 'F', NULL, NULL, 'House 1 Floor#1 Flat#1, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 3, 2, 2, 200.5, 'sq_ft', 1, 'active', '2020-01-02 08:48:33', '2020-01-02 08:48:33'),
+(2, 2, 1, 'House 1', '1', 2, 1, '1', 'F', NULL, NULL, 'House 1 Floor#2 Flat#1, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 3, 2, 2, 200.5, 'sq_ft', 1, 'active', '2020-01-02 08:48:33', '2020-01-02 08:48:33'),
+(3, 2, 1, 'House 2', '2', 1, 1, '1', 'F', NULL, NULL, 'House 2 Floor#1 Flat#1, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 3, 2, 2, 200.5, 'sq_ft', 1, 'active', '2020-01-02 08:48:33', '2020-01-02 08:48:33'),
+(4, 2, 1, 'House 2', '2', 2, 1, '1', 'F', NULL, NULL, 'House 2 Floor#2 Flat#1, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 3, 2, 2, 200.5, 'sq_ft', 1, 'active', '2020-01-02 08:48:33', '2020-01-02 08:48:33'),
+(5, 2, 1, 'House 3', '3', 1, 1, '1', 'F', NULL, NULL, 'House 3 Floor#1 Flat#1, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 3, 2, 2, 200.5, 'sq_ft', 1, 'active', '2020-01-02 08:48:33', '2020-01-02 08:48:33'),
+(6, 2, 1, 'House 3', '3', 2, 1, '1', 'F', NULL, NULL, 'House 3 Floor#2 Flat#1, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 3, 2, 2, 200.5, 'sq_ft', 1, 'active', '2020-01-02 08:48:33', '2020-01-02 08:48:33'),
+(7, 2, 1, 'House 4', '4', 1, 1, '1', 'F', NULL, NULL, 'House 4 Floor#1 Flat#1, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 3, 2, 2, 200.5, 'sq_ft', 1, 'active', '2020-01-02 08:48:33', '2020-01-02 08:48:33'),
+(8, 2, 1, 'House 4', '4', 2, 1, '1', 'F', NULL, NULL, 'House 4 Floor#2 Flat#1, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 3, 2, 2, 200.5, 'sq_ft', 1, 'active', '2020-01-02 08:48:33', '2020-01-02 08:48:33'),
+(9, 2, 1, 'House 5', '5', 1, 1, '1', 'F', NULL, NULL, 'House 5 Floor#1 Flat#1, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 3, 2, 2, 200.5, 'sq_ft', 1, 'active', '2020-01-02 08:48:33', '2020-01-02 08:48:33'),
+(10, 2, 1, 'House 5', '5', 2, 1, '1', 'F', NULL, NULL, 'House 5 Floor#2 Flat#1, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 3, 2, 2, 200.5, 'sq_ft', 1, 'active', '2020-01-02 08:48:33', '2020-01-02 08:48:33'),
+(11, 2, 1, 'House 6', '6', 1, 1, '1', 'F', NULL, NULL, 'House 6 Floor#1 Flat#1, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 3, 2, 2, 200.5, 'sq_ft', 1, 'active', '2020-01-02 08:48:33', '2020-01-02 08:48:33'),
+(12, 2, 1, 'House 6', '6', 2, 1, '1', 'F', NULL, NULL, 'House 6 Floor#2 Flat#1, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 3, 2, 2, 200.5, 'sq_ft', 1, 'active', '2020-01-02 08:48:33', '2020-01-02 08:48:33'),
+(13, 2, 1, 'House 7', '7', 1, 1, '1', 'F', NULL, NULL, 'House 7 Floor#1 Flat#1, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 3, 2, 2, 200.5, 'sq_ft', 1, 'active', '2020-01-02 08:48:33', '2020-01-02 08:48:33'),
+(14, 2, 1, 'House 7', '7', 2, 1, '1', 'F', NULL, NULL, 'House 7 Floor#2 Flat#1, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 3, 2, 2, 200.5, 'sq_ft', 1, 'active', '2020-01-02 08:48:33', '2020-01-02 08:48:33'),
+(15, 2, 1, 'House 8', '8', 1, 1, '1', 'F', NULL, NULL, 'House 8 Floor#1 Flat#1, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 3, 2, 2, 200.5, 'sq_ft', 1, 'active', '2020-01-02 08:48:33', '2020-01-02 08:48:33'),
+(16, 2, 1, 'House 8', '8', 2, 1, '1', 'F', NULL, NULL, 'House 8 Floor#2 Flat#1, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 3, 2, 2, 200.5, 'sq_ft', 1, 'active', '2020-01-02 08:48:33', '2020-01-02 08:48:33'),
+(17, 2, 1, 'House 9', '9', 1, 1, '1', 'F', NULL, NULL, 'House 9 Floor#1 Flat#1, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 3, 2, 2, 200.5, 'sq_ft', 1, 'active', '2020-01-02 08:48:33', '2020-01-02 08:48:33'),
+(18, 2, 1, 'House 9', '9', 2, 1, '1', 'F', NULL, NULL, 'House 9 Floor#2 Flat#1, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 3, 2, 2, 200.5, 'sq_ft', 1, 'active', '2020-01-02 08:48:33', '2020-01-02 08:48:33'),
+(19, 2, 1, 'House 10', '10', 1, 1, '1', 'F', NULL, NULL, 'House 10 Floor#1 Flat#1, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 3, 2, 2, 200.5, 'sq_ft', 1, 'active', '2020-01-02 08:48:33', '2020-01-02 08:48:33'),
+(20, 2, 1, 'House 10', '10', 2, 1, '1', 'F', NULL, NULL, 'House 10 Floor#2 Flat#1, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 3, 2, 2, 200.5, 'sq_ft', 1, 'active', '2020-01-02 08:48:33', '2020-01-02 08:48:33'),
+(21, 2, 2, 'Building 1', '1', 1, 1, '1', 'F', NULL, NULL, 'Building 1 Floor#1 Flat#1, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 2, 1, 1, 80, 'sq_ft', 0, 'active', '2020-01-02 08:48:33', '2020-01-02 08:48:33'),
+(22, 2, 2, 'Building 1', '1', 1, 2, '1', 'F', NULL, NULL, 'Building 1 Floor#1 Flat#2, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 2, 1, 1, 80, 'sq_ft', 0, 'active', '2020-01-02 08:48:33', '2020-01-02 08:48:33'),
+(23, 2, 2, 'Building 1', '1', 1, 3, '1', 'F', NULL, NULL, 'Building 1 Floor#1 Flat#3, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 2, 1, 1, 80, 'sq_ft', 0, 'active', '2020-01-02 08:48:33', '2020-01-02 08:48:33'),
+(24, 2, 2, 'Building 1', '1', 1, 4, '1', 'F', NULL, NULL, 'Building 1 Floor#1 Flat#4, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 2, 1, 1, 80, 'sq_ft', 0, 'active', '2020-01-02 08:48:33', '2020-01-02 08:48:33'),
+(25, 2, 2, 'Building 1', '1', 1, 5, '1', 'F', NULL, NULL, 'Building 1 Floor#1 Flat#5, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 2, 1, 1, 80, 'sq_ft', 0, 'active', '2020-01-02 08:48:33', '2020-01-02 08:48:33'),
+(26, 2, 2, 'Building 1', '1', 1, 6, '1', 'F', NULL, NULL, 'Building 1 Floor#1 Flat#6, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 2, 1, 1, 80, 'sq_ft', 0, 'active', '2020-01-02 08:48:33', '2020-01-02 08:48:33'),
+(27, 2, 2, 'Building 1', '1', 1, 7, '1', 'F', NULL, NULL, 'Building 1 Floor#1 Flat#7, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 2, 1, 1, 80, 'sq_ft', 0, 'active', '2020-01-02 08:48:33', '2020-01-02 08:48:33'),
+(28, 2, 2, 'Building 1', '1', 1, 8, '1', 'F', NULL, NULL, 'Building 1 Floor#1 Flat#8, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 2, 1, 1, 80, 'sq_ft', 0, 'active', '2020-01-02 08:48:33', '2020-01-02 08:48:33'),
+(29, 2, 2, 'Building 1', '1', 1, 9, '1', 'F', NULL, NULL, 'Building 1 Floor#1 Flat#9, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 2, 1, 1, 80, 'sq_ft', 0, 'active', '2020-01-02 08:48:33', '2020-01-02 08:48:33'),
+(30, 2, 2, 'Building 1', '1', 1, 10, '1', 'F', NULL, NULL, 'Building 1 Floor#1 Flat#10, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 2, 1, 1, 80, 'sq_ft', 0, 'active', '2020-01-02 08:48:33', '2020-01-02 08:48:33'),
+(31, 2, 2, 'Building 1', '1', 2, 1, '1', 'F', NULL, NULL, 'Building 1 Floor#2 Flat#1, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 2, 1, 1, 80, 'sq_ft', 0, 'active', '2020-01-02 08:48:33', '2020-01-02 08:48:33'),
+(32, 2, 2, 'Building 1', '1', 2, 2, '1', 'F', NULL, NULL, 'Building 1 Floor#2 Flat#2, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 2, 1, 1, 80, 'sq_ft', 0, 'active', '2020-01-02 08:48:33', '2020-01-02 08:48:33'),
+(33, 2, 2, 'Building 1', '1', 2, 3, '1', 'F', NULL, NULL, 'Building 1 Floor#2 Flat#3, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 2, 1, 1, 80, 'sq_ft', 0, 'active', '2020-01-02 08:48:33', '2020-01-02 08:48:33'),
+(34, 2, 2, 'Building 1', '1', 2, 4, '1', 'F', NULL, NULL, 'Building 1 Floor#2 Flat#4, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 2, 1, 1, 80, 'sq_ft', 0, 'active', '2020-01-02 08:48:33', '2020-01-02 08:48:33'),
+(35, 2, 2, 'Building 1', '1', 2, 5, '1', 'F', NULL, NULL, 'Building 1 Floor#2 Flat#5, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 2, 1, 1, 80, 'sq_ft', 0, 'active', '2020-01-02 08:48:33', '2020-01-02 08:48:33'),
+(36, 2, 2, 'Building 1', '1', 2, 6, '1', 'F', NULL, NULL, 'Building 1 Floor#2 Flat#6, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 2, 1, 1, 80, 'sq_ft', 0, 'active', '2020-01-02 08:48:33', '2020-01-02 08:48:33'),
+(37, 2, 2, 'Building 1', '1', 2, 7, '1', 'F', NULL, NULL, 'Building 1 Floor#2 Flat#7, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 2, 1, 1, 80, 'sq_ft', 0, 'active', '2020-01-02 08:48:33', '2020-01-02 08:48:33'),
+(38, 2, 2, 'Building 1', '1', 2, 8, '1', 'F', NULL, NULL, 'Building 1 Floor#2 Flat#8, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 2, 1, 1, 80, 'sq_ft', 0, 'active', '2020-01-02 08:48:33', '2020-01-02 08:48:33'),
+(39, 2, 2, 'Building 1', '1', 2, 9, '1', 'F', NULL, NULL, 'Building 1 Floor#2 Flat#9, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 2, 1, 1, 80, 'sq_ft', 0, 'active', '2020-01-02 08:48:33', '2020-01-02 08:48:33'),
+(40, 2, 2, 'Building 1', '1', 2, 10, '1', 'F', NULL, NULL, 'Building 1 Floor#2 Flat#10, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 2, 1, 1, 80, 'sq_ft', 0, 'active', '2020-01-02 08:48:33', '2020-01-02 08:48:33'),
+(41, 2, 2, 'Building 1', '1', 3, 1, '1', 'F', NULL, NULL, 'Building 1 Floor#3 Flat#1, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 2, 1, 1, 80, 'sq_ft', 0, 'active', '2020-01-02 08:48:33', '2020-01-02 08:48:33'),
+(42, 2, 2, 'Building 1', '1', 3, 2, '1', 'F', NULL, NULL, 'Building 1 Floor#3 Flat#2, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 2, 1, 1, 80, 'sq_ft', 0, 'active', '2020-01-02 08:48:33', '2020-01-02 08:48:33'),
+(43, 2, 2, 'Building 1', '1', 3, 3, '1', 'F', NULL, NULL, 'Building 1 Floor#3 Flat#3, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 2, 1, 1, 80, 'sq_ft', 0, 'active', '2020-01-02 08:48:33', '2020-01-02 08:48:33'),
+(44, 2, 2, 'Building 1', '1', 3, 4, '1', 'F', NULL, NULL, 'Building 1 Floor#3 Flat#4, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 2, 1, 1, 80, 'sq_ft', 0, 'active', '2020-01-02 08:48:33', '2020-01-02 08:48:33'),
+(45, 2, 2, 'Building 1', '1', 3, 5, '1', 'F', NULL, NULL, 'Building 1 Floor#3 Flat#5, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 2, 1, 1, 80, 'sq_ft', 0, 'active', '2020-01-02 08:48:33', '2020-01-02 08:48:33'),
+(46, 2, 2, 'Building 1', '1', 3, 6, '1', 'F', NULL, NULL, 'Building 1 Floor#3 Flat#6, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 2, 1, 1, 80, 'sq_ft', 0, 'active', '2020-01-02 08:48:33', '2020-01-02 08:48:33'),
+(47, 2, 2, 'Building 1', '1', 3, 7, '1', 'F', NULL, NULL, 'Building 1 Floor#3 Flat#7, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 2, 1, 1, 80, 'sq_ft', 0, 'active', '2020-01-02 08:48:33', '2020-01-02 08:48:33'),
+(48, 2, 2, 'Building 1', '1', 3, 8, '1', 'F', NULL, NULL, 'Building 1 Floor#3 Flat#8, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 2, 1, 1, 80, 'sq_ft', 0, 'active', '2020-01-02 08:48:33', '2020-01-02 08:48:33'),
+(49, 2, 2, 'Building 1', '1', 3, 9, '1', 'F', NULL, NULL, 'Building 1 Floor#3 Flat#9, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 2, 1, 1, 80, 'sq_ft', 0, 'active', '2020-01-02 08:48:33', '2020-01-02 08:48:33'),
+(50, 2, 2, 'Building 1', '1', 3, 10, '1', 'F', NULL, NULL, 'Building 1 Floor#3 Flat#10, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 2, 1, 1, 80, 'sq_ft', 0, 'active', '2020-01-02 08:48:33', '2020-01-02 08:48:33'),
+(51, 2, 2, 'Building 1', '1', 4, 1, '1', 'F', NULL, NULL, 'Building 1 Floor#4 Flat#1, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 2, 1, 1, 80, 'sq_ft', 0, 'active', '2020-01-02 08:48:33', '2020-01-02 08:48:33'),
+(52, 2, 2, 'Building 1', '1', 4, 2, '1', 'F', NULL, NULL, 'Building 1 Floor#4 Flat#2, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 2, 1, 1, 80, 'sq_ft', 0, 'active', '2020-01-02 08:48:33', '2020-01-02 08:48:33'),
+(53, 2, 2, 'Building 1', '1', 4, 3, '1', 'F', NULL, NULL, 'Building 1 Floor#4 Flat#3, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 2, 1, 1, 80, 'sq_ft', 0, 'active', '2020-01-02 08:48:33', '2020-01-02 08:48:33'),
+(54, 2, 2, 'Building 1', '1', 4, 4, '1', 'F', NULL, NULL, 'Building 1 Floor#4 Flat#4, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 2, 1, 1, 80, 'sq_ft', 0, 'active', '2020-01-02 08:48:33', '2020-01-02 08:48:33'),
+(55, 2, 2, 'Building 1', '1', 4, 5, '1', 'F', NULL, NULL, 'Building 1 Floor#4 Flat#5, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 2, 1, 1, 80, 'sq_ft', 0, 'active', '2020-01-02 08:48:33', '2020-01-02 08:48:33'),
+(56, 2, 2, 'Building 1', '1', 4, 6, '1', 'F', NULL, NULL, 'Building 1 Floor#4 Flat#6, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 2, 1, 1, 80, 'sq_ft', 0, 'active', '2020-01-02 08:48:33', '2020-01-02 08:48:33'),
+(57, 2, 2, 'Building 1', '1', 4, 7, '1', 'F', NULL, NULL, 'Building 1 Floor#4 Flat#7, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 2, 1, 1, 80, 'sq_ft', 0, 'active', '2020-01-02 08:48:33', '2020-01-02 08:48:33'),
+(58, 2, 2, 'Building 1', '1', 4, 8, '1', 'F', NULL, NULL, 'Building 1 Floor#4 Flat#8, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 2, 1, 1, 80, 'sq_ft', 0, 'active', '2020-01-02 08:48:33', '2020-01-02 08:48:33'),
+(59, 2, 2, 'Building 1', '1', 4, 9, '1', 'F', NULL, NULL, 'Building 1 Floor#4 Flat#9, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 2, 1, 1, 80, 'sq_ft', 0, 'active', '2020-01-02 08:48:33', '2020-01-02 08:48:33'),
+(60, 2, 2, 'Building 1', '1', 4, 10, '1', 'F', NULL, NULL, 'Building 1 Floor#4 Flat#10, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 2, 1, 1, 80, 'sq_ft', 0, 'active', '2020-01-02 08:48:33', '2020-01-02 08:48:33'),
+(61, 2, 2, 'Building 1', '1', 5, 1, '1', 'F', NULL, NULL, 'Building 1 Floor#5 Flat#1, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 2, 1, 1, 80, 'sq_ft', 0, 'active', '2020-01-02 08:48:33', '2020-01-02 08:48:33'),
+(62, 2, 2, 'Building 1', '1', 5, 2, '1', 'F', NULL, NULL, 'Building 1 Floor#5 Flat#2, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 2, 1, 1, 80, 'sq_ft', 0, 'active', '2020-01-02 08:48:33', '2020-01-02 08:48:33'),
+(63, 2, 2, 'Building 1', '1', 5, 3, '1', 'F', NULL, NULL, 'Building 1 Floor#5 Flat#3, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 2, 1, 1, 80, 'sq_ft', 0, 'active', '2020-01-02 08:48:33', '2020-01-02 08:48:33'),
+(64, 2, 2, 'Building 1', '1', 5, 4, '1', 'F', NULL, NULL, 'Building 1 Floor#5 Flat#4, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 2, 1, 1, 80, 'sq_ft', 0, 'active', '2020-01-02 08:48:33', '2020-01-02 08:48:33'),
+(65, 2, 2, 'Building 1', '1', 5, 5, '1', 'F', NULL, NULL, 'Building 1 Floor#5 Flat#5, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 2, 1, 1, 80, 'sq_ft', 0, 'active', '2020-01-02 08:48:33', '2020-01-02 08:48:33'),
+(66, 2, 2, 'Building 1', '1', 5, 6, '1', 'F', NULL, NULL, 'Building 1 Floor#5 Flat#6, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 2, 1, 1, 80, 'sq_ft', 0, 'active', '2020-01-02 08:48:33', '2020-01-02 08:48:33'),
+(67, 2, 2, 'Building 1', '1', 5, 7, '1', 'F', NULL, NULL, 'Building 1 Floor#5 Flat#7, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 2, 1, 1, 80, 'sq_ft', 0, 'active', '2020-01-02 08:48:33', '2020-01-02 08:48:33'),
+(68, 2, 2, 'Building 1', '1', 5, 8, '1', 'F', NULL, NULL, 'Building 1 Floor#5 Flat#8, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 2, 1, 1, 80, 'sq_ft', 0, 'active', '2020-01-02 08:48:33', '2020-01-02 08:48:33'),
+(69, 2, 2, 'Building 1', '1', 5, 9, '1', 'F', NULL, NULL, 'Building 1 Floor#5 Flat#9, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 2, 1, 1, 80, 'sq_ft', 0, 'active', '2020-01-02 08:48:33', '2020-01-02 08:48:33'),
+(70, 2, 2, 'Building 1', '1', 5, 10, '1', 'F', NULL, NULL, 'Building 1 Floor#5 Flat#10, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 2, 1, 1, 80, 'sq_ft', 1, 'active', '2020-01-02 08:48:00', '2020-01-02 11:37:26');
 
 -- --------------------------------------------------------
 
@@ -126,8 +170,7 @@ CREATE TABLE IF NOT EXISTS `address_types` (
   `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `parent_id` int(11) DEFAULT '0',
   `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `has_sub_address` tinyint(1) NOT NULL DEFAULT '0',
-  `show_add_view` tinyint(1) NOT NULL DEFAULT '1',
+  `show_add_view` tinyint(1) DEFAULT '1',
   `address_format` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'active',
   `created_at` timestamp NULL DEFAULT NULL,
@@ -139,10 +182,10 @@ CREATE TABLE IF NOT EXISTS `address_types` (
 -- Dumping data for table `address_types`
 --
 
-INSERT INTO `address_types` (`id`, `parent_id`, `title`, `has_sub_address`, `show_add_view`, `address_format`, `status`, `created_at`, `updated_at`) VALUES
-(1, NULL, 'House', 0, 1, 'House# [HOUSE]', 'active', '2019-12-18 11:55:00', '2019-12-31 02:02:03'),
-(2, NULL, 'Building', 1, 1, 'Building# [HOUSE]', 'active', '2019-12-18 11:55:00', '2019-12-31 02:02:18'),
-(3, 2, 'Flat', 0, 0, 'Building# [HOUSE], Floor# [STORY], Flat# [FLAT]', 'active', '2019-12-31 01:58:00', '2019-12-31 02:02:44');
+INSERT INTO `address_types` (`id`, `parent_id`, `title`, `show_add_view`, `address_format`, `status`, `created_at`, `updated_at`) VALUES
+(1, NULL, 'House', 1, 'House# [HOUSE]', 'active', '2019-12-18 11:55:00', '2019-12-31 02:02:03'),
+(2, NULL, 'Building', 1, 'Building# [HOUSE]', 'active', '2019-12-18 11:55:00', '2019-12-31 02:02:18'),
+(3, 2, 'Flat', 0, 'Building# [HOUSE], Floor# [STORY], Flat# [FLAT]', 'active', '2019-12-31 01:58:00', '2019-12-31 02:02:44');
 
 -- --------------------------------------------------------
 
@@ -188,7 +231,7 @@ CREATE TABLE IF NOT EXISTS `api_key_access_events` (
   PRIMARY KEY (`id`),
   KEY `api_key_access_events_ip_address_index` (`ip_address`),
   KEY `api_key_access_events_api_key_id_foreign` (`api_key_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=218 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=259 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `api_key_access_events`
@@ -411,7 +454,48 @@ INSERT INTO `api_key_access_events` (`id`, `api_key_id`, `ip_address`, `url`, `c
 (214, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/login', '2019-12-31 04:17:48', '2019-12-31 04:17:48'),
 (215, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/login', '2019-12-31 04:18:30', '2019-12-31 04:18:30'),
 (216, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/verification/vehicle', '2019-12-31 04:49:45', '2019-12-31 04:49:45'),
-(217, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/verification/vehicle', '2019-12-31 04:49:52', '2019-12-31 04:49:52');
+(217, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/verification/vehicle', '2019-12-31 04:49:52', '2019-12-31 04:49:52'),
+(218, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/login', '2019-12-31 05:02:27', '2019-12-31 05:02:27'),
+(219, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/login', '2019-12-31 05:02:45', '2019-12-31 05:02:45'),
+(220, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/register', '2019-12-31 05:09:58', '2019-12-31 05:09:58'),
+(221, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/register', '2019-12-31 05:10:17', '2019-12-31 05:10:17'),
+(222, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/register', '2019-12-31 05:10:53', '2019-12-31 05:10:53'),
+(223, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/user?id=2', '2020-01-01 02:25:22', '2020-01-01 02:25:22'),
+(224, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/security-updates/list?community_id=1', '2020-01-03 01:30:45', '2020-01-03 01:30:45'),
+(225, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/address/get?id=1', '2020-01-03 01:32:16', '2020-01-03 01:32:16'),
+(226, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/address/get?id=1', '2020-01-03 01:32:32', '2020-01-03 01:32:32'),
+(227, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/address/get?id=1', '2020-01-03 01:32:55', '2020-01-03 01:32:55'),
+(228, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/address/get?id=1', '2020-01-03 01:33:36', '2020-01-03 01:33:36'),
+(229, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/address/list?id=1', '2020-01-03 01:33:48', '2020-01-03 01:33:48'),
+(230, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/address/list?community_id=1', '2020-01-03 01:33:57', '2020-01-03 01:33:57'),
+(231, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/address/list?community_id=2', '2020-01-03 01:35:13', '2020-01-03 01:35:13'),
+(232, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/community/list', '2020-01-03 01:38:18', '2020-01-03 01:38:18'),
+(233, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/community/list', '2020-01-03 01:38:53', '2020-01-03 01:38:53'),
+(234, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/community/get?id=1', '2020-01-03 01:42:39', '2020-01-03 01:42:39'),
+(235, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/activity/list?community_id=1', '2020-01-03 02:09:44', '2020-01-03 02:09:44'),
+(236, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/activity/list?community_id=1', '2020-01-03 02:10:31', '2020-01-03 02:10:31'),
+(237, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/activity/list?community_id=1', '2020-01-03 02:12:17', '2020-01-03 02:12:17'),
+(238, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/activity/list?community_id=1', '2020-01-03 02:15:16', '2020-01-03 02:15:16'),
+(239, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/activity/list?community_id=1', '2020-01-03 02:15:49', '2020-01-03 02:15:49'),
+(240, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/activity/list?community_id=1', '2020-01-03 02:18:47', '2020-01-03 02:18:47'),
+(241, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/activity/list?community_id=1', '2020-01-03 02:20:22', '2020-01-03 02:20:22'),
+(242, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/activity/list?community_id=1', '2020-01-03 02:22:01', '2020-01-03 02:22:01'),
+(243, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/activity/list?community_id=1', '2020-01-03 02:22:43', '2020-01-03 02:22:43'),
+(244, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/activity/list?community_id=1', '2020-01-03 02:23:02', '2020-01-03 02:23:02'),
+(245, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/activity/list?community_id=1', '2020-01-03 02:30:28', '2020-01-03 02:30:28'),
+(246, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/activity/list?community_id=1', '2020-01-03 02:58:03', '2020-01-03 02:58:03'),
+(247, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/activity/list?community_id=1', '2020-01-03 02:58:51', '2020-01-03 02:58:51'),
+(248, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/activity/list?community_id=1', '2020-01-03 03:00:48', '2020-01-03 03:00:48'),
+(249, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/activity/list?community_id=1', '2020-01-03 03:03:56', '2020-01-03 03:03:56'),
+(250, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/activity/list?community_id=1', '2020-01-03 03:04:19', '2020-01-03 03:04:19'),
+(251, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/activity/list?community_id=1', '2020-01-03 03:04:43', '2020-01-03 03:04:43'),
+(252, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/activity/list?community_id=1', '2020-01-03 03:14:40', '2020-01-03 03:14:40'),
+(253, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/activity/list?community_id=1', '2020-01-03 03:20:42', '2020-01-03 03:20:42'),
+(254, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/login', '2020-01-03 03:23:28', '2020-01-03 03:23:28'),
+(255, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/login', '2020-01-03 03:31:55', '2020-01-03 03:31:55'),
+(256, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/login', '2020-01-03 03:32:29', '2020-01-03 03:32:29'),
+(257, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/login', '2020-01-03 03:33:00', '2020-01-03 03:33:00'),
+(258, 1, '::1', 'http://localhost/laravel/smarttownship/public/api/login', '2020-01-03 03:34:54', '2020-01-03 03:34:54');
 
 -- --------------------------------------------------------
 
@@ -519,8 +603,8 @@ CREATE TABLE IF NOT EXISTS `communities` (
 --
 
 INSERT INTO `communities` (`id`, `name`, `description`, `banner`, `postal_code`, `city`, `state`, `country`, `address_format`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Smart Town', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.', 'communities\\December2019\\z8GvSpOeksdKkkkHSmCz.jpg', '43000', 'Kajang', 'Selangor', 'MY', '[HOUSE] St# [STREET] Block [BLOCK] [COMMUNITY], [POSTAL_CODE] [CITY], [STATE], [COUNTRY]', 1, '2019-12-13 02:33:00', '2019-12-30 12:10:48'),
-(2, 'Johar Town', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.', 'communities\\December2019\\0AfWYRfZrqAQjv6TklW0.jpg', '54000', 'Kajang', 'Selangor', 'MY', '[HOUSE] St# [STREET] Block [BLOCK] [COMMUNITY], [POSTAL_CODE] [CITY], [STATE], [COUNTRY]', 1, '2019-12-20 05:38:46', '2019-12-30 12:11:25');
+(1, 'Smart Town', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.', 'communities\\December2019\\z8GvSpOeksdKkkkHSmCz.jpg', '43000', 'Kajang', 'Selangor', 'MY', 'House [HOUSE] St# [STREET] Block [BLOCK] [COMMUNITY], [POSTAL_CODE] [CITY], [STATE], [COUNTRY]', 1, '2019-12-13 02:33:00', '2020-01-02 07:55:02'),
+(2, 'Johar Town', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.', 'communities\\December2019\\0AfWYRfZrqAQjv6TklW0.jpg', '54000', 'Kajang', 'Selangor', 'MY', 'House [HOUSE] St# [STREET] Block [BLOCK] [COMMUNITY], [POSTAL_CODE] [CITY], [STATE], [COUNTRY]', 1, '2019-12-20 05:38:46', '2020-01-02 07:55:16');
 
 -- --------------------------------------------------------
 
@@ -547,7 +631,7 @@ INSERT INTO `community_address_types` (`id`, `community_id`, `address_type_id`, 
 (1, 1, 1, 'active', '2019-12-20 03:21:14', '2019-12-20 03:22:33'),
 (2, 1, 2, 'active', '2019-12-20 03:21:14', '2019-12-20 04:47:02'),
 (3, 2, 1, 'active', '2019-12-20 05:52:08', '2019-12-20 05:54:08'),
-(4, 2, 2, 'active', '2019-12-20 05:52:08', '2019-12-20 05:53:59');
+(4, 2, 2, 'active', '2019-12-20 05:52:08', '2020-01-01 04:21:02');
 
 -- --------------------------------------------------------
 
@@ -594,7 +678,7 @@ CREATE TABLE IF NOT EXISTS `data_rows` (
   `order` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   KEY `data_rows_data_type_id_foreign` (`data_type_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=281 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=289 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `data_rows`
@@ -666,15 +750,15 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (63, 1, 'email_verified_at', 'timestamp', 'Email Verified At', 0, 0, 1, 0, 0, 0, '{}', 20),
 (64, 8, 'id', 'text', 'Id', 1, 1, 0, 0, 0, 0, '{}', 1),
 (65, 8, 'community_id', 'hidden', 'Community Id', 0, 0, 1, 1, 1, 1, '{}', 5),
-(66, 8, 'house', 'text', 'House', 0, 1, 1, 1, 1, 1, '{}', 6),
-(67, 8, 'street', 'text', 'Street', 0, 1, 1, 1, 1, 1, '{}', 8),
-(68, 8, 'block', 'text', 'Block', 0, 1, 1, 1, 1, 1, '{}', 9),
-(69, 8, 'longitude', 'text', 'Longitude', 0, 0, 1, 1, 1, 1, '{}', 10),
-(70, 8, 'latitude', 'text', 'Latitude', 0, 0, 1, 1, 1, 1, '{}', 11),
-(71, 8, 'address', 'text', 'Address', 0, 1, 1, 1, 1, 1, '{}', 12),
-(72, 8, 'status', 'select_dropdown', 'Status', 1, 1, 1, 1, 1, 1, '{\"default\":\"active\",\"options\":{\"active\":\"active\",\"inactive\":\"inactive\"}}', 13),
-(73, 8, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 14),
-(74, 8, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 15),
+(66, 8, 'house', 'text', 'House', 0, 1, 1, 1, 1, 1, '{}', 7),
+(67, 8, 'street', 'text', 'Street', 0, 1, 1, 1, 1, 1, '{}', 10),
+(68, 8, 'block', 'text', 'Block', 0, 1, 1, 1, 1, 1, '{}', 11),
+(69, 8, 'longitude', 'text', 'Longitude', 0, 0, 1, 1, 1, 1, '{}', 12),
+(70, 8, 'latitude', 'text', 'Latitude', 0, 0, 1, 1, 1, 1, '{}', 13),
+(71, 8, 'address', 'text', 'Address', 0, 1, 1, 1, 1, 1, '{}', 14),
+(72, 8, 'status', 'select_dropdown', 'Status', 1, 1, 1, 1, 1, 1, '{\"default\":\"active\",\"options\":{\"active\":\"active\",\"inactive\":\"inactive\"}}', 21),
+(73, 8, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 22),
+(74, 8, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 23),
 (75, 8, 'address_hasone_community_relationship', 'relationship', 'Community', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Community\",\"table\":\"communities\",\"type\":\"belongsTo\",\"column\":\"community_id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"addresses\",\"pivot\":\"0\",\"taggable\":\"0\"}', 2),
 (76, 9, 'id', 'text', 'Id', 1, 1, 0, 0, 0, 0, '{}', 1),
 (77, 9, 'title', 'text', 'Title', 0, 1, 1, 1, 1, 1, '{}', 2),
@@ -739,9 +823,9 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (141, 14, 'address_asset_belongsto_address_relationship', 'relationship', 'Address', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Address\",\"table\":\"addresses\",\"type\":\"belongsTo\",\"column\":\"address_id\",\"key\":\"id\",\"label\":\"address\",\"pivot_table\":\"address_assets\",\"pivot\":\"0\",\"taggable\":\"0\"}', 5),
 (143, 16, 'id', 'text', 'Id', 1, 1, 0, 0, 0, 0, '{}', 1),
 (144, 16, 'title', 'text', 'Title', 0, 1, 1, 1, 1, 1, '{}', 3),
-(145, 16, 'status', 'select_dropdown', 'Status', 1, 1, 1, 1, 1, 1, '{\"default\":\"active\",\"options\":{\"active\":\"active\",\"inactive\":\"inactive\"}}', 7),
-(146, 16, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 9),
-(147, 16, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 10),
+(145, 16, 'status', 'select_dropdown', 'Status', 1, 1, 1, 1, 1, 1, '{\"default\":\"active\",\"options\":{\"active\":\"active\",\"inactive\":\"inactive\"}}', 5),
+(146, 16, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 8),
+(147, 16, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 9),
 (148, 17, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
 (149, 17, 'community_id', 'hidden', 'Community Id', 1, 1, 1, 1, 1, 1, '{}', 2),
 (150, 17, 'address_type_id', 'hidden', 'Address Type Id', 1, 1, 1, 1, 1, 1, '{}', 3),
@@ -755,7 +839,7 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (158, 7, 'country', 'select_dropdown', 'Country', 0, 1, 1, 1, 1, 1, '{\"default\":\"MY\",\"options\":{\"MY\":\"Malaysia\"}}', 5),
 (159, 7, 'address_format', 'text_area', 'Address Format <br>Tokens: <code>[HOUSE], [COMMUNITY], [POSTAL_CODE], [CITY], [STATE], [COUNTRY]</code>', 0, 1, 1, 1, 1, 1, '{\"description\":\"e.g [HOUSE] St# [STREET] Block [BLOCK] [COMMUNITY], [POSTAL_CODE] [CITY], [STATE], [COUNTRY] will output as: 75 Kg Sg Ramal Lua St# 2 Block F Smart Town, 43000 Kajang, Selangor, Malaysia\"}', 7),
 (160, 8, 'address_type_id', 'hidden', 'Address Type Id', 0, 1, 1, 1, 1, 1, '{}', 4),
-(161, 8, 'name', 'text', 'Name', 0, 1, 1, 1, 1, 1, '{}', 7),
+(161, 8, 'name', 'text', 'Name', 0, 1, 1, 1, 1, 1, '{}', 6),
 (162, 8, 'address_belongsto_address_type_relationship', 'relationship', 'Address Type', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\AddressType\",\"table\":\"address_types\",\"type\":\"belongsTo\",\"column\":\"address_type_id\",\"key\":\"id\",\"label\":\"title\",\"pivot_table\":\"address_assets\",\"pivot\":\"0\",\"taggable\":\"0\"}', 3),
 (163, 14, 'type', 'select_dropdown', 'Type', 0, 1, 1, 1, 1, 1, '{\"default\":\"vehicle\",\"options\":{\"vehicle\":\"Vehicle\"}}', 2),
 (164, 18, 'id', 'text', 'Id', 1, 1, 0, 0, 0, 0, '{}', 1),
@@ -847,9 +931,8 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (262, 25, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 15),
 (265, 25, 'is_active', 'checkbox', 'Is Active', 1, 1, 1, 1, 1, 1, '{\"on\":\"Yes\",\"off\":\"No\",\"checked\":true}', 11),
 (266, 23, 'is_active', 'checkbox', 'Is Active', 1, 1, 1, 1, 1, 1, '{\"on\":\"Yes\",\"off\":\"No\",\"checked\":true}', 10),
-(269, 16, 'show_add_view', 'checkbox', 'Show In Add View', 1, 1, 1, 1, 1, 1, '{\"on\":\"Yes\",\"off\":\"No\",\"checked\":true}', 6),
-(270, 16, 'address_format', 'text_area', 'Address Format', 0, 1, 1, 1, 1, 1, '{}', 8),
-(271, 16, 'has_sub_address', 'text', 'Has Sub Address', 1, 1, 1, 1, 1, 1, '{\"on\":\"Yes\",\"off\":\"No\",\"checked\":false}', 5),
+(269, 16, 'show_add_view', 'checkbox', 'Show In Add View', 0, 1, 1, 1, 1, 1, '{\"on\":\"Yes\",\"off\":\"No\",\"checked\":true}', 6),
+(270, 16, 'address_format', 'text_area', 'Address Format', 0, 1, 1, 1, 1, 1, '{}', 7),
 (272, 1, 'username', 'text', 'Username', 1, 1, 1, 1, 1, 1, '{}', 4),
 (273, 1, 'community_id', 'text', 'Community Id', 0, 1, 1, 1, 1, 1, '{}', 7),
 (274, 1, 'phone_number', 'text', 'Phone Number', 0, 1, 1, 1, 1, 1, '{}', 8),
@@ -858,7 +941,15 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (277, 1, 'verification_code', 'hidden', 'Verification Code', 0, 0, 1, 1, 0, 0, '{}', 13),
 (278, 1, 'verification_status', 'hidden', 'Verification Status', 1, 0, 1, 0, 0, 0, '{}', 18),
 (279, 1, 'is_active', 'checkbox', 'Is Active', 1, 1, 1, 1, 1, 1, '{\"on\":\"Yes\",\"off\":\"No\",\"checked\":true}', 15),
-(280, 1, 'user_belongsto_community_relationship', 'relationship', 'Community', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Community\",\"table\":\"communities\",\"type\":\"belongsTo\",\"column\":\"community_id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"address_assets\",\"pivot\":\"0\",\"taggable\":\"0\"}', 16);
+(280, 1, 'user_belongsto_community_relationship', 'relationship', 'Community', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Community\",\"table\":\"communities\",\"type\":\"belongsTo\",\"column\":\"community_id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"address_assets\",\"pivot\":\"0\",\"taggable\":\"0\"}', 16),
+(281, 8, 'floor', 'text', 'Floor', 0, 1, 1, 1, 1, 1, '{}', 8),
+(282, 8, 'flat', 'text', 'Flat', 0, 1, 1, 1, 1, 1, '{}', 9),
+(283, 8, 'bedroom', 'text', 'Bedroom', 0, 1, 1, 1, 1, 1, '{}', 15),
+(284, 8, 'bath', 'text', 'Bath', 0, 1, 1, 1, 1, 1, '{}', 16),
+(285, 8, 'garage', 'text', 'Garage', 0, 1, 1, 1, 1, 1, '{}', 17),
+(286, 8, 'area', 'text', 'Area', 0, 1, 1, 1, 1, 1, '{}', 18),
+(287, 8, 'area_unit', 'select_dropdown', 'Area Unit', 0, 1, 1, 1, 1, 1, '{\"default\":\"sq_ft\",\"options\":{\"sq_ft\":\"Sq .Ft\"}}', 19),
+(288, 8, 'has_ground_floor', 'checkbox', 'Has Ground Floor', 1, 1, 1, 1, 1, 1, '{\"on\":\"Yes\",\"off\":\"No\",\"checked\":false}', 20);
 
 -- --------------------------------------------------------
 
@@ -893,21 +984,21 @@ CREATE TABLE IF NOT EXISTS `data_types` (
 --
 
 INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `display_name_plural`, `icon`, `model_name`, `policy_name`, `controller`, `description`, `generate_permissions`, `server_side`, `details`, `created_at`, `updated_at`) VALUES
-(1, 'users', 'users', 'User', 'Users', 'voyager-person', 'TCG\\Voyager\\Models\\User', 'TCG\\Voyager\\Policies\\UserPolicy', 'TCG\\Voyager\\Http\\Controllers\\VoyagerUserController', NULL, 1, 1, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"desc\",\"default_search_key\":\"name\",\"scope\":null}', '2019-12-12 07:01:26', '2019-12-31 04:38:34'),
+(1, 'users', 'users', 'User', 'Users', 'voyager-person', 'TCG\\Voyager\\Models\\User', 'TCG\\Voyager\\Policies\\UserPolicy', 'TCG\\Voyager\\Http\\Controllers\\VoyagerUserController', NULL, 1, 1, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"desc\",\"default_search_key\":\"name\",\"scope\":null}', '2019-12-12 07:01:26', '2019-12-31 05:15:52'),
 (2, 'menus', 'menus', 'Menu', 'Menus', 'voyager-list', 'TCG\\Voyager\\Models\\Menu', NULL, '', '', 1, 0, NULL, '2019-12-12 07:01:26', '2019-12-12 07:01:26'),
 (3, 'roles', 'roles', 'Role', 'Roles', 'voyager-lock', 'TCG\\Voyager\\Models\\Role', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"desc\",\"default_search_key\":null,\"scope\":null}', '2019-12-12 07:01:26', '2019-12-31 03:41:56'),
 (4, 'categories', 'categories', 'Category', 'Categories', 'voyager-categories', 'TCG\\Voyager\\Models\\Category', NULL, '', '', 1, 0, NULL, '2019-12-12 07:01:34', '2019-12-12 07:01:34'),
 (5, 'posts', 'posts', 'Post', 'Posts', 'voyager-news', 'TCG\\Voyager\\Models\\Post', 'TCG\\Voyager\\Policies\\PostPolicy', '', '', 1, 0, NULL, '2019-12-12 07:01:35', '2019-12-12 07:01:35'),
 (6, 'pages', 'pages', 'Page', 'Pages', 'voyager-file-text', 'TCG\\Voyager\\Models\\Page', NULL, '', '', 1, 0, NULL, '2019-12-12 07:01:37', '2019-12-12 07:01:37'),
 (7, 'communities', 'communities', 'Community', 'Communities', 'voyager-categories', 'App\\Community', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-12-12 07:04:25', '2019-12-30 12:13:46'),
-(8, 'addresses', 'addresses', 'Address', 'Addresses', 'voyager-logbook', 'App\\Address', NULL, NULL, NULL, 1, 1, '{\"order_column\":\"id\",\"order_display_column\":\"id\",\"order_direction\":\"desc\",\"default_search_key\":\"address\",\"scope\":null}', '2019-12-13 05:18:27', '2019-12-20 11:40:18'),
+(8, 'addresses', 'addresses', 'Address', 'Addresses', 'voyager-logbook', 'App\\Address', NULL, NULL, NULL, 1, 1, '{\"order_column\":\"id\",\"order_display_column\":\"id\",\"order_direction\":\"desc\",\"default_search_key\":\"address\",\"scope\":null}', '2019-12-13 05:18:27', '2020-01-02 11:36:12'),
 (9, 'asset_types', 'asset-types', 'Asset Type', 'Asset Types', 'voyager-harddrive', 'App\\AssetType', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-12-13 06:23:35', '2019-12-13 07:17:09'),
 (10, 'assets', 'assets', 'Asset', 'Assets', 'voyager-harddrive', 'App\\Asset', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-12-13 06:26:51', '2019-12-13 06:45:14'),
 (11, 'community_assets', 'community-assets', 'Community Asset', 'Community Assets', 'voyager-harddrive', 'App\\CommunityAsset', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-12-13 07:05:28', '2019-12-13 07:19:49'),
 (12, 'user_assets', 'user-assets', 'User Asset', 'User Assets', 'voyager-harddrive', 'App\\UserAsset', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-12-13 08:37:24', '2019-12-13 08:47:22'),
 (13, 'residents', 'residents', 'Resident', 'Residents', NULL, 'App\\Resident', NULL, NULL, NULL, 1, 1, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":\"type\",\"scope\":null}', '2019-12-17 01:57:06', '2019-12-26 02:28:08'),
 (14, 'address_assets', 'address-assets', 'Address Asset', 'Address Assets', 'voyager-logbook', 'App\\AddressAsset', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-12-17 02:32:26', '2019-12-20 04:03:04'),
-(16, 'address_types', 'address-types', 'Address Type', 'Address Types', 'voyager-logbook', 'App\\AddressType', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-12-18 11:54:52', '2019-12-31 03:37:47'),
+(16, 'address_types', 'address-types', 'Address Type', 'Address Types', 'voyager-logbook', 'App\\AddressType', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-12-18 11:54:52', '2020-01-02 03:32:32'),
 (17, 'community_address_types', 'community-address-types', 'Community Address Type', 'Community Address Types', 'voyager-logbook', 'App\\CommunityAddressType', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-12-18 11:56:55', '2019-12-18 12:00:24'),
 (18, 'invitations', 'invitations', 'Invitation', 'Invitations', 'voyager-bell', 'App\\Invitation', NULL, NULL, NULL, 1, 1, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-12-23 04:24:02', '2019-12-23 04:27:48'),
 (19, 'visitors', 'visitors', 'Visitor', 'Visitors', 'voyager-bell', 'App\\Visitor', NULL, NULL, NULL, 1, 1, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-12-23 05:43:43', '2019-12-27 10:25:58'),
@@ -1697,7 +1788,7 @@ INSERT INTO `settings` (`id`, `key`, `display_name`, `value`, `details`, `type`,
 (8, 'admin.loader', 'Admin Loader', '', '', 'image', 3, 'Admin'),
 (9, 'admin.icon_image', 'Admin Icon Image', '', '', 'image', 4, 'Admin'),
 (10, 'admin.google_analytics_client_id', 'Google Analytics Client ID (used for admin dashboard)', NULL, '', 'text', 1, 'Admin'),
-(11, 'admin.address_format_tokens', 'Address Format Tokens', '[{\"token\":\"[HOUSE]\",\"example\":\"House 1\"},{\"token\":\"[STREET]\",\"example\":\"1\"},{\"token\":\"[BLOCK]\",\"example\":\"F\"},{\"token\":\"[COMMUNITY]\",\"example\":\"Smart Town\"},{\"token\":\"[POSTAL_CODE]\",\"example\":\"43000\"},{\"token\":\"[CITY]\",\"example\":\"Kajang\"},{\"token\":\"[STATE]\",\"example\":\"Selangor\"},{\"token\":\"[COUNTRY]\",\"example\":\"Malaysia\"}]', NULL, 'text_area', 6, 'Admin');
+(11, 'admin.address_format_tokens', 'Address Format Tokens', '[{\r\n	\"token\":\"[HOUSE]\",\r\n	\"description\":\"Auto generated House no e.g 1, 2, 3 from series\"\r\n},{\r\n	\"token\":\"[FLOOR]\",\r\n	\"description\":\"Auto generated Floor no e.g 1, 2, 3 from series\"\r\n},{\r\n	\"token\":\"[FLAT]\",\r\n	\"description\":\"Auto generated Flat no e.g 1, 2, 3 from series\"\r\n},{\r\n	\"token\":\"[STREET]\",\r\n	\"description\":\"Entered Street in series e.g 1\"\r\n},{\r\n	\"token\":\"[BLOCK]\",\r\n	\"description\":\"Entered Block in series e.g F\"\r\n},{\r\n	\"token\":\"[COMMUNITY]\",\r\n	\"description\":\"Community name\"\r\n},{\r\n	\"token\":\"[POSTAL_CODE]\",\r\n	\"description\":\"Community Postal Code\"\r\n},{\r\n	\"token\":\"[CITY]\",\r\n	\"description\":\"Community City\"\r\n},{\r\n	\"token\":\"[STATE]\",\r\n	\"description\":\"Community State\"\r\n},{\r\n	\"token\":\"[COUNTRY]\",\r\n	\"description\":\"Community Country\"\r\n}]', NULL, 'text_area', 6, 'Admin');
 
 -- --------------------------------------------------------
 
@@ -1786,7 +1877,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `users_email_unique` (`email`),
   UNIQUE KEY `username` (`username`),
   KEY `users_role_id_foreign` (`role_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `users`
@@ -1807,7 +1898,9 @@ INSERT INTO `users` (`id`, `username`, `role_id`, `name`, `email`, `community_id
 (12, 'shahidaali7', 2, 'Shahid', 'shahidaali7@admin.com', 1, '+923324703323', '1993-04-15', 'Male', NULL, 1, 1, '', NULL, '$2y$10$HOWvXSYxPqzFw4oqCj94AO8cydaGtXImNP/LD3ZXPIgPEvWq0uGAm', NULL, NULL, '2019-12-30 02:25:48', '2019-12-30 02:25:49'),
 (13, 'shahidaali8', 4, 'Shahid', 'shahidaali8@admin.com', 1, '+923324703323', '1993-04-15', 'Male', NULL, 1, 1, 'users/O67RPgZ1MmcWUwZYfiue.png', NULL, '$2y$10$rNXrq/jCWTAVW3Ne1ppQoeXiEzf.yKPEfYQ80SK3oSUoc3nDeARGi', NULL, NULL, '2019-12-30 02:26:54', '2019-12-31 04:47:35'),
 (14, 'shahidaali9', 5, 'Shahid', 'shahidaali9@admin.com', 1, '+923324703323', '1993-04-15', 'Male', NULL, 1, 1, 'users/default.png', NULL, '$2y$10$OHfrMCIU6qwfAEv9UU4AgeWvyNzYtjYWCjOrhKAEEu36el6oWYknC', NULL, NULL, '2019-12-30 02:27:12', '2019-12-31 04:36:18'),
-(15, 'Security', 5, 'Security', 'security@admin.com', 1, '+923324703323', '2019-12-31', 'Male', NULL, 1, 1, 'users/default.png', NULL, '$2y$10$DcRw1GEZhA7E5/24ZXeA8..XqvQpegYEuaMRvZvorJamFm8d03nRy', NULL, NULL, '2019-12-31 04:53:48', '2019-12-31 04:53:48');
+(15, 'security', 5, 'Security', 'security@admin.com', 1, '+923324703323', '2019-12-31', 'Male', NULL, 1, 1, 'users/default.png', NULL, '$2y$10$DcRw1GEZhA7E5/24ZXeA8..XqvQpegYEuaMRvZvorJamFm8d03nRy', NULL, NULL, '2019-12-31 04:53:48', '2019-12-31 05:02:17'),
+(16, 'shahidaali10', 2, 'Shahid', 'shahidaali10@admin.com', 1, '+923324703323', '1993-04-15', 'Male', NULL, 1, 1, 'users/euo8LaPMKYo2sKKQjm7D.png', NULL, '$2y$10$b.SB8.jwT5bAtY/Kjf06uurPNgj4HrI9xrPnQwS6QMi6oCAZ2tOlm', NULL, NULL, '2019-12-31 05:10:17', '2019-12-31 05:10:17'),
+(17, 'shahidaali11', 5, 'Shahid', 'shahidaali11@admin.com', 1, '+923324703323', '1993-04-15', 'Male', NULL, 1, 1, 'users/shLt8fKOSdyvSatsgEcy.png', NULL, '$2y$10$j520fXwQX4ALD1CLkbxwPuOtD0iaeW4UkG1mJ9mBQCORTlib4Vrae', NULL, NULL, '2019-12-31 05:10:53', '2019-12-31 05:10:53');
 
 -- --------------------------------------------------------
 
