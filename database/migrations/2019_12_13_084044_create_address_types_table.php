@@ -18,6 +18,9 @@ class CreateAddressTypesTable extends Migration
             $table->string('title')->nullable();
             $table->string('status')->default('active');
             $table->boolean('show_add_view')->default(1);
+            $table->boolean('has_stories')->default(0);
+            $table->integer('stories')->default(0);
+            $table->integer('flats')->default(0);
             $table->string('address_format')->nullable();
             $table->timestamps();
         });

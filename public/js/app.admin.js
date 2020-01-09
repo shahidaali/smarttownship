@@ -175,7 +175,8 @@ __webpack_require__.r(__webpack_exports__);
       count: 0,
       tokens: {},
       total_address: 10,
-      total_series: 1,
+      total_series: 0,
+      series_length: 0,
       series: []
     };
   },
@@ -212,15 +213,17 @@ __webpack_require__.r(__webpack_exports__);
     createSeries: function createSeries() {
       var vm = this;
       var series_arr = [];
+      var from = parseInt(vm.count) + 1;
+      var to = from + this.total_address - 1;
 
       for (var i = 0; i < this.total_series; i++) {
-        var from = i == 0 ? parseInt(vm.count) + 1 : 0;
-        var to = i == 0 ? from + this.total_address - 1 : 0;
         series_arr.push({
           from: from,
           to: to,
-          format: vm.community.address_format
+          format: vm.addressType.address_format + " " + vm.community.address_format
         });
+        from = to + 1;
+        to = from + this.total_address - 1;
       }
 
       vm.series = series_arr;
@@ -237,6 +240,186 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/AddAddressTypeFlat.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/AddAddressTypeFlat.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var _props;
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: (_props = {
+    floorNo: {
+      type: Number,
+      "default": 0
+    },
+    seriesNo: {
+      type: Number,
+      "default": 0
+    }
+  }, _defineProperty(_props, "floorNo", {
+    type: Number,
+    "default": 0
+  }), _defineProperty(_props, "flatNo", {
+    type: Number,
+    "default": 0
+  }), _defineProperty(_props, "community", {
+    type: Object,
+    "default": {}
+  }), _defineProperty(_props, "addressType", {
+    type: Object,
+    "default": {}
+  }), _props),
+  data: function data() {
+    return {
+      is_loading: true,
+      values: {
+        bedroom: 1,
+        bath: 1,
+        garage: 1,
+        area: 0,
+        area_unit: 'sq_ft'
+      },
+      updatedFields: []
+    };
+  },
+  computed: {},
+  methods: {
+    fieldName: function fieldName(name) {
+      var vm = this;
+      return "lines[" + vm.addressType.id + "][series][" + vm.seriesNo + "][stories][" + vm.floorNo + "][flats][" + vm.flatNo + "][" + name + "]";
+    },
+    fieldChange: function fieldChange(field) {
+      this.updatedFields[field] = this.values[field];
+    },
+    flatDefaultValueChanged: function flatDefaultValueChanged(defaultValues) {
+      var vm = this;
+      $.each(defaultValues, function (fieldName, fieldValue) {
+        if (vm.updatedFields[fieldName] === undefined && vm.values[fieldName] !== undefined) {
+          vm.values[fieldName] = fieldValue;
+        }
+      });
+    }
+  },
+  mounted: function mounted() {
+    var vm = this;
+  },
+  created: function created() {
+    var vm = this;
+    this.$eventHub.$on('flatDefaultValueChanged', this.flatDefaultValueChanged);
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/AddAddressTypeFlatDefault.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/AddAddressTypeFlatDefault.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    seriesNo: {
+      type: Number,
+      "default": 0
+    },
+    community: {
+      type: Object,
+      "default": {}
+    },
+    addressType: {
+      type: Object,
+      "default": {}
+    }
+  },
+  data: function data() {
+    return {
+      is_loading: true,
+      values: {
+        bedroom: 1,
+        bath: 1,
+        garage: 1,
+        area: 0,
+        area_unit: 'sq_ft'
+      },
+      updatedFields: []
+    };
+  },
+  computed: {},
+  methods: {
+    fieldName: function fieldName(name) {
+      var vm = this;
+      return "lines[" + vm.addressType.id + "][series][" + vm.seriesNo + "][stories][" + vm.floorNo + "][" + name + "]";
+    },
+    fieldChange: function fieldChange(field) {
+      this.updatedFields[field] = this.values[field];
+      this.$eventHub.$emit('flatDefaultValueChanged', this.values);
+    },
+    flatsChanged: function flatsChanged(stories) {
+      this.$eventHub.$emit('flatDefaultValueChanged', this.values);
+    },
+    storyDefaultValueChanged: function storyDefaultValueChanged(defaultValues) {
+      var vm = this;
+      $.each(defaultValues, function (fieldName, fieldValue) {
+        if (vm.updatedFields[fieldName] === undefined && vm.values[fieldName] !== undefined) {
+          vm.values[fieldName] = fieldValue;
+        }
+      });
+      this.$eventHub.$emit('flatDefaultValueChanged', vm.values);
+    }
+  },
+  mounted: function mounted() {
+    var vm = this;
+  },
+  created: function created() {
+    var vm = this;
+    this.$eventHub.$on('flatsChanged', this.flatsChanged);
+    this.$eventHub.$on('storyDefaultValueChanged', this.storyDefaultValueChanged);
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/AddAddressTypeLine.vue?vue&type=script&lang=js&":
 /*!***********************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/AddAddressTypeLine.vue?vue&type=script&lang=js& ***!
@@ -246,6 +429,31 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -326,8 +534,10 @@ __webpack_require__.r(__webpack_exports__);
       from_label: 'From',
       street: 0,
       block: 0,
+      house_name: "",
       floors: 0,
-      flats: 0,
+      fixed_stories: this.addressType.stories,
+      fixed_flats: this.addressType.flats,
       ground_floor: 0,
       bedroom: 1,
       bath: 1,
@@ -343,6 +553,9 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     seriesToClass: function seriesToClass() {
       return this.series_range ? '' : 'hidden';
+    },
+    nonStoryFieldClass: function nonStoryFieldClass() {
+      return parseInt(this.floors) > 0 ? 'hidden' : '';
     }
   },
   methods: {
@@ -361,6 +574,9 @@ __webpack_require__.r(__webpack_exports__);
     totalChanged: function totalChanged(total_address) {
       this.to = parseInt(this.line.from) + parseInt(total_address) - 1;
     },
+    storiesChanged: function storiesChanged() {
+      this.$eventHub.$emit('storiesChanged', this.floors);
+    },
     seriesRangeChange: function seriesRangeChange() {
       if (this.series_range) {
         this.to = this.to_old_value;
@@ -370,10 +586,11 @@ __webpack_require__.r(__webpack_exports__);
     },
     getExampleOutput: function getExampleOutput() {
       var vm = this;
-      var floor = vm.floors > 0 && vm.flats > 0 ? 1 : 0;
-      var flat = vm.floors > 0 && vm.flats > 0 ? 1 : 0;
+      var floor = vm.floors > 0 ? 1 : 0;
+      var flat = vm.floors > 0 ? 1 : 0;
       var token_values = {
         '[HOUSE]': vm.from,
+        '[HOUSE_NAME]': vm.house_name,
         '[STREET]': vm.street,
         '[BLOCK]': vm.block,
         '[FLOOR]': floor,
@@ -397,6 +614,183 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var vm = this;
     this.$eventHub.$on('totalChanged', this.totalChanged);
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/AddAddressTypeStory.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/AddAddressTypeStory.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    floorNo: {
+      type: Number,
+      "default": 0
+    },
+    seriesNo: {
+      type: Number,
+      "default": 0
+    },
+    community: {
+      type: Object,
+      "default": {}
+    },
+    addressType: {
+      type: Object,
+      "default": {}
+    }
+  },
+  data: function data() {
+    return {
+      is_loading: true,
+      values: {
+        flats: 0,
+        bedroom: 1,
+        bath: 1,
+        garage: 1,
+        area: 0,
+        area_unit: 'sq_ft'
+      },
+      updatedFields: []
+    };
+  },
+  computed: {},
+  methods: {
+    fieldName: function fieldName(name) {
+      var vm = this;
+      return "lines[" + vm.addressType.id + "][series][" + vm.seriesNo + "][stories][" + vm.floorNo + "][" + name + "]";
+    },
+    fieldChange: function fieldChange(field) {
+      this.updatedFields[field] = this.values[field];
+    },
+    storyDefaultValueChanged: function storyDefaultValueChanged(defaultValues) {
+      var vm = this;
+      $.each(defaultValues, function (fieldName, fieldValue) {
+        if (vm.updatedFields[fieldName] === undefined && vm.values[fieldName] !== undefined) {
+          vm.values[fieldName] = fieldValue;
+        }
+      });
+    }
+  },
+  mounted: function mounted() {
+    var vm = this;
+  },
+  created: function created() {
+    var vm = this;
+    this.$eventHub.$on('storyDefaultValueChanged', this.storyDefaultValueChanged);
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/AddAddressTypeStoryDefault.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/AddAddressTypeStoryDefault.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    seriesNo: {
+      type: Number,
+      "default": 0
+    },
+    community: {
+      type: Object,
+      "default": {}
+    },
+    addressType: {
+      type: Object,
+      "default": {}
+    }
+  },
+  data: function data() {
+    return {
+      is_loading: true,
+      values: {
+        flats: 0,
+        bedroom: 1,
+        bath: 1,
+        garage: 1,
+        area: 0,
+        area_unit: 'sq_ft'
+      }
+    };
+  },
+  computed: {},
+  methods: {
+    fieldName: function fieldName(name) {
+      var vm = this;
+      return "lines[" + vm.addressType.id + "][series][" + vm.seriesNo + "][stories][" + vm.floorNo + "][" + name + "]";
+    },
+    fieldChange: function fieldChange(field) {
+      this.$eventHub.$emit('storyDefaultValueChanged', this.values);
+    },
+    storiesChanged: function storiesChanged(stories) {
+      console.log(this.values);
+      this.$eventHub.$emit('storyDefaultValueChanged', this.values);
+    }
+  },
+  mounted: function mounted() {
+    var vm = this;
+  },
+  created: function created() {
+    var vm = this;
+    this.$eventHub.$on('storiesChanged', this.storiesChanged);
   }
 });
 
@@ -867,7 +1261,7 @@ var render = function() {
                           type: "text",
                           name: _vm.fieldName("total_series"),
                           autocomplete: "off",
-                          maxlength: "1"
+                          maxlength: "2"
                         },
                         domProps: { value: _vm.total_series },
                         on: {
@@ -930,7 +1324,7 @@ var render = function() {
                     ])
                   : _vm._e(),
                 _vm._v(" "),
-                _vm.isPreview
+                _vm.isPreview && _vm.previewAddresses.length > 0
                   ? _c("div", { staticClass: "panel series-panel" }, [
                       _c("div", { staticClass: "panel-heading" }, [
                         _vm._v(
@@ -962,6 +1356,420 @@ var render = function() {
     : _vm._e()
 }
 var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/AddAddressTypeFlat.vue?vue&type=template&id=021bf631&":
+/*!***************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/AddAddressTypeFlat.vue?vue&type=template&id=021bf631& ***!
+  \***************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "story-series flat-series" }, [
+    _c("div", { staticClass: "series-no" }, [
+      _c("code", [_vm._v("#Fl_" + _vm._s(_vm.flatNo))])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "edit-fields" }, [
+      _c("div", { staticClass: "edit-field edit-field-col" }, [
+        _c("label", [_vm._v("Bedroom:")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.values.bedroom,
+              expression: "values.bedroom"
+            }
+          ],
+          attrs: {
+            type: "text",
+            name: _vm.fieldName("bedroom"),
+            autocomplete: "off"
+          },
+          domProps: { value: _vm.values.bedroom },
+          on: {
+            input: [
+              function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.values, "bedroom", $event.target.value)
+              },
+              function($event) {
+                return _vm.fieldChange("bedroom")
+              }
+            ]
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "edit-field edit-field-col" }, [
+        _c("label", [_vm._v("Bath:")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.values.bath,
+              expression: "values.bath"
+            }
+          ],
+          attrs: {
+            type: "text",
+            name: _vm.fieldName("bath"),
+            autocomplete: "off"
+          },
+          domProps: { value: _vm.values.bath },
+          on: {
+            input: [
+              function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.values, "bath", $event.target.value)
+              },
+              function($event) {
+                return _vm.fieldChange("bath")
+              }
+            ]
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "edit-field edit-field-col" }, [
+        _c("label", [_vm._v("Garage:")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.values.garage,
+              expression: "values.garage"
+            }
+          ],
+          attrs: {
+            type: "text",
+            name: _vm.fieldName("garage"),
+            autocomplete: "off"
+          },
+          domProps: { value: _vm.values.garage },
+          on: {
+            input: [
+              function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.values, "garage", $event.target.value)
+              },
+              function($event) {
+                return _vm.fieldChange("garage")
+              }
+            ]
+          }
+        })
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "edit-fields" }, [
+      _c("div", { staticClass: "edit-field edit-field-col" }, [
+        _c("label", [_vm._v("Area:")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.values.area,
+              expression: "values.area"
+            }
+          ],
+          attrs: {
+            type: "text",
+            name: _vm.fieldName("area"),
+            autocomplete: "off"
+          },
+          domProps: { value: _vm.values.area },
+          on: {
+            input: [
+              function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.values, "area", $event.target.value)
+              },
+              function($event) {
+                return _vm.fieldChange("area")
+              }
+            ]
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "edit-field edit-field-col" }, [
+        _c("label", [_vm._v("Unit:")]),
+        _vm._v(" "),
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.values.area_unit,
+                expression: "values.area_unit"
+              }
+            ],
+            attrs: { name: _vm.fieldName("area_unit") },
+            on: {
+              input: function($event) {
+                return _vm.fieldChange("area_unit")
+              },
+              change: function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.$set(
+                  _vm.values,
+                  "area_unit",
+                  $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                )
+              }
+            }
+          },
+          [
+            _c("option", { attrs: { value: "sq_ft", selected: "selected" } }, [
+              _vm._v("sq .ft")
+            ])
+          ]
+        )
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/AddAddressTypeFlatDefault.vue?vue&type=template&id=280b5300&":
+/*!**********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/AddAddressTypeFlatDefault.vue?vue&type=template&id=280b5300& ***!
+  \**********************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "story-series series-alt" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticClass: "edit-fields" }, [
+      _c("div", { staticClass: "edit-field edit-field-col" }, [
+        _c("label", [_vm._v("Bedroom:")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.values.bedroom,
+              expression: "values.bedroom"
+            }
+          ],
+          attrs: { type: "text", autocomplete: "off" },
+          domProps: { value: _vm.values.bedroom },
+          on: {
+            input: [
+              function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.values, "bedroom", $event.target.value)
+              },
+              function($event) {
+                return _vm.fieldChange("bedroom")
+              }
+            ]
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "edit-field edit-field-col" }, [
+        _c("label", [_vm._v("Bath:")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.values.bath,
+              expression: "values.bath"
+            }
+          ],
+          attrs: { type: "text", autocomplete: "off" },
+          domProps: { value: _vm.values.bath },
+          on: {
+            input: [
+              function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.values, "bath", $event.target.value)
+              },
+              function($event) {
+                return _vm.fieldChange("bath")
+              }
+            ]
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "edit-field edit-field-col" }, [
+        _c("label", [_vm._v("Garage:")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.values.garage,
+              expression: "values.garage"
+            }
+          ],
+          attrs: { type: "text", autocomplete: "off" },
+          domProps: { value: _vm.values.garage },
+          on: {
+            input: [
+              function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.values, "garage", $event.target.value)
+              },
+              function($event) {
+                return _vm.fieldChange("garage")
+              }
+            ]
+          }
+        })
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "edit-fields" }, [
+      _c("div", { staticClass: "edit-field edit-field-col" }, [
+        _c("label", [_vm._v("Area:")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.values.area,
+              expression: "values.area"
+            }
+          ],
+          attrs: { type: "text", autocomplete: "off" },
+          domProps: { value: _vm.values.area },
+          on: {
+            input: [
+              function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.values, "area", $event.target.value)
+              },
+              function($event) {
+                return _vm.fieldChange("area")
+              }
+            ]
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "edit-field edit-field-col" }, [
+        _c("label", [_vm._v("Unit:")]),
+        _vm._v(" "),
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.values.area_unit,
+                expression: "values.area_unit"
+              }
+            ],
+            on: {
+              input: function($event) {
+                return _vm.fieldChange("area_unit")
+              },
+              change: function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.$set(
+                  _vm.values,
+                  "area_unit",
+                  $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                )
+              }
+            }
+          },
+          [
+            _c("option", { attrs: { value: "sq_ft", selected: "selected" } }, [
+              _vm._v("sq .ft")
+            ])
+          ]
+        )
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "series-no" }, [
+      _c("code", [_vm._v("Default")])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -1032,6 +1840,37 @@ var render = function() {
               },
               _vm.seriesRangeChange
             ]
+          }
+        })
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "edit-fields" }, [
+      _c("div", { staticClass: "edit-field edit-field-col" }, [
+        _c("label", [_vm._v("H# Name:")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.house_name,
+              expression: "house_name"
+            }
+          ],
+          attrs: {
+            type: "text",
+            name: _vm.fieldName("house_name"),
+            autocomplete: "off"
+          },
+          domProps: { value: _vm.house_name },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.house_name = $event.target.value
+            }
           }
         })
       ])
@@ -1163,266 +2002,308 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "edit-fields" }, [
-      _c("div", { staticClass: "edit-field edit-field-col" }, [
-        _c("label", [_vm._v("Stories:")]),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.floors,
-              expression: "floors"
-            }
-          ],
-          attrs: {
-            type: "text",
-            name: _vm.fieldName("floors"),
-            autocomplete: "off"
-          },
-          domProps: { value: _vm.floors },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.floors = $event.target.value
-            }
-          }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "edit-field edit-field-col" }, [
-        _c("label", [_vm._v("Flats:")]),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.flats,
-              expression: "flats"
-            }
-          ],
-          attrs: {
-            type: "text",
-            name: _vm.fieldName("flats"),
-            autocomplete: "off"
-          },
-          domProps: { value: _vm.flats },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.flats = $event.target.value
-            }
-          }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "edit-field edit-field-col" }, [
-        _c("label", [_vm._v("Ground Floor:")]),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.ground_floor,
-              expression: "ground_floor"
-            }
-          ],
-          attrs: { type: "checkbox", name: _vm.fieldName("ground_floor") },
-          domProps: {
-            checked: Array.isArray(_vm.ground_floor)
-              ? _vm._i(_vm.ground_floor, null) > -1
-              : _vm.ground_floor
-          },
-          on: {
-            change: function($event) {
-              var $$a = _vm.ground_floor,
-                $$el = $event.target,
-                $$c = $$el.checked ? true : false
-              if (Array.isArray($$a)) {
-                var $$v = null,
-                  $$i = _vm._i($$a, $$v)
-                if ($$el.checked) {
-                  $$i < 0 && (_vm.ground_floor = $$a.concat([$$v]))
-                } else {
-                  $$i > -1 &&
-                    (_vm.ground_floor = $$a
-                      .slice(0, $$i)
-                      .concat($$a.slice($$i + 1)))
-                }
-              } else {
-                _vm.ground_floor = $$c
-              }
-            }
-          }
-        })
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "edit-fields" }, [
-      _c("div", { staticClass: "edit-field edit-field-col" }, [
-        _c("label", [_vm._v("Bedroom:")]),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.bedroom,
-              expression: "bedroom"
-            }
-          ],
-          attrs: {
-            type: "text",
-            name: _vm.fieldName("bedroom"),
-            autocomplete: "off"
-          },
-          domProps: { value: _vm.bedroom },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.bedroom = $event.target.value
-            }
-          }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "edit-field edit-field-col" }, [
-        _c("label", [_vm._v("Bath:")]),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.bath,
-              expression: "bath"
-            }
-          ],
-          attrs: {
-            type: "text",
-            name: _vm.fieldName("bath"),
-            autocomplete: "off"
-          },
-          domProps: { value: _vm.bath },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.bath = $event.target.value
-            }
-          }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "edit-field edit-field-col" }, [
-        _c("label", [_vm._v("Garage:")]),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.garage,
-              expression: "garage"
-            }
-          ],
-          attrs: {
-            type: "text",
-            name: _vm.fieldName("garage"),
-            autocomplete: "off"
-          },
-          domProps: { value: _vm.garage },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.garage = $event.target.value
-            }
-          }
-        })
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "edit-fields" }, [
-      _c("div", { staticClass: "edit-field edit-field-col" }, [
-        _c("label", [_vm._v("Area:")]),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.area,
-              expression: "area"
-            }
-          ],
-          attrs: {
-            type: "text",
-            name: _vm.fieldName("area"),
-            autocomplete: "off"
-          },
-          domProps: { value: _vm.area },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.area = $event.target.value
-            }
-          }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "edit-field edit-field-col" }, [
-        _c("label", [_vm._v("Unit:")]),
-        _vm._v(" "),
-        _c(
-          "select",
-          {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.area_unit,
-                expression: "area_unit"
-              }
-            ],
-            attrs: { name: _vm.fieldName("area_unit") },
-            on: {
-              change: function($event) {
-                var $$selectedVal = Array.prototype.filter
-                  .call($event.target.options, function(o) {
-                    return o.selected
-                  })
-                  .map(function(o) {
-                    var val = "_value" in o ? o._value : o.value
-                    return val
-                  })
-                _vm.area_unit = $event.target.multiple
-                  ? $$selectedVal
-                  : $$selectedVal[0]
-              }
-            }
-          },
+    _vm.addressType.has_stories
+      ? _c(
+          "div",
+          { staticClass: "edit-fields" },
           [
-            _c("option", { attrs: { value: "sq_ft", selected: "selected" } }, [
-              _vm._v("sq .ft")
-            ])
-          ]
+            _vm.addressType.stories > 0
+              ? [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.fixed_stories,
+                        expression: "fixed_stories"
+                      }
+                    ],
+                    attrs: {
+                      type: "hidden",
+                      name: _vm.fieldName("fixed_stories")
+                    },
+                    domProps: { value: _vm.fixed_stories },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.fixed_stories = $event.target.value
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.fixed_flats,
+                        expression: "fixed_flats"
+                      }
+                    ],
+                    attrs: {
+                      type: "hidden",
+                      name: _vm.fieldName("fixed_flats")
+                    },
+                    domProps: { value: _vm.fixed_flats },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.fixed_flats = $event.target.value
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "edit-field edit-field-col" }, [
+                    _c("label", [_vm._v("Stories:")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      attrs: { type: "text", disabled: "" },
+                      domProps: { value: _vm.addressType.stories }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "edit-field edit-field-col" }, [
+                    _c("label", [_vm._v("Flats:")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      attrs: { type: "text", disabled: "" },
+                      domProps: { value: _vm.addressType.flats }
+                    })
+                  ])
+                ]
+              : [
+                  _c("div", { staticClass: "edit-field edit-field-col" }, [
+                    _c("label", [_vm._v("Stories:")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.floors,
+                          expression: "floors"
+                        }
+                      ],
+                      attrs: {
+                        type: "text",
+                        name: _vm.fieldName("floors"),
+                        autocomplete: "off"
+                      },
+                      domProps: { value: _vm.floors },
+                      on: {
+                        keyup: _vm.storiesChanged,
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.floors = $event.target.value
+                        }
+                      }
+                    })
+                  ])
+                ]
+          ],
+          2
         )
-      ])
-    ]),
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.floors > 0
+      ? _c(
+          "div",
+          { staticClass: "story-series-wrap" },
+          [
+            _c("add-address-type-story-default", {
+              attrs: {
+                "series-no": _vm.number,
+                community: _vm.community,
+                "address-type": _vm.addressType
+              }
+            }),
+            _vm._v(" "),
+            _vm._l(parseInt(_vm.floors), function(floor_no) {
+              return _c("add-address-type-story", {
+                key: floor_no,
+                attrs: {
+                  "floor-no": floor_no,
+                  "series-no": _vm.number,
+                  community: _vm.community,
+                  "address-type": _vm.addressType
+                }
+              })
+            })
+          ],
+          2
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.floors <= 0
+      ? _c("div", { staticClass: "edit-fields" }, [
+          _c("div", { staticClass: "edit-field edit-field-col" }, [
+            _c("label", [_vm._v("Bedroom:")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.bedroom,
+                  expression: "bedroom"
+                }
+              ],
+              attrs: {
+                type: "text",
+                name: _vm.fieldName("bedroom"),
+                autocomplete: "off"
+              },
+              domProps: { value: _vm.bedroom },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.bedroom = $event.target.value
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "edit-field edit-field-col" }, [
+            _c("label", [_vm._v("Bath:")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.bath,
+                  expression: "bath"
+                }
+              ],
+              attrs: {
+                type: "text",
+                name: _vm.fieldName("bath"),
+                autocomplete: "off"
+              },
+              domProps: { value: _vm.bath },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.bath = $event.target.value
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "edit-field edit-field-col" }, [
+            _c("label", [_vm._v("Garage:")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.garage,
+                  expression: "garage"
+                }
+              ],
+              attrs: {
+                type: "text",
+                name: _vm.fieldName("garage"),
+                autocomplete: "off"
+              },
+              domProps: { value: _vm.garage },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.garage = $event.target.value
+                }
+              }
+            })
+          ])
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.floors <= 0
+      ? _c("div", { staticClass: "edit-fields" }, [
+          _c("div", { staticClass: "edit-field edit-field-col" }, [
+            _c("label", [_vm._v("Area:")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.area,
+                  expression: "area"
+                }
+              ],
+              attrs: {
+                type: "text",
+                name: _vm.fieldName("area"),
+                autocomplete: "off"
+              },
+              domProps: { value: _vm.area },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.area = $event.target.value
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "edit-field edit-field-col" }, [
+            _c("label", [_vm._v("Unit:")]),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.area_unit,
+                    expression: "area_unit"
+                  }
+                ],
+                attrs: { name: _vm.fieldName("area_unit") },
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.area_unit = $event.target.multiple
+                      ? $$selectedVal
+                      : $$selectedVal[0]
+                  }
+                }
+              },
+              [
+                _c(
+                  "option",
+                  { attrs: { value: "sq_ft", selected: "selected" } },
+                  [_vm._v("sq .ft")]
+                )
+              ]
+            )
+          ])
+        ])
+      : _vm._e(),
     _vm._v(" "),
     _c("div", { staticClass: "edit-fields" }, [
       _c("div", { staticClass: "edit-field edit-field-col" }, [
@@ -1498,6 +2379,334 @@ var staticRenderFns = [
           )
         ])
       ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/AddAddressTypeStory.vue?vue&type=template&id=25d8d726&":
+/*!****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/AddAddressTypeStory.vue?vue&type=template&id=25d8d726& ***!
+  \****************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "story-series" }, [
+    _c("div", { staticClass: "series-no" }, [
+      _c("code", [_vm._v("#St_" + _vm._s(_vm.floorNo))])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "edit-fields" }, [
+      _c("div", { staticClass: "edit-field edit-field-col" }, [
+        _c("label", [_vm._v("Flats:")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.values.flats,
+              expression: "values.flats"
+            }
+          ],
+          attrs: {
+            type: "text",
+            name: _vm.fieldName("flats"),
+            autocomplete: "off"
+          },
+          domProps: { value: _vm.values.flats },
+          on: {
+            input: [
+              function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.values, "flats", $event.target.value)
+              },
+              function($event) {
+                return _vm.fieldChange("flats")
+              }
+            ]
+          }
+        })
+      ])
+    ]),
+    _vm._v(" "),
+    _vm.values.flats > 0
+      ? _c(
+          "div",
+          { staticClass: "story-series-wrap" },
+          [
+            _vm.values.flats > 1
+              ? _c("add-address-type-flat-default", {
+                  attrs: {
+                    "series-no": _vm.seriesNo,
+                    community: _vm.community,
+                    "address-type": _vm.addressType
+                  }
+                })
+              : _vm._e(),
+            _vm._v(" "),
+            _vm._l(parseInt(_vm.values.flats), function(flat_no) {
+              return _c("add-address-type-flat", {
+                key: flat_no,
+                attrs: {
+                  "flat-no": flat_no,
+                  "floor-no": _vm.floorNo,
+                  "series-no": _vm.seriesNo,
+                  community: _vm.community,
+                  "address-type": _vm.addressType
+                }
+              })
+            })
+          ],
+          2
+        )
+      : _vm._e()
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/AddAddressTypeStoryDefault.vue?vue&type=template&id=5f9b7cc4&":
+/*!***********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/AddAddressTypeStoryDefault.vue?vue&type=template&id=5f9b7cc4& ***!
+  \***********************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "story-series series-alt" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticClass: "edit-fields" }, [
+      _c("div", { staticClass: "edit-field edit-field-col" }, [
+        _c("label", [_vm._v("Flats:")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.values.flats,
+              expression: "values.flats"
+            }
+          ],
+          attrs: { type: "text", autocomplete: "off" },
+          domProps: { value: _vm.values.flats },
+          on: {
+            input: [
+              function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.values, "flats", $event.target.value)
+              },
+              function($event) {
+                return _vm.fieldChange("flats")
+              }
+            ]
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "edit-field edit-field-col" }, [
+        _c("label", [_vm._v("Bedroom:")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.values.bedroom,
+              expression: "values.bedroom"
+            }
+          ],
+          attrs: { type: "text", autocomplete: "off" },
+          domProps: { value: _vm.values.bedroom },
+          on: {
+            input: [
+              function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.values, "bedroom", $event.target.value)
+              },
+              function($event) {
+                return _vm.fieldChange("bedroom")
+              }
+            ]
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "edit-field edit-field-col" }, [
+        _c("label", [_vm._v("Bath:")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.values.bath,
+              expression: "values.bath"
+            }
+          ],
+          attrs: { type: "text", autocomplete: "off" },
+          domProps: { value: _vm.values.bath },
+          on: {
+            input: [
+              function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.values, "bath", $event.target.value)
+              },
+              function($event) {
+                return _vm.fieldChange("bath")
+              }
+            ]
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "edit-field edit-field-col" }, [
+        _c("label", [_vm._v("Garage:")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.values.garage,
+              expression: "values.garage"
+            }
+          ],
+          attrs: { type: "text", autocomplete: "off" },
+          domProps: { value: _vm.values.garage },
+          on: {
+            input: [
+              function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.values, "garage", $event.target.value)
+              },
+              function($event) {
+                return _vm.fieldChange("garage")
+              }
+            ]
+          }
+        })
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "edit-fields" }, [
+      _c("div", { staticClass: "edit-field edit-field-col" }, [
+        _c("label", [_vm._v("Area:")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.values.area,
+              expression: "values.area"
+            }
+          ],
+          attrs: { type: "text", autocomplete: "off" },
+          domProps: { value: _vm.values.area },
+          on: {
+            input: [
+              function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.values, "area", $event.target.value)
+              },
+              function($event) {
+                return _vm.fieldChange("area")
+              }
+            ]
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "edit-field edit-field-col" }, [
+        _c("label", [_vm._v("Unit:")]),
+        _vm._v(" "),
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.values.area_unit,
+                expression: "values.area_unit"
+              }
+            ],
+            on: {
+              input: function($event) {
+                return _vm.fieldChange("area_unit")
+              },
+              change: function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.$set(
+                  _vm.values,
+                  "area_unit",
+                  $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                )
+              }
+            }
+          },
+          [
+            _c("option", { attrs: { value: "sq_ft", selected: "selected" } }, [
+              _vm._v("sq .ft")
+            ])
+          ]
+        )
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "series-no" }, [
+      _c("code", [_vm._v("Default")])
     ])
   }
 ]
@@ -1969,6 +3178,10 @@ Vue.component('dashboard-community-item', __webpack_require__(/*! ./components/a
 Vue.component('add-addresses', __webpack_require__(/*! ./components/admin/AddAddresses.vue */ "./resources/js/components/admin/AddAddresses.vue")["default"]);
 Vue.component('add-address-type', __webpack_require__(/*! ./components/admin/AddAddressType.vue */ "./resources/js/components/admin/AddAddressType.vue")["default"]);
 Vue.component('add-address-type-line', __webpack_require__(/*! ./components/admin/AddAddressTypeLine.vue */ "./resources/js/components/admin/AddAddressTypeLine.vue")["default"]);
+Vue.component('add-address-type-story', __webpack_require__(/*! ./components/admin/AddAddressTypeStory.vue */ "./resources/js/components/admin/AddAddressTypeStory.vue")["default"]);
+Vue.component('add-address-type-story-default', __webpack_require__(/*! ./components/admin/AddAddressTypeStoryDefault.vue */ "./resources/js/components/admin/AddAddressTypeStoryDefault.vue")["default"]);
+Vue.component('add-address-type-flat', __webpack_require__(/*! ./components/admin/AddAddressTypeFlat.vue */ "./resources/js/components/admin/AddAddressTypeFlat.vue")["default"]);
+Vue.component('add-address-type-flat-default', __webpack_require__(/*! ./components/admin/AddAddressTypeFlatDefault.vue */ "./resources/js/components/admin/AddAddressTypeFlatDefault.vue")["default"]);
 Vue.component('preview-addresses', __webpack_require__(/*! ./components/admin/PreviewAddresses.vue */ "./resources/js/components/admin/PreviewAddresses.vue")["default"]);
 Vue.component('preview-address-line', __webpack_require__(/*! ./components/admin/PreviewAddressLine.vue */ "./resources/js/components/admin/PreviewAddressLine.vue")["default"]);
 Vue.prototype.$eventHub = new Vue(); // Global event bus
@@ -2108,6 +3321,144 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/admin/AddAddressTypeFlat.vue":
+/*!**************************************************************!*\
+  !*** ./resources/js/components/admin/AddAddressTypeFlat.vue ***!
+  \**************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _AddAddressTypeFlat_vue_vue_type_template_id_021bf631___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AddAddressTypeFlat.vue?vue&type=template&id=021bf631& */ "./resources/js/components/admin/AddAddressTypeFlat.vue?vue&type=template&id=021bf631&");
+/* harmony import */ var _AddAddressTypeFlat_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AddAddressTypeFlat.vue?vue&type=script&lang=js& */ "./resources/js/components/admin/AddAddressTypeFlat.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _AddAddressTypeFlat_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _AddAddressTypeFlat_vue_vue_type_template_id_021bf631___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _AddAddressTypeFlat_vue_vue_type_template_id_021bf631___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/admin/AddAddressTypeFlat.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/AddAddressTypeFlat.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/components/admin/AddAddressTypeFlat.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AddAddressTypeFlat_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./AddAddressTypeFlat.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/AddAddressTypeFlat.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AddAddressTypeFlat_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/AddAddressTypeFlat.vue?vue&type=template&id=021bf631&":
+/*!*********************************************************************************************!*\
+  !*** ./resources/js/components/admin/AddAddressTypeFlat.vue?vue&type=template&id=021bf631& ***!
+  \*********************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddAddressTypeFlat_vue_vue_type_template_id_021bf631___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./AddAddressTypeFlat.vue?vue&type=template&id=021bf631& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/AddAddressTypeFlat.vue?vue&type=template&id=021bf631&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddAddressTypeFlat_vue_vue_type_template_id_021bf631___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddAddressTypeFlat_vue_vue_type_template_id_021bf631___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/AddAddressTypeFlatDefault.vue":
+/*!*********************************************************************!*\
+  !*** ./resources/js/components/admin/AddAddressTypeFlatDefault.vue ***!
+  \*********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _AddAddressTypeFlatDefault_vue_vue_type_template_id_280b5300___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AddAddressTypeFlatDefault.vue?vue&type=template&id=280b5300& */ "./resources/js/components/admin/AddAddressTypeFlatDefault.vue?vue&type=template&id=280b5300&");
+/* harmony import */ var _AddAddressTypeFlatDefault_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AddAddressTypeFlatDefault.vue?vue&type=script&lang=js& */ "./resources/js/components/admin/AddAddressTypeFlatDefault.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _AddAddressTypeFlatDefault_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _AddAddressTypeFlatDefault_vue_vue_type_template_id_280b5300___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _AddAddressTypeFlatDefault_vue_vue_type_template_id_280b5300___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/admin/AddAddressTypeFlatDefault.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/AddAddressTypeFlatDefault.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************!*\
+  !*** ./resources/js/components/admin/AddAddressTypeFlatDefault.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AddAddressTypeFlatDefault_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./AddAddressTypeFlatDefault.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/AddAddressTypeFlatDefault.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AddAddressTypeFlatDefault_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/AddAddressTypeFlatDefault.vue?vue&type=template&id=280b5300&":
+/*!****************************************************************************************************!*\
+  !*** ./resources/js/components/admin/AddAddressTypeFlatDefault.vue?vue&type=template&id=280b5300& ***!
+  \****************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddAddressTypeFlatDefault_vue_vue_type_template_id_280b5300___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./AddAddressTypeFlatDefault.vue?vue&type=template&id=280b5300& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/AddAddressTypeFlatDefault.vue?vue&type=template&id=280b5300&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddAddressTypeFlatDefault_vue_vue_type_template_id_280b5300___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddAddressTypeFlatDefault_vue_vue_type_template_id_280b5300___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/admin/AddAddressTypeLine.vue":
 /*!**************************************************************!*\
   !*** ./resources/js/components/admin/AddAddressTypeLine.vue ***!
@@ -2172,6 +3523,144 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddAddressTypeLine_vue_vue_type_template_id_2fe81da8___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddAddressTypeLine_vue_vue_type_template_id_2fe81da8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/AddAddressTypeStory.vue":
+/*!***************************************************************!*\
+  !*** ./resources/js/components/admin/AddAddressTypeStory.vue ***!
+  \***************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _AddAddressTypeStory_vue_vue_type_template_id_25d8d726___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AddAddressTypeStory.vue?vue&type=template&id=25d8d726& */ "./resources/js/components/admin/AddAddressTypeStory.vue?vue&type=template&id=25d8d726&");
+/* harmony import */ var _AddAddressTypeStory_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AddAddressTypeStory.vue?vue&type=script&lang=js& */ "./resources/js/components/admin/AddAddressTypeStory.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _AddAddressTypeStory_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _AddAddressTypeStory_vue_vue_type_template_id_25d8d726___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _AddAddressTypeStory_vue_vue_type_template_id_25d8d726___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/admin/AddAddressTypeStory.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/AddAddressTypeStory.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************!*\
+  !*** ./resources/js/components/admin/AddAddressTypeStory.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AddAddressTypeStory_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./AddAddressTypeStory.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/AddAddressTypeStory.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AddAddressTypeStory_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/AddAddressTypeStory.vue?vue&type=template&id=25d8d726&":
+/*!**********************************************************************************************!*\
+  !*** ./resources/js/components/admin/AddAddressTypeStory.vue?vue&type=template&id=25d8d726& ***!
+  \**********************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddAddressTypeStory_vue_vue_type_template_id_25d8d726___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./AddAddressTypeStory.vue?vue&type=template&id=25d8d726& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/AddAddressTypeStory.vue?vue&type=template&id=25d8d726&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddAddressTypeStory_vue_vue_type_template_id_25d8d726___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddAddressTypeStory_vue_vue_type_template_id_25d8d726___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/AddAddressTypeStoryDefault.vue":
+/*!**********************************************************************!*\
+  !*** ./resources/js/components/admin/AddAddressTypeStoryDefault.vue ***!
+  \**********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _AddAddressTypeStoryDefault_vue_vue_type_template_id_5f9b7cc4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AddAddressTypeStoryDefault.vue?vue&type=template&id=5f9b7cc4& */ "./resources/js/components/admin/AddAddressTypeStoryDefault.vue?vue&type=template&id=5f9b7cc4&");
+/* harmony import */ var _AddAddressTypeStoryDefault_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AddAddressTypeStoryDefault.vue?vue&type=script&lang=js& */ "./resources/js/components/admin/AddAddressTypeStoryDefault.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _AddAddressTypeStoryDefault_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _AddAddressTypeStoryDefault_vue_vue_type_template_id_5f9b7cc4___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _AddAddressTypeStoryDefault_vue_vue_type_template_id_5f9b7cc4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/admin/AddAddressTypeStoryDefault.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/AddAddressTypeStoryDefault.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************!*\
+  !*** ./resources/js/components/admin/AddAddressTypeStoryDefault.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AddAddressTypeStoryDefault_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./AddAddressTypeStoryDefault.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/AddAddressTypeStoryDefault.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AddAddressTypeStoryDefault_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/AddAddressTypeStoryDefault.vue?vue&type=template&id=5f9b7cc4&":
+/*!*****************************************************************************************************!*\
+  !*** ./resources/js/components/admin/AddAddressTypeStoryDefault.vue?vue&type=template&id=5f9b7cc4& ***!
+  \*****************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddAddressTypeStoryDefault_vue_vue_type_template_id_5f9b7cc4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./AddAddressTypeStoryDefault.vue?vue&type=template&id=5f9b7cc4& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/AddAddressTypeStoryDefault.vue?vue&type=template&id=5f9b7cc4&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddAddressTypeStoryDefault_vue_vue_type_template_id_5f9b7cc4___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddAddressTypeStoryDefault_vue_vue_type_template_id_5f9b7cc4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

@@ -125,6 +125,7 @@ class CommunityController extends Controller
      */
     public function createAddresses($community_id, Request $request)
     {
+        // dd($request->all());
         $community = App\Community::findOrFail($community_id);
         $default_address = $this->generateAddress($community, $community->format);
 
@@ -142,26 +143,35 @@ class CommunityController extends Controller
                 App\CommunityAddressType::updateAddressTypes($community_id, $address_type_id, 'active');
 
                 // Create Addresses
+                if(empty($line['series']))
+                    continue;
+
                 $series = $line['series'];
                 $address_type_name = $addressType->title;
                 $address_count = $addressType->addresses()->get()->count();
 
                 foreach ($series as $series_key => $series_data) {
+                    // dd($series_data);
+                    $house_name = $series_data['house_name'];
+
                     $from = (int) $series_data['from'];
                     $to = (int) $series_data['to'];
 
                     $street = $series_data['street'];
                     $block = $series_data['block'];
 
-                    $floors = (int) $series_data['floors'];
-                    $flats = (int) $series_data['flats'];
+                    $floors = isset($series_data['floors']) ? (int) $series_data['floors'] : 0;
+                    $stories = isset($series_data['stories']) ? $series_data['stories'] : 0;
 
-                    $bedroom = (int) $series_data['bedroom'];
-                    $bath = (int) $series_data['bath'];
-                    $garage = (int) $series_data['garage'];
+                    $fixed_stories = isset($series_data['fixed_stories']) ? (int) $series_data['fixed_stories'] : 0;
+                    $fixed_flats = isset($series_data['fixed_flats']) ? (int) $series_data['fixed_flats'] : 0;
 
-                    $area = $series_data['area'];
-                    $area_unit = $series_data['area_unit'];
+                    $bedroom = isset($series_data['bedroom']) ? (int) $series_data['bedroom'] : 0;
+                    $bath = isset($series_data['bath']) ? (int) $series_data['bath'] : 0;
+                    $garage = isset($series_data['garage']) ? (int) $series_data['garage'] : 0;
+
+                    $area = isset($series_data['area']) ? $series_data['area'] : 0;
+                    $area_unit = isset($series_data['area_unit']) ? $series_data['area_unit'] : 0;
 
                     $ground_floor = isset($series_data['ground_floor']) && $series_data['ground_floor'] == "on" ?  1 : 0;
 
@@ -171,27 +181,29 @@ class CommunityController extends Controller
                         continue;
                     }
 
-                    // SERIES
+                    // SERIES RANGE
                     for ($i=$from; $i <= $to; $i++) { 
 
                         $house_no = $i;
-                        $address_name = $address_type_name . ' ' . $house_no;
+                        $address_name = ($house_name) ? $house_name : $address_type_name . ' ' . $house_no;
 
-                        $address = $this->generateAddress($community, $format);
+                        $address = $this->generateAddress($community, $format, $addressType);
                         $address = str_replace([
+                            '[HOUSE_NAME]',
                             '[HOUSE]',
                             '[STREET]',
                             '[BLOCK]',
                         ], [
+                            $address_name,
                             $house_no,
                             $street,
                             $block,
                         ], $address);
 
-                        // FLOORS & FLATS in EACH SERIES
-                        if( $floors > 0 && $flats > 0) {
-                            for ($floor=1; $floor <= $floors; $floor++) {
-                                for ($flat=1; $flat <= $flats; $flat++) {
+                        // FIXED FLOORS & FLATS in EACH SERIES e.g in Terrace
+                        if($fixed_stories > 0 && $fixed_flats > 0) {
+                            for ($floor=1; $floor <= $fixed_stories; $floor++) {
+                                for ($flat=1; $flat <= $fixed_flats; $flat++) {
                                     $floor_address = str_replace([
                                         '[FLOOR]',
                                         '[FLAT]',
@@ -221,7 +233,54 @@ class CommunityController extends Controller
                                     ];
                                 }
                             }
-                        } else {
+                        }
+
+                        // FLOORS & FLATS in EACH SERIES
+                        else if(!empty($stories)) {
+                            foreach ($stories as $floor => $floor_detail) {
+                                $flats = $floor_detail['flats'];
+
+                                foreach ($flats as $flat => $flat_detail) {
+                                    $bedroom = (int) $flat_detail['bedroom'];
+                                    $bath = (int) $flat_detail['bath'];
+                                    $garage = (int) $flat_detail['garage'];
+
+                                    $area = $flat_detail['area'];
+                                    $area_unit = $flat_detail['area_unit'];
+
+                                    $floor_address = str_replace([
+                                        '[FLOOR]',
+                                        '[FLAT]',
+                                    ], [
+                                        $floor,
+                                        $flat,
+                                    ], $address);
+
+                                    $addresses[$address_type_id][$series_key][] = [
+                                        'community_id' => $community_id,
+                                        'address_type_id' => $address_type_id,
+                                        'name' => $address_name,
+                                        'house' => $house_no,
+                                        'floor' => $floor,
+                                        'flat' => $flat,
+                                        'street' => $street,
+                                        'block' => $block,
+                                        'bedroom' => $bedroom,
+                                        'bath' => $bath,
+                                        'garage' => $garage,
+                                        'has_ground_floor' => $ground_floor,
+                                        'address' => $floor_address,
+                                        'area' => $area,
+                                        'area_unit' => $area_unit,
+                                        'status' => 'active',
+                                        'created_at'=>$now, 
+                                        'updated_at'=>$now
+                                    ];
+                                }
+                            }
+                        }
+                         
+                        else {
                             $addresses[$address_type_id][$series_key][] = [
                                 'community_id' => $community_id,
                                 'address_type_id' => $address_type_id,
@@ -283,107 +342,7 @@ class CommunityController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function saveAddressTypes($community_id, Request $request)
-    {
-        try {
-            $community = App\Community::findOrFail($community_id);
-            $default_address = $this->generateAddress($community, $community->format);
-
-            $lines = $request->lines;
-            $now = Carbon::now()->toDateTimeString();
-
-            $addresses = [];
-            $active_address_types = [];
-            foreach ($lines as $address_type_id => $line) {
-                $addressType = App\AddressType::find($address_type_id);
-                if(isset($line['enabled']) && $line['enabled'] == 1) {
-                    $active_address_types[] = $address_type_id;
-
-                    // Update Coummunity Addresses
-                    App\CommunityAddressType::updateAddressTypes($community_id, $address_type_id, 'active');
-
-                    // Create Addresses
-                    $series = $line['series'];
-                    $address_type_name = $addressType->title;
-                    $address_count = $addressType->addresses()->get()->count();
-
-                    foreach ($series as $key => $series_data) {
-                        $from = (int) $series_data['from'];
-                        $to = (int) $series_data['to'];
-
-                        $street = $series_data['street'];
-                        $block = $series_data['block'];
-                        $format = $series_data['format'];
-
-                        if( $to <= 0 || $to < $from ) {
-                            continue;
-                        }
-
-                        for ($i=$from; $i <= $to; $i++) { 
-                            $house_no = $i;
-                            $address_name = $address_type_name . ' ' . $house_no;
-
-                            $address = $this->generateAddress($community, $format);
-                            $address = str_replace([
-                                '[HOUSE]',
-                                '[STREET]',
-                                '[BLOCK]',
-                            ], [
-                                $address_name,
-                                $street,
-                                $block,
-                            ], $address);
-
-                            $addresses[$address_type_name][] = [
-                                'community_id' => $community_id,
-                                'address_type_id' => $address_type_id,
-                                'name' => $address_name,
-                                'house' => $house_no,
-                                'street' => $street,
-                                'block' => $block,
-                                'address' => $address,
-                                'status' => 'active',
-                                'created_at'=>$now, 
-                                'updated_at'=>$now
-                            ];
-                        }
-                        
-                    }
-                } else {
-                    // Update Coummunity Addresses
-                    App\CommunityAddressType::updateAddressTypes($community_id, $address_type_id, 'inactive');
-                }
-            }
-
-            dd($addresses);
-
-            $res =  App\Address::insert($addresses);
-
-            $data = $res
-                ? [
-                    'message'    => __('Addresses created successfully'),
-                    'alert-type' => 'success',
-                ] : [
-                    'message'    => __('Error updating Addresses'),
-                    'alert-type' => 'error',
-                ];
-
-            if ($res) {
-
-            }
-
-            return redirect()->route('voyager.communities.edit-address-types', $community_id)->with($data);
-        } catch (Exception $e) {
-            return redirect()->route('voyager.communities.edit-address-types', $community_id)->with($this->alertException($e, 'Saving Failed'));
-        }
-    }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function generateAddress($community, $address_format)
+    public function generateAddress($community, $address_format, $addressType = null)
     {
         $community_name = $community->name;
         $postal_code = $community->postal_code;
@@ -404,6 +363,14 @@ class CommunityController extends Controller
             $state,
             $country,
         ], $address_format);
+
+        if($addressType) {
+            $address = str_replace([
+                '[ADDRESS_TYPE_FORMAT]',
+            ], [
+                $addressType->address_format,
+            ], $address);
+        }
 
         return $address;
     }

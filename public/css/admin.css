@@ -10,7 +10,8 @@
 .form-group.field-cascading_select,
 .form-group.field-timestamp,
 .form-group.field-checkbox,
-.form-group.field-password {
+.form-group.field-password,
+.form-group.field-number {
     width: 50%;
     float: left;
     padding: 0px 10px;
@@ -211,9 +212,17 @@ span.listing-status.status-security {
 }
 .address-format.series-with-no {
     position: relative;
-    padding-left: 45px;
+    padding-left: 60px;
 }
 .series-no {
+    position: absolute;
+    left: 0px;
+    top: 0;
+    width: 50px;
+    height: 100%;
+    border-right: 1px solid #ccc;
+}
+.series-no code {
     position: absolute;
     left: 5px;
     top: 50%;
@@ -223,4 +232,63 @@ span.listing-status.status-security {
     position: absolute;
     top: 5px;
     right: 0px;
+}
+.story-series-wrap {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px 23px;
+}
+.story-series {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 0px 0px 10px;
+    position: relative;
+    padding-left: 75px;
+    background: #fff5f5;
+}
+.story-series .series-no {
+    width: 75px;
+}
+.series-alt {
+    background:#dceef1;    
+}
+.story-series.flat-series {
+    background: #edf3f0;
+}
+
+.link-box-title {
+    font-size: 18px;
+    margin: 30px 0px 10px;
+    font-weight: 600;
+}
+.link-box-row {
+    display: flex;
+    margin: 15px -15px;
+}
+.link-box {
+    position: relative;
+    border-radius: 5px;
+    box-shadow: 2px 2px 3px rgb(210, 214, 218);
+    border: 1px solid rgb(210, 214, 218);
+    background: #ffffff;
+    margin-bottom: 10px;
+    text-align: center;
+    max-width: 150px;
+    width: 100%;
+    margin: 0px 15px 10px;
+}
+.link-box > a {
+    color: #000;
+    padding: 10px;
+}
+.link-box > a > span {
+    display: block;
+}
+.link-box .box-icon {
+    font-size: 40px;
+}
+.link-box .box-title {
+    font-weight: 600;
 }

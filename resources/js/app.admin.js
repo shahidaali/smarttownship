@@ -13,6 +13,10 @@ Vue.component('dashboard-community-item', require('./components/admin/DashboardC
 Vue.component('add-addresses', require('./components/admin/AddAddresses.vue').default);
 Vue.component('add-address-type', require('./components/admin/AddAddressType.vue').default);
 Vue.component('add-address-type-line', require('./components/admin/AddAddressTypeLine.vue').default);
+Vue.component('add-address-type-story', require('./components/admin/AddAddressTypeStory.vue').default);
+Vue.component('add-address-type-story-default', require('./components/admin/AddAddressTypeStoryDefault.vue').default);
+Vue.component('add-address-type-flat', require('./components/admin/AddAddressTypeFlat.vue').default);
+Vue.component('add-address-type-flat-default', require('./components/admin/AddAddressTypeFlatDefault.vue').default);
 Vue.component('preview-addresses', require('./components/admin/PreviewAddresses.vue').default);
 Vue.component('preview-address-line', require('./components/admin/PreviewAddressLine.vue').default);
 

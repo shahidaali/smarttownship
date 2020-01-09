@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jan 03, 2020 at 08:40 AM
+-- Generation Time: Jan 09, 2020 at 12:54 PM
 -- Server version: 5.7.24
--- PHP Version: 7.2.14
+-- PHP Version: 7.3.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS `addresses` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=131 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `addresses`
@@ -128,7 +128,67 @@ INSERT INTO `addresses` (`id`, `community_id`, `address_type_id`, `name`, `house
 (67, 2, 2, 'Building 1', '1', 5, 7, '1', 'F', NULL, NULL, 'Building 1 Floor#5 Flat#7, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 2, 1, 1, 80, 'sq_ft', 0, 'active', '2020-01-02 08:48:33', '2020-01-02 08:48:33'),
 (68, 2, 2, 'Building 1', '1', 5, 8, '1', 'F', NULL, NULL, 'Building 1 Floor#5 Flat#8, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 2, 1, 1, 80, 'sq_ft', 0, 'active', '2020-01-02 08:48:33', '2020-01-02 08:48:33'),
 (69, 2, 2, 'Building 1', '1', 5, 9, '1', 'F', NULL, NULL, 'Building 1 Floor#5 Flat#9, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 2, 1, 1, 80, 'sq_ft', 0, 'active', '2020-01-02 08:48:33', '2020-01-02 08:48:33'),
-(70, 2, 2, 'Building 1', '1', 5, 10, '1', 'F', NULL, NULL, 'Building 1 Floor#5 Flat#10, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 2, 1, 1, 80, 'sq_ft', 1, 'active', '2020-01-02 08:48:00', '2020-01-02 11:37:26');
+(70, 2, 2, 'Building 1', '1', 5, 10, '1', 'F', NULL, NULL, 'Building 1 Floor#5 Flat#10, St# 1 Block F, Johar Town, 54000 Kajang, Selangor, MY', 2, 1, 1, 80, 'sq_ft', 1, 'active', '2020-01-02 08:48:00', '2020-01-02 11:37:26'),
+(71, 2, 4, 'Terrace 1', '1', 1, 1, '0', '0', NULL, NULL, 'Terrace# 1, Floor# 1 St# 0 Block 0 Johar Town, 54000 Kajang, Selangor, MY', 1, 1, 1, 0, 'sq_ft', 0, 'active', '2020-01-09 07:02:01', '2020-01-09 07:02:01'),
+(72, 2, 4, 'Terrace 1', '1', 2, 1, '0', '0', NULL, NULL, 'Terrace# 1, Floor# 2 St# 0 Block 0 Johar Town, 54000 Kajang, Selangor, MY', 1, 1, 1, 0, 'sq_ft', 0, 'active', '2020-01-09 07:02:01', '2020-01-09 07:02:01'),
+(73, 2, 4, 'Terrace 1', '1', 3, 1, '0', '0', NULL, NULL, 'Terrace# 1, Floor# 3 St# 0 Block 0 Johar Town, 54000 Kajang, Selangor, MY', 1, 1, 1, 0, 'sq_ft', 0, 'active', '2020-01-09 07:02:01', '2020-01-09 07:02:01'),
+(74, 2, 4, 'Terrace 2', '2', 1, 1, '0', '0', NULL, NULL, 'Terrace# 2, Floor# 1 St# 0 Block 0 Johar Town, 54000 Kajang, Selangor, MY', 1, 1, 1, 0, 'sq_ft', 0, 'active', '2020-01-09 07:02:01', '2020-01-09 07:02:01'),
+(75, 2, 4, 'Terrace 2', '2', 2, 1, '0', '0', NULL, NULL, 'Terrace# 2, Floor# 2 St# 0 Block 0 Johar Town, 54000 Kajang, Selangor, MY', 1, 1, 1, 0, 'sq_ft', 0, 'active', '2020-01-09 07:02:01', '2020-01-09 07:02:01'),
+(76, 2, 4, 'Terrace 2', '2', 3, 1, '0', '0', NULL, NULL, 'Terrace# 2, Floor# 3 St# 0 Block 0 Johar Town, 54000 Kajang, Selangor, MY', 1, 1, 1, 0, 'sq_ft', 0, 'active', '2020-01-09 07:02:01', '2020-01-09 07:02:01'),
+(77, 2, 4, 'Terrace 3', '3', 1, 1, '0', '0', NULL, NULL, 'Terrace# 3, Floor# 1 St# 0 Block 0 Johar Town, 54000 Kajang, Selangor, MY', 1, 1, 1, 0, 'sq_ft', 0, 'active', '2020-01-09 07:02:01', '2020-01-09 07:02:01'),
+(78, 2, 4, 'Terrace 3', '3', 2, 1, '0', '0', NULL, NULL, 'Terrace# 3, Floor# 2 St# 0 Block 0 Johar Town, 54000 Kajang, Selangor, MY', 1, 1, 1, 0, 'sq_ft', 0, 'active', '2020-01-09 07:02:01', '2020-01-09 07:02:01'),
+(79, 2, 4, 'Terrace 3', '3', 3, 1, '0', '0', NULL, NULL, 'Terrace# 3, Floor# 3 St# 0 Block 0 Johar Town, 54000 Kajang, Selangor, MY', 1, 1, 1, 0, 'sq_ft', 0, 'active', '2020-01-09 07:02:01', '2020-01-09 07:02:01'),
+(80, 2, 4, 'Terrace 4', '4', 1, 1, '0', '0', NULL, NULL, 'Terrace# 4, Floor# 1 St# 0 Block 0 Johar Town, 54000 Kajang, Selangor, MY', 1, 1, 1, 0, 'sq_ft', 0, 'active', '2020-01-09 07:02:01', '2020-01-09 07:02:01'),
+(81, 2, 4, 'Terrace 4', '4', 2, 1, '0', '0', NULL, NULL, 'Terrace# 4, Floor# 2 St# 0 Block 0 Johar Town, 54000 Kajang, Selangor, MY', 1, 1, 1, 0, 'sq_ft', 0, 'active', '2020-01-09 07:02:01', '2020-01-09 07:02:01'),
+(82, 2, 4, 'Terrace 4', '4', 3, 1, '0', '0', NULL, NULL, 'Terrace# 4, Floor# 3 St# 0 Block 0 Johar Town, 54000 Kajang, Selangor, MY', 1, 1, 1, 0, 'sq_ft', 0, 'active', '2020-01-09 07:02:01', '2020-01-09 07:02:01'),
+(83, 2, 4, 'Terrace 5', '5', 1, 1, '0', '0', NULL, NULL, 'Terrace# 5, Floor# 1 St# 0 Block 0 Johar Town, 54000 Kajang, Selangor, MY', 1, 1, 1, 0, 'sq_ft', 0, 'active', '2020-01-09 07:02:01', '2020-01-09 07:02:01'),
+(84, 2, 4, 'Terrace 5', '5', 2, 1, '0', '0', NULL, NULL, 'Terrace# 5, Floor# 2 St# 0 Block 0 Johar Town, 54000 Kajang, Selangor, MY', 1, 1, 1, 0, 'sq_ft', 0, 'active', '2020-01-09 07:02:01', '2020-01-09 07:02:01'),
+(85, 2, 4, 'Terrace 5', '5', 3, 1, '0', '0', NULL, NULL, 'Terrace# 5, Floor# 3 St# 0 Block 0 Johar Town, 54000 Kajang, Selangor, MY', 1, 1, 1, 0, 'sq_ft', 0, 'active', '2020-01-09 07:02:01', '2020-01-09 07:02:01'),
+(86, 2, 4, 'Terrace 6', '6', 1, 1, '0', '0', NULL, NULL, 'Terrace# 6, Floor# 1 St# 0 Block 0 Johar Town, 54000 Kajang, Selangor, MY', 1, 1, 1, 0, 'sq_ft', 0, 'active', '2020-01-09 07:02:01', '2020-01-09 07:02:01'),
+(87, 2, 4, 'Terrace 6', '6', 2, 1, '0', '0', NULL, NULL, 'Terrace# 6, Floor# 2 St# 0 Block 0 Johar Town, 54000 Kajang, Selangor, MY', 1, 1, 1, 0, 'sq_ft', 0, 'active', '2020-01-09 07:02:01', '2020-01-09 07:02:01'),
+(88, 2, 4, 'Terrace 6', '6', 3, 1, '0', '0', NULL, NULL, 'Terrace# 6, Floor# 3 St# 0 Block 0 Johar Town, 54000 Kajang, Selangor, MY', 1, 1, 1, 0, 'sq_ft', 0, 'active', '2020-01-09 07:02:01', '2020-01-09 07:02:01'),
+(89, 2, 4, 'Terrace 7', '7', 1, 1, '0', '0', NULL, NULL, 'Terrace# 7, Floor# 1 St# 0 Block 0 Johar Town, 54000 Kajang, Selangor, MY', 1, 1, 1, 0, 'sq_ft', 0, 'active', '2020-01-09 07:02:01', '2020-01-09 07:02:01'),
+(90, 2, 4, 'Terrace 7', '7', 2, 1, '0', '0', NULL, NULL, 'Terrace# 7, Floor# 2 St# 0 Block 0 Johar Town, 54000 Kajang, Selangor, MY', 1, 1, 1, 0, 'sq_ft', 0, 'active', '2020-01-09 07:02:01', '2020-01-09 07:02:01'),
+(91, 2, 4, 'Terrace 7', '7', 3, 1, '0', '0', NULL, NULL, 'Terrace# 7, Floor# 3 St# 0 Block 0 Johar Town, 54000 Kajang, Selangor, MY', 1, 1, 1, 0, 'sq_ft', 0, 'active', '2020-01-09 07:02:01', '2020-01-09 07:02:01'),
+(92, 2, 4, 'Terrace 8', '8', 1, 1, '0', '0', NULL, NULL, 'Terrace# 8, Floor# 1 St# 0 Block 0 Johar Town, 54000 Kajang, Selangor, MY', 1, 1, 1, 0, 'sq_ft', 0, 'active', '2020-01-09 07:02:01', '2020-01-09 07:02:01'),
+(93, 2, 4, 'Terrace 8', '8', 2, 1, '0', '0', NULL, NULL, 'Terrace# 8, Floor# 2 St# 0 Block 0 Johar Town, 54000 Kajang, Selangor, MY', 1, 1, 1, 0, 'sq_ft', 0, 'active', '2020-01-09 07:02:01', '2020-01-09 07:02:01'),
+(94, 2, 4, 'Terrace 8', '8', 3, 1, '0', '0', NULL, NULL, 'Terrace# 8, Floor# 3 St# 0 Block 0 Johar Town, 54000 Kajang, Selangor, MY', 1, 1, 1, 0, 'sq_ft', 0, 'active', '2020-01-09 07:02:01', '2020-01-09 07:02:01'),
+(95, 2, 4, 'Terrace 9', '9', 1, 1, '0', '0', NULL, NULL, 'Terrace# 9, Floor# 1 St# 0 Block 0 Johar Town, 54000 Kajang, Selangor, MY', 1, 1, 1, 0, 'sq_ft', 0, 'active', '2020-01-09 07:02:01', '2020-01-09 07:02:01'),
+(96, 2, 4, 'Terrace 9', '9', 2, 1, '0', '0', NULL, NULL, 'Terrace# 9, Floor# 2 St# 0 Block 0 Johar Town, 54000 Kajang, Selangor, MY', 1, 1, 1, 0, 'sq_ft', 0, 'active', '2020-01-09 07:02:01', '2020-01-09 07:02:01'),
+(97, 2, 4, 'Terrace 9', '9', 3, 1, '0', '0', NULL, NULL, 'Terrace# 9, Floor# 3 St# 0 Block 0 Johar Town, 54000 Kajang, Selangor, MY', 1, 1, 1, 0, 'sq_ft', 0, 'active', '2020-01-09 07:02:01', '2020-01-09 07:02:01'),
+(98, 2, 4, 'Terrace 10', '10', 1, 1, '0', '0', NULL, NULL, 'Terrace# 10, Floor# 1 St# 0 Block 0 Johar Town, 54000 Kajang, Selangor, MY', 1, 1, 1, 0, 'sq_ft', 0, 'active', '2020-01-09 07:02:01', '2020-01-09 07:02:01'),
+(99, 2, 4, 'Terrace 10', '10', 2, 1, '0', '0', NULL, NULL, 'Terrace# 10, Floor# 2 St# 0 Block 0 Johar Town, 54000 Kajang, Selangor, MY', 1, 1, 1, 0, 'sq_ft', 0, 'active', '2020-01-09 07:02:01', '2020-01-09 07:02:01'),
+(100, 2, 4, 'Terrace 10', '10', 3, 1, '0', '0', NULL, NULL, 'Terrace# 10, Floor# 3 St# 0 Block 0 Johar Town, 54000 Kajang, Selangor, MY', 1, 1, 1, 0, 'sq_ft', 0, 'active', '2020-01-09 07:02:01', '2020-01-09 07:02:01'),
+(101, 2, 4, 'Terrace 11', '11', 1, 1, '0', '0', NULL, NULL, 'Terrace# 11, Floor# 1 St# 0 Block 0 Johar Town, 54000 Kajang, Selangor, MY', 1, 1, 1, 0, 'sq_ft', 0, 'active', '2020-01-09 07:02:01', '2020-01-09 07:02:01'),
+(102, 2, 4, 'Terrace 11', '11', 2, 1, '0', '0', NULL, NULL, 'Terrace# 11, Floor# 2 St# 0 Block 0 Johar Town, 54000 Kajang, Selangor, MY', 1, 1, 1, 0, 'sq_ft', 0, 'active', '2020-01-09 07:02:01', '2020-01-09 07:02:01'),
+(103, 2, 4, 'Terrace 11', '11', 3, 1, '0', '0', NULL, NULL, 'Terrace# 11, Floor# 3 St# 0 Block 0 Johar Town, 54000 Kajang, Selangor, MY', 1, 1, 1, 0, 'sq_ft', 0, 'active', '2020-01-09 07:02:01', '2020-01-09 07:02:01'),
+(104, 2, 4, 'Terrace 12', '12', 1, 1, '0', '0', NULL, NULL, 'Terrace# 12, Floor# 1 St# 0 Block 0 Johar Town, 54000 Kajang, Selangor, MY', 1, 1, 1, 0, 'sq_ft', 0, 'active', '2020-01-09 07:02:01', '2020-01-09 07:02:01'),
+(105, 2, 4, 'Terrace 12', '12', 2, 1, '0', '0', NULL, NULL, 'Terrace# 12, Floor# 2 St# 0 Block 0 Johar Town, 54000 Kajang, Selangor, MY', 1, 1, 1, 0, 'sq_ft', 0, 'active', '2020-01-09 07:02:01', '2020-01-09 07:02:01'),
+(106, 2, 4, 'Terrace 12', '12', 3, 1, '0', '0', NULL, NULL, 'Terrace# 12, Floor# 3 St# 0 Block 0 Johar Town, 54000 Kajang, Selangor, MY', 1, 1, 1, 0, 'sq_ft', 0, 'active', '2020-01-09 07:02:01', '2020-01-09 07:02:01'),
+(107, 2, 4, 'Terrace 13', '13', 1, 1, '0', '0', NULL, NULL, 'Terrace# 13, Floor# 1 St# 0 Block 0 Johar Town, 54000 Kajang, Selangor, MY', 1, 1, 1, 0, 'sq_ft', 0, 'active', '2020-01-09 07:02:01', '2020-01-09 07:02:01'),
+(108, 2, 4, 'Terrace 13', '13', 2, 1, '0', '0', NULL, NULL, 'Terrace# 13, Floor# 2 St# 0 Block 0 Johar Town, 54000 Kajang, Selangor, MY', 1, 1, 1, 0, 'sq_ft', 0, 'active', '2020-01-09 07:02:01', '2020-01-09 07:02:01'),
+(109, 2, 4, 'Terrace 13', '13', 3, 1, '0', '0', NULL, NULL, 'Terrace# 13, Floor# 3 St# 0 Block 0 Johar Town, 54000 Kajang, Selangor, MY', 1, 1, 1, 0, 'sq_ft', 0, 'active', '2020-01-09 07:02:01', '2020-01-09 07:02:01'),
+(110, 2, 4, 'Terrace 14', '14', 1, 1, '0', '0', NULL, NULL, 'Terrace# 14, Floor# 1 St# 0 Block 0 Johar Town, 54000 Kajang, Selangor, MY', 1, 1, 1, 0, 'sq_ft', 0, 'active', '2020-01-09 07:02:01', '2020-01-09 07:02:01'),
+(111, 2, 4, 'Terrace 14', '14', 2, 1, '0', '0', NULL, NULL, 'Terrace# 14, Floor# 2 St# 0 Block 0 Johar Town, 54000 Kajang, Selangor, MY', 1, 1, 1, 0, 'sq_ft', 0, 'active', '2020-01-09 07:02:01', '2020-01-09 07:02:01'),
+(112, 2, 4, 'Terrace 14', '14', 3, 1, '0', '0', NULL, NULL, 'Terrace# 14, Floor# 3 St# 0 Block 0 Johar Town, 54000 Kajang, Selangor, MY', 1, 1, 1, 0, 'sq_ft', 0, 'active', '2020-01-09 07:02:01', '2020-01-09 07:02:01'),
+(113, 2, 4, 'Terrace 15', '15', 1, 1, '0', '0', NULL, NULL, 'Terrace# 15, Floor# 1 St# 0 Block 0 Johar Town, 54000 Kajang, Selangor, MY', 1, 1, 1, 0, 'sq_ft', 0, 'active', '2020-01-09 07:02:01', '2020-01-09 07:02:01'),
+(114, 2, 4, 'Terrace 15', '15', 2, 1, '0', '0', NULL, NULL, 'Terrace# 15, Floor# 2 St# 0 Block 0 Johar Town, 54000 Kajang, Selangor, MY', 1, 1, 1, 0, 'sq_ft', 0, 'active', '2020-01-09 07:02:01', '2020-01-09 07:02:01'),
+(115, 2, 4, 'Terrace 15', '15', 3, 1, '0', '0', NULL, NULL, 'Terrace# 15, Floor# 3 St# 0 Block 0 Johar Town, 54000 Kajang, Selangor, MY', 1, 1, 1, 0, 'sq_ft', 0, 'active', '2020-01-09 07:02:01', '2020-01-09 07:02:01'),
+(116, 2, 4, 'Terrace 16', '16', 1, 1, '0', '0', NULL, NULL, 'Terrace# 16, Floor# 1 St# 0 Block 0 Johar Town, 54000 Kajang, Selangor, MY', 1, 1, 1, 0, 'sq_ft', 0, 'active', '2020-01-09 07:02:01', '2020-01-09 07:02:01'),
+(117, 2, 4, 'Terrace 16', '16', 2, 1, '0', '0', NULL, NULL, 'Terrace# 16, Floor# 2 St# 0 Block 0 Johar Town, 54000 Kajang, Selangor, MY', 1, 1, 1, 0, 'sq_ft', 0, 'active', '2020-01-09 07:02:01', '2020-01-09 07:02:01'),
+(118, 2, 4, 'Terrace 16', '16', 3, 1, '0', '0', NULL, NULL, 'Terrace# 16, Floor# 3 St# 0 Block 0 Johar Town, 54000 Kajang, Selangor, MY', 1, 1, 1, 0, 'sq_ft', 0, 'active', '2020-01-09 07:02:01', '2020-01-09 07:02:01'),
+(119, 2, 4, 'Terrace 17', '17', 1, 1, '0', '0', NULL, NULL, 'Terrace# 17, Floor# 1 St# 0 Block 0 Johar Town, 54000 Kajang, Selangor, MY', 1, 1, 1, 0, 'sq_ft', 0, 'active', '2020-01-09 07:02:01', '2020-01-09 07:02:01'),
+(120, 2, 4, 'Terrace 17', '17', 2, 1, '0', '0', NULL, NULL, 'Terrace# 17, Floor# 2 St# 0 Block 0 Johar Town, 54000 Kajang, Selangor, MY', 1, 1, 1, 0, 'sq_ft', 0, 'active', '2020-01-09 07:02:01', '2020-01-09 07:02:01'),
+(121, 2, 4, 'Terrace 17', '17', 3, 1, '0', '0', NULL, NULL, 'Terrace# 17, Floor# 3 St# 0 Block 0 Johar Town, 54000 Kajang, Selangor, MY', 1, 1, 1, 0, 'sq_ft', 0, 'active', '2020-01-09 07:02:01', '2020-01-09 07:02:01'),
+(122, 2, 4, 'Terrace 18', '18', 1, 1, '0', '0', NULL, NULL, 'Terrace# 18, Floor# 1 St# 0 Block 0 Johar Town, 54000 Kajang, Selangor, MY', 1, 1, 1, 0, 'sq_ft', 0, 'active', '2020-01-09 07:02:01', '2020-01-09 07:02:01'),
+(123, 2, 4, 'Terrace 18', '18', 2, 1, '0', '0', NULL, NULL, 'Terrace# 18, Floor# 2 St# 0 Block 0 Johar Town, 54000 Kajang, Selangor, MY', 1, 1, 1, 0, 'sq_ft', 0, 'active', '2020-01-09 07:02:01', '2020-01-09 07:02:01'),
+(124, 2, 4, 'Terrace 18', '18', 3, 1, '0', '0', NULL, NULL, 'Terrace# 18, Floor# 3 St# 0 Block 0 Johar Town, 54000 Kajang, Selangor, MY', 1, 1, 1, 0, 'sq_ft', 0, 'active', '2020-01-09 07:02:01', '2020-01-09 07:02:01'),
+(125, 2, 4, 'Terrace 19', '19', 1, 1, '0', '0', NULL, NULL, 'Terrace# 19, Floor# 1 St# 0 Block 0 Johar Town, 54000 Kajang, Selangor, MY', 1, 1, 1, 0, 'sq_ft', 0, 'active', '2020-01-09 07:02:01', '2020-01-09 07:02:01'),
+(126, 2, 4, 'Terrace 19', '19', 2, 1, '0', '0', NULL, NULL, 'Terrace# 19, Floor# 2 St# 0 Block 0 Johar Town, 54000 Kajang, Selangor, MY', 1, 1, 1, 0, 'sq_ft', 0, 'active', '2020-01-09 07:02:01', '2020-01-09 07:02:01'),
+(127, 2, 4, 'Terrace 19', '19', 3, 1, '0', '0', NULL, NULL, 'Terrace# 19, Floor# 3 St# 0 Block 0 Johar Town, 54000 Kajang, Selangor, MY', 1, 1, 1, 0, 'sq_ft', 0, 'active', '2020-01-09 07:02:01', '2020-01-09 07:02:01'),
+(128, 2, 4, 'Terrace 20', '20', 1, 1, '0', '0', NULL, NULL, 'Terrace# 20, Floor# 1 St# 0 Block 0 Johar Town, 54000 Kajang, Selangor, MY', 1, 1, 1, 0, 'sq_ft', 0, 'active', '2020-01-09 07:02:01', '2020-01-09 07:02:01'),
+(129, 2, 4, 'Terrace 20', '20', 2, 1, '0', '0', NULL, NULL, 'Terrace# 20, Floor# 2 St# 0 Block 0 Johar Town, 54000 Kajang, Selangor, MY', 1, 1, 1, 0, 'sq_ft', 0, 'active', '2020-01-09 07:02:01', '2020-01-09 07:02:01'),
+(130, 2, 4, 'Terrace 20', '20', 3, 1, '0', '0', NULL, NULL, 'Terrace# 20, Floor# 3 St# 0 Block 0 Johar Town, 54000 Kajang, Selangor, MY', 1, 1, 1, 0, 'sq_ft', 0, 'active', '2020-01-09 07:02:01', '2020-01-09 07:02:01');
 
 -- --------------------------------------------------------
 
@@ -168,24 +228,27 @@ INSERT INTO `address_assets` (`id`, `type`, `address_id`, `name`, `description`,
 DROP TABLE IF EXISTS `address_types`;
 CREATE TABLE IF NOT EXISTS `address_types` (
   `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `parent_id` int(11) DEFAULT '0',
   `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `show_add_view` tinyint(1) DEFAULT '1',
+  `has_stories` tinyint(1) NOT NULL DEFAULT '0',
+  `stories` int(11) NOT NULL DEFAULT '0',
+  `flats` int(11) NOT NULL DEFAULT '0',
   `address_format` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'active',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `address_types`
 --
 
-INSERT INTO `address_types` (`id`, `parent_id`, `title`, `show_add_view`, `address_format`, `status`, `created_at`, `updated_at`) VALUES
-(1, NULL, 'House', 1, 'House# [HOUSE]', 'active', '2019-12-18 11:55:00', '2019-12-31 02:02:03'),
-(2, NULL, 'Building', 1, 'Building# [HOUSE]', 'active', '2019-12-18 11:55:00', '2019-12-31 02:02:18'),
-(3, 2, 'Flat', 0, 'Building# [HOUSE], Floor# [STORY], Flat# [FLAT]', 'active', '2019-12-31 01:58:00', '2019-12-31 02:02:44');
+INSERT INTO `address_types` (`id`, `title`, `show_add_view`, `has_stories`, `stories`, `flats`, `address_format`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'House', 1, 0, 0, 0, 'House# [HOUSE]', 'active', '2019-12-18 11:55:00', '2019-12-31 02:02:03'),
+(2, 'Building', 1, 1, 0, 0, 'Building# [HOUSE], Floor# [FLOOR], Flat# [FLAT]', 'active', '2019-12-18 11:55:00', '2020-01-09 07:16:14'),
+(3, 'Flat', 0, 0, 0, 0, 'Building# [HOUSE], Floor# [STORY], Flat# [FLAT]', 'active', '2019-12-31 01:58:00', '2019-12-31 02:02:44'),
+(4, 'Terrace', 1, 1, 3, 1, 'Terrace# [HOUSE], Floor# [FLOOR]', 'active', '2020-01-08 08:55:00', '2020-01-09 02:32:45');
 
 -- --------------------------------------------------------
 
@@ -603,8 +666,8 @@ CREATE TABLE IF NOT EXISTS `communities` (
 --
 
 INSERT INTO `communities` (`id`, `name`, `description`, `banner`, `postal_code`, `city`, `state`, `country`, `address_format`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Smart Town', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.', 'communities\\December2019\\z8GvSpOeksdKkkkHSmCz.jpg', '43000', 'Kajang', 'Selangor', 'MY', 'House [HOUSE] St# [STREET] Block [BLOCK] [COMMUNITY], [POSTAL_CODE] [CITY], [STATE], [COUNTRY]', 1, '2019-12-13 02:33:00', '2020-01-02 07:55:02'),
-(2, 'Johar Town', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.', 'communities\\December2019\\0AfWYRfZrqAQjv6TklW0.jpg', '54000', 'Kajang', 'Selangor', 'MY', 'House [HOUSE] St# [STREET] Block [BLOCK] [COMMUNITY], [POSTAL_CODE] [CITY], [STATE], [COUNTRY]', 1, '2019-12-20 05:38:46', '2020-01-02 07:55:16');
+(1, 'Smart Town', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.', 'communities\\December2019\\z8GvSpOeksdKkkkHSmCz.jpg', '43000', 'Kajang', 'Selangor', 'MY', 'St# [STREET] Block [BLOCK] [COMMUNITY], [POSTAL_CODE] [CITY], [STATE], [COUNTRY]', 1, '2019-12-13 02:33:00', '2020-01-09 02:59:39'),
+(2, 'Johar Town', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.', 'communities\\December2019\\0AfWYRfZrqAQjv6TklW0.jpg', '54000', 'Kajang', 'Selangor', 'MY', 'St# [STREET] Block [BLOCK] [COMMUNITY], [POSTAL_CODE] [CITY], [STATE], [COUNTRY]', 1, '2019-12-20 05:38:46', '2020-01-09 02:59:22');
 
 -- --------------------------------------------------------
 
@@ -621,7 +684,7 @@ CREATE TABLE IF NOT EXISTS `community_address_types` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `community_address_types`
@@ -631,7 +694,9 @@ INSERT INTO `community_address_types` (`id`, `community_id`, `address_type_id`, 
 (1, 1, 1, 'active', '2019-12-20 03:21:14', '2019-12-20 03:22:33'),
 (2, 1, 2, 'active', '2019-12-20 03:21:14', '2019-12-20 04:47:02'),
 (3, 2, 1, 'active', '2019-12-20 05:52:08', '2019-12-20 05:54:08'),
-(4, 2, 2, 'active', '2019-12-20 05:52:08', '2020-01-01 04:21:02');
+(4, 2, 2, 'active', '2019-12-20 05:52:08', '2020-01-01 04:21:02'),
+(5, 2, 4, 'active', '2020-01-09 02:18:56', '2020-01-09 02:18:56'),
+(6, 1, 4, 'active', '2020-01-09 07:14:01', '2020-01-09 07:14:01');
 
 -- --------------------------------------------------------
 
@@ -678,7 +743,7 @@ CREATE TABLE IF NOT EXISTS `data_rows` (
   `order` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   KEY `data_rows_data_type_id_foreign` (`data_type_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=289 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=292 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `data_rows`
@@ -822,10 +887,10 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (140, 14, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 13),
 (141, 14, 'address_asset_belongsto_address_relationship', 'relationship', 'Address', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Address\",\"table\":\"addresses\",\"type\":\"belongsTo\",\"column\":\"address_id\",\"key\":\"id\",\"label\":\"address\",\"pivot_table\":\"address_assets\",\"pivot\":\"0\",\"taggable\":\"0\"}', 5),
 (143, 16, 'id', 'text', 'Id', 1, 1, 0, 0, 0, 0, '{}', 1),
-(144, 16, 'title', 'text', 'Title', 0, 1, 1, 1, 1, 1, '{}', 3),
-(145, 16, 'status', 'select_dropdown', 'Status', 1, 1, 1, 1, 1, 1, '{\"default\":\"active\",\"options\":{\"active\":\"active\",\"inactive\":\"inactive\"}}', 5),
-(146, 16, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 8),
-(147, 16, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 9),
+(144, 16, 'title', 'text', 'Title', 0, 1, 1, 1, 1, 1, '{}', 2),
+(145, 16, 'status', 'select_dropdown', 'Status', 1, 1, 1, 1, 1, 1, '{\"default\":\"active\",\"options\":{\"active\":\"active\",\"inactive\":\"inactive\"}}', 3),
+(146, 16, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 9),
+(147, 16, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 10),
 (148, 17, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
 (149, 17, 'community_id', 'hidden', 'Community Id', 1, 1, 1, 1, 1, 1, '{}', 2),
 (150, 17, 'address_type_id', 'hidden', 'Address Type Id', 1, 1, 1, 1, 1, 1, '{}', 3),
@@ -866,8 +931,6 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (185, 19, 'date', 'timestamp', 'Date', 0, 1, 1, 1, 1, 1, '{}', 12),
 (186, 19, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 0, 0, 1, '{}', 13),
 (187, 19, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 14),
-(188, 16, 'address_type_belongsto_address_type_relationship', 'relationship', 'Parent', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\AddressType\",\"table\":\"address_types\",\"type\":\"belongsTo\",\"column\":\"parent_id\",\"key\":\"id\",\"label\":\"title\",\"pivot_table\":\"address_assets\",\"pivot\":\"0\",\"taggable\":\"0\"}', 2),
-(189, 16, 'parent_id', 'text', 'Parent Id', 0, 1, 1, 1, 1, 1, '{}', 4),
 (190, 20, 'id', 'text', 'Id', 1, 1, 0, 0, 0, 0, '{}', 1),
 (191, 20, 'asset', 'text', 'Issue Title', 0, 1, 1, 1, 1, 1, '{}', 6),
 (192, 20, 'latitude', 'text', 'Latitude', 0, 1, 1, 1, 1, 1, '{}', 8),
@@ -931,8 +994,8 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (262, 25, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 15),
 (265, 25, 'is_active', 'checkbox', 'Is Active', 1, 1, 1, 1, 1, 1, '{\"on\":\"Yes\",\"off\":\"No\",\"checked\":true}', 11),
 (266, 23, 'is_active', 'checkbox', 'Is Active', 1, 1, 1, 1, 1, 1, '{\"on\":\"Yes\",\"off\":\"No\",\"checked\":true}', 10),
-(269, 16, 'show_add_view', 'checkbox', 'Show In Add View', 0, 1, 1, 1, 1, 1, '{\"on\":\"Yes\",\"off\":\"No\",\"checked\":true}', 6),
-(270, 16, 'address_format', 'text_area', 'Address Format', 0, 1, 1, 1, 1, 1, '{}', 7),
+(269, 16, 'show_add_view', 'checkbox', 'Show In Add View', 0, 1, 1, 1, 1, 1, '{\"on\":\"Yes\",\"off\":\"No\",\"checked\":true}', 4),
+(270, 16, 'address_format', 'text_area', 'Address Format', 0, 1, 1, 1, 1, 1, '{}', 8),
 (272, 1, 'username', 'text', 'Username', 1, 1, 1, 1, 1, 1, '{}', 4),
 (273, 1, 'community_id', 'text', 'Community Id', 0, 1, 1, 1, 1, 1, '{}', 7),
 (274, 1, 'phone_number', 'text', 'Phone Number', 0, 1, 1, 1, 1, 1, '{}', 8),
@@ -949,7 +1012,10 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (285, 8, 'garage', 'text', 'Garage', 0, 1, 1, 1, 1, 1, '{}', 17),
 (286, 8, 'area', 'text', 'Area', 0, 1, 1, 1, 1, 1, '{}', 18),
 (287, 8, 'area_unit', 'select_dropdown', 'Area Unit', 0, 1, 1, 1, 1, 1, '{\"default\":\"sq_ft\",\"options\":{\"sq_ft\":\"Sq .Ft\"}}', 19),
-(288, 8, 'has_ground_floor', 'checkbox', 'Has Ground Floor', 1, 1, 1, 1, 1, 1, '{\"on\":\"Yes\",\"off\":\"No\",\"checked\":false}', 20);
+(288, 8, 'has_ground_floor', 'checkbox', 'Has Ground Floor', 1, 1, 1, 1, 1, 1, '{\"on\":\"Yes\",\"off\":\"No\",\"checked\":false}', 20),
+(289, 16, 'has_stories', 'checkbox', 'Has Stories', 1, 1, 1, 1, 1, 1, '{\"on\":\"Yes\",\"off\":\"No\",\"checked\":false}', 5),
+(290, 16, 'stories', 'number', 'Stories (If Fixed)', 1, 1, 1, 1, 1, 1, '{}', 6),
+(291, 16, 'flats', 'number', 'Flats Per Story (If Fixed)', 1, 1, 1, 1, 1, 1, '{}', 7);
 
 -- --------------------------------------------------------
 
@@ -998,7 +1064,7 @@ INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `displa
 (12, 'user_assets', 'user-assets', 'User Asset', 'User Assets', 'voyager-harddrive', 'App\\UserAsset', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-12-13 08:37:24', '2019-12-13 08:47:22'),
 (13, 'residents', 'residents', 'Resident', 'Residents', NULL, 'App\\Resident', NULL, NULL, NULL, 1, 1, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":\"type\",\"scope\":null}', '2019-12-17 01:57:06', '2019-12-26 02:28:08'),
 (14, 'address_assets', 'address-assets', 'Address Asset', 'Address Assets', 'voyager-logbook', 'App\\AddressAsset', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-12-17 02:32:26', '2019-12-20 04:03:04'),
-(16, 'address_types', 'address-types', 'Address Type', 'Address Types', 'voyager-logbook', 'App\\AddressType', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-12-18 11:54:52', '2020-01-02 03:32:32'),
+(16, 'address_types', 'address-types', 'Address Type', 'Address Types', 'voyager-logbook', 'App\\AddressType', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-12-18 11:54:52', '2020-01-08 08:54:21'),
 (17, 'community_address_types', 'community-address-types', 'Community Address Type', 'Community Address Types', 'voyager-logbook', 'App\\CommunityAddressType', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-12-18 11:56:55', '2019-12-18 12:00:24'),
 (18, 'invitations', 'invitations', 'Invitation', 'Invitations', 'voyager-bell', 'App\\Invitation', NULL, NULL, NULL, 1, 1, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-12-23 04:24:02', '2019-12-23 04:27:48'),
 (19, 'visitors', 'visitors', 'Visitor', 'Visitors', 'voyager-bell', 'App\\Visitor', NULL, NULL, NULL, 1, 1, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-12-23 05:43:43', '2019-12-27 10:25:58'),
@@ -1783,12 +1849,12 @@ INSERT INTO `settings` (`id`, `key`, `display_name`, `value`, `details`, `type`,
 (3, 'site.logo', 'Site Logo', '', '', 'image', 3, 'Site'),
 (4, 'site.google_analytics_tracking_id', 'Google Analytics Tracking ID', NULL, '', 'text', 4, 'Site'),
 (5, 'admin.bg_image', 'Admin Background Image', '', '', 'image', 5, 'Admin'),
-(6, 'admin.title', 'Admin Title', 'Voyager', '', 'text', 1, 'Admin'),
-(7, 'admin.description', 'Admin Description', 'Welcome to Voyager. The Missing Admin for Laravel', '', 'text', 2, 'Admin'),
+(6, 'admin.title', 'Admin Title', 'Smart Town', '', 'text', 1, 'Admin'),
+(7, 'admin.description', 'Admin Description', 'Welcome to Smart Town Admin Panel', '', 'text', 2, 'Admin'),
 (8, 'admin.loader', 'Admin Loader', '', '', 'image', 3, 'Admin'),
 (9, 'admin.icon_image', 'Admin Icon Image', '', '', 'image', 4, 'Admin'),
 (10, 'admin.google_analytics_client_id', 'Google Analytics Client ID (used for admin dashboard)', NULL, '', 'text', 1, 'Admin'),
-(11, 'admin.address_format_tokens', 'Address Format Tokens', '[{\r\n	\"token\":\"[HOUSE]\",\r\n	\"description\":\"Auto generated House no e.g 1, 2, 3 from series\"\r\n},{\r\n	\"token\":\"[FLOOR]\",\r\n	\"description\":\"Auto generated Floor no e.g 1, 2, 3 from series\"\r\n},{\r\n	\"token\":\"[FLAT]\",\r\n	\"description\":\"Auto generated Flat no e.g 1, 2, 3 from series\"\r\n},{\r\n	\"token\":\"[STREET]\",\r\n	\"description\":\"Entered Street in series e.g 1\"\r\n},{\r\n	\"token\":\"[BLOCK]\",\r\n	\"description\":\"Entered Block in series e.g F\"\r\n},{\r\n	\"token\":\"[COMMUNITY]\",\r\n	\"description\":\"Community name\"\r\n},{\r\n	\"token\":\"[POSTAL_CODE]\",\r\n	\"description\":\"Community Postal Code\"\r\n},{\r\n	\"token\":\"[CITY]\",\r\n	\"description\":\"Community City\"\r\n},{\r\n	\"token\":\"[STATE]\",\r\n	\"description\":\"Community State\"\r\n},{\r\n	\"token\":\"[COUNTRY]\",\r\n	\"description\":\"Community Country\"\r\n}]', NULL, 'text_area', 6, 'Admin');
+(11, 'admin.address_format_tokens', 'Address Format Tokens', '[{\r\n	\"token\":\"[HOUSE_NAME]\",\r\n	\"description\":\"Entered House Name in Series\"\r\n},{\r\n	\"token\":\"[HOUSE]\",\r\n	\"description\":\"Auto generated House no e.g 1, 2, 3 from series\"\r\n},{\r\n	\"token\":\"[FLOOR]\",\r\n	\"description\":\"Auto generated Floor no e.g 1, 2, 3 from series\"\r\n},{\r\n	\"token\":\"[FLAT]\",\r\n	\"description\":\"Auto generated Flat no e.g 1, 2, 3 from series\"\r\n},{\r\n	\"token\":\"[STREET]\",\r\n	\"description\":\"Entered Street in series e.g 1\"\r\n},{\r\n	\"token\":\"[BLOCK]\",\r\n	\"description\":\"Entered Block in series e.g F\"\r\n},{\r\n	\"token\":\"[COMMUNITY]\",\r\n	\"description\":\"Community name\"\r\n},{\r\n	\"token\":\"[POSTAL_CODE]\",\r\n	\"description\":\"Community Postal Code\"\r\n},{\r\n	\"token\":\"[CITY]\",\r\n	\"description\":\"Community City\"\r\n},{\r\n	\"token\":\"[STATE]\",\r\n	\"description\":\"Community State\"\r\n},{\r\n	\"token\":\"[COUNTRY]\",\r\n	\"description\":\"Community Country\"\r\n}]', NULL, 'text_area', 6, 'Admin');
 
 -- --------------------------------------------------------
 
